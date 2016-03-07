@@ -18,9 +18,9 @@ router.get('/',async (ctx,next)=>{
 	ctx.body = result
 });
 // get id
-router.get('/:id',async (next)=>{
+router.get('/:id',async (ctx,next)=>{
   let result = Object.create(null)
-  let id=this.params.id
+  let id=ctx.params.id
   let User = ctx.app.context.models.user;
   let data =await User.findOne(id)
   if(!data){
@@ -35,17 +35,17 @@ router.get('/:id',async (next)=>{
 })
 
 // new
-router.post('/',async (next)=>{
+router.post('/',async (ctx,next)=>{
 
 })
 //edit
-router.put('/:id',async (next)=>{
+router.put('/:id',async (ctx,next)=>{
 
 })
 
-router.delete('/:id',async (next)=>{
+router.delete('/:id',async (ctx,next)=>{
   let result= Object.create(null);
-  let id = this.params.id
+  let id = ctx.params.id
   let User = ctx.app.context.models.user;
 
   let list =await User.destroy(id);
