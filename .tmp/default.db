@@ -1,0 +1,126 @@
+{
+  "data": {
+    "user": [
+      {
+        "id": "1",
+        "username": "jaxchow"
+      },
+      {
+        "id": "2",
+        "username": "jax"
+      },
+      {
+        "id": "13",
+        "username": "jax"
+      },
+      {
+        "id": "14",
+        "username": "MR.J"
+      }
+    ],
+    "books": [
+      {
+        "id": "1",
+        "bookname": "Head First jQuery",
+        "by": "Ryan Benedetti, Ronan Cranley",
+        "publisher": "O'Reilly Media",
+        "isbn": "978-1-4493-9321-2",
+        "language": "English",
+        "year": "2011",
+        "page": "544",
+        "format": "PDF"
+      },
+      {
+        "id": "2",
+        "bookname": "Beginning Oracle Application Express 5, 3rd Edition",
+        "by": "Doug Gault",
+        "publisher": "Apress",
+        "isbn": "978-1-484204-67-2",
+        "language": "English",
+        "year": "2016",
+        "page": "504",
+        "format": "PDF"
+      },
+      {
+        "id": "3",
+        "bookname": "Pro React",
+        "by": "Cassio de Sousa Antonio",
+        "publisher": "Apress",
+        "isbn": "978-1-484212-61-5",
+        "language": "English",
+        "year": "2015",
+        "page": "320",
+        "format": "PDF"
+      },
+      {
+        "id": "4",
+        "bookname": "Head First React",
+        "by": "Cassio de Sousa Antonio",
+        "publisher": "Apress",
+        "isbn": "978-1-484202-61-5",
+        "language": "English",
+        "year": "2015",
+        "page": "320",
+        "format": "PDF"
+      }
+    ]
+  },
+  "schema": {
+    "user": {
+      "id": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string"
+      },
+      "password": {
+        "type": "string"
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "books": {
+      "id": {
+        "type": "string"
+      },
+      "bookname": {
+        "type": "string"
+      },
+      "by": {
+        "type": "string"
+      },
+      "publisher": {
+        "type": "string"
+      },
+      "isbn": {
+        "type": "string"
+      },
+      "language": {
+        "type": "string"
+      },
+      "year": {
+        "type": "string"
+      },
+      "page": {
+        "type": "string"
+      },
+      "format": {
+        "type": "string"
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    }
+  },
+  "counters": {
+    "user": {},
+    "books": {}
+  }
+}
