@@ -1,7 +1,7 @@
 import Waterline from 'waterline'
 
 var Book = Waterline.Collection.extend({
-  identity: 'books',
+  identity: 'book',
   connection: 'default',
   attributes: {
     id:{

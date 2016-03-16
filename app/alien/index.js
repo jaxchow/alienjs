@@ -1,10 +1,15 @@
-import koa from 'koa'
-import assert from 'assert'
+import Application from 'koa'
+import convert from 'koa-convert'
+import isGeneratorFunction from 'is-generator-function'
 
-// mw middleware before of use middleware
-koa.prototype.mw=function(fn){
-	this.use(fn)
-	return this;
-};
+class Alien extends Application {
+	mw(fn){
+		if (isGeneratorFunction(fn)){
+			this.use(convert(fn))
+		}else{
+			this.use(fn)
+		}
+	}
+}
 
-export default koa
+export default Alien

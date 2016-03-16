@@ -13,6 +13,10 @@ function initialize(callback){
     adapters: {
          'default': sailsDesk,
      },
+     config: {
+      filePath: 'db/',
+      schema: false
+     },
      connections: {
          'default': {
              adapter: 'default',

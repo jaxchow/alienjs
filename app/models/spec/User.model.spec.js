@@ -1,35 +1,65 @@
 import {expect} from 'chai'
-import models from '../index.js'
-import assert from 'assert'
+import Waterline from 'waterline'
+import sailsMemoryAdapter from 'sails-memory'
 
+import User from '../User.model'
+
+const waterline = new Waterline();
+const config = {
+  adapters: {
+    'sails-memory': sailsMemoryAdapter
+  },
+  connections: {
+    default: {
+      adapter: 'sails-memory'
+    }
+  }
+}
 var dbs;
 
-function *setup(){
-   return models.initialize(function(err, ontology){
-  	if(err) throw err
-  	dbs=ontology.collections
-  	console.log('database adapter initialized connection')
-  });
-}
 
 describe("User model", function() {
-  var orm;
-  before(function*() {
-    orm = yield setup();
-  });
-
-  it("should be findOne user by 1", function*() {
-    var expected={
-      id:"1",
-      username:'jaxchow'
+  before(function(done){
+    waterline.loadCollection(User)
+    waterline.initialize(config, function  (err, ontology) {
+      if (err) {
+          return done(err);
+      }
+      done()
+    });
+  })
+  it('should be add user model',async()=>{
+    let User = waterline.collections.user;
+    let expected={
+      id:'1',
+      username:'jaxchow',
+      email:'jaxchow@gmail.com',
+      password:"1234"
     }
-    let User=orm.collections.user
-    let user=yield User.findOne("1")
-    expect(user.toJSON()).to.eql(expected)
+    let user=await User.create(expected)
+    //console.log(user)
+    expect(user).to.include(expected)
+  //  done()
+  })
+  it("should be findOne user by {1}", async()=>{
+    let User = waterline.collections.user;
+    let expected={
+      id:"1",
+      username:'jaxchow',
+      email:'jaxchow@gmail.com',
+      password:"1234"
+    }
+    let user=await User.findOne("1")
+    expect(user).to.include(expected)
+  })
 
-  });
-
-  after(function*() {
-  //  yield teardown();
-  });
+  it("should be remove user by {1}", async()=>{
+    let User = waterline.collections.user;
+    let expected={
+      username:'jaxchow',
+      email:'jaxchow@gmail.com',
+    }
+    let user=await User.destroy("1")
+    expect(user[0]).to.include(expected)
+  })
 });

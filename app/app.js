@@ -1,11 +1,13 @@
-import convert from 'koa-convert'
 import logger from 'koa-logger'
+import convert from 'koa-convert'
 import responseTime from 'koa-response-time'
+import cors from 'koa-cors'
 import gzip from 'koa-gzip'
+import body from 'koa-body'
 import slow from 'koa-slow'
 import session from 'koa-session'
-
-import Alien from './alien'
+import Alien from 'koa'
+//import Alien from './alien'
 import router from './router'
 import models from './models'
 
@@ -22,10 +24,11 @@ app.use(convert(logger()))
 app.use(convert(responseTime()))
 //app.use(rewrite('/cebbank/*','/$1'))
 app.use(convert(gzip()))
+app.use(convert(cors()))
+app.use(convert(body()))
 models.initialize(function(err, ontology){
 	if(err){throw err}
-	app.models=ontology.collections
-	app.context.models=ontology.collections
+	app.context.db=ontology.collections
 	console.log('database adapter initialized connection')
 })
 
@@ -37,8 +40,9 @@ app.mw(slow({
 */
 app.use(router.routes())
 //app.mw(livereload())
-app.mw(convert(session(app)))
+app.use(convert(session(app)))
 app.listen(4000,(err)=>{
 	if(err) throw err;
 	console.log("alien app is running!")
 });
+export default app

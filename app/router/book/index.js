@@ -1,15 +1,16 @@
+
 import Router from 'koa-router'
 
 let router= Router({
-  prefix: 'user'
+  prefix: 'book'
 })
 
 // get data list
 router.get('/',async (ctx,next)=>{
   let result = Object.create({exception:false,msg:'请求成功'})
-  let User = ctx.app.context.db.user;
-  let total= await User.count()
-  let list =await User.find().paginate({page: 1, limit: 10})
+  let Book = ctx.app.context.db.book;
+  let total= await Book.count()
+  let list =await Book.find().paginate({page: 1, limit: 10})
 
   result['exception']=false
   result['msg']='请求成功'
@@ -21,8 +22,8 @@ router.get('/',async (ctx,next)=>{
 router.get('/:id',async (ctx,next)=>{
   let result = Object.create(null)
   let id=ctx.params.id
-  let User = ctx.app.context.db.user
-  let data =await User.findOne(id)
+  let Book = ctx.app.context.db.book
+  let data =await Book.findOne(id)
   if(!data){
     result['exception']=true
     result['msg']="找不到数据"
@@ -39,8 +40,8 @@ router.post('/',async (ctx,next)=>{
   let result = Object.create(null)
   let param= ctx.req.body
   let id=ctx.params.id
-  let User = ctx.app.context.db.user
-  let data =await User.findOne(id)
+  let Book = ctx.app.context.db.book
+  let data =await Book.findOne(id)
 
   if(!data){
     result['exception']=true
@@ -58,8 +59,8 @@ router.put('/:id',async (ctx,next)=>{
 
   let result = Object.create(null)
   let param= ctx.req.body
-  let User = ctx.app.context.db.user
-  let data =await User.create(param)
+  let Book = ctx.app.context.db.book
+  let data =await Book.create(param)
 
   if(!data){
     result['exception']=true
@@ -76,9 +77,9 @@ router.put('/:id',async (ctx,next)=>{
 router.delete('/:id',async (ctx,next)=>{
   let result= Object.create(null);
   let id = ctx.params.id
-  let User = ctx.app.context.db.user
+  let Book = ctx.app.context.db.book
 
-  let list =await User.destroy(id);
+  let list =await Book.destroy(id);
   result['exception']=false
   result['msg']='删除成功'
   ctx.body=result
