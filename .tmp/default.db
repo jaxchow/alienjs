@@ -4,26 +4,31 @@
       {
         "id": "1",
         "username": "jaxchow",
+        "age": "31",
         "email": "jaxchow@gmail.com"
       },
       {
         "id": "2",
         "username": "jax",
+        "age": "31",
         "email": "jax@qq.com"
       },
       {
         "id": "3",
         "username": "jax11",
+        "age": "31",
         "email": "jaxchow@mac.com"
       },
       {
         "id": "4",
         "username": "MR.J",
+        "age": "31",
         "email": "jaxchow@163.com"
       },
       {
         "id": "5",
         "username": "jaxchow",
+        "age": "31",
         "email": "jaxchow@qq.com",
         "password": "1234561",
         "createdAt": "2016-03-08T03:16:45.494Z",
@@ -32,6 +37,7 @@
       {
         "id": "6",
         "username": "jaxchow",
+        "age": "31",
         "password": "123134",
         "email": "23",
         "createdAt": "2016-03-08T07:47:48.437Z",
@@ -40,6 +46,7 @@
       {
         "id": "7",
         "username": "jaxchow7",
+        "age": "31",
         "password": "123134",
         "email": "23",
         "createdAt": "2016-03-08T07:47:48.437Z",
@@ -48,6 +55,7 @@
       {
         "id": "8",
         "username": "jaxchow8",
+        "age": "31",
         "password": "123134",
         "email": "23",
         "createdAt": "2016-03-08T07:47:48.437Z",
@@ -56,6 +64,7 @@
       {
         "id": "9",
         "username": "jaxchow9",
+        "age": "31",
         "password": "123134",
         "email": "23",
         "createdAt": "2016-03-08T07:47:48.437Z",
@@ -64,6 +73,7 @@
       {
         "id": "10",
         "username": "jaxchow10",
+        "age": "31",
         "password": "123134",
         "email": "23",
         "createdAt": "2016-03-08T07:47:48.437Z",
@@ -80,7 +90,9 @@
         "language": "English",
         "year": "2011",
         "page": "544",
-        "format": "PDF"
+        "format": "PDF",
+        "images": "http://www.it-ebooks.info/images/ebooks/3/head_first_jquery.jpg",
+        "description": "Want to add more interactivity and polish to your websites? Discover how jQuery can help you build complex scripting functionality in just a few lines of code. With Head First jQuery, you'll quickly get up to speed on this amazing JavaScript library by learning how to navigate HTML documents while handling events, effects, callbacks, and animations. By the time you've completed the book, you'll be incorporating Ajax apps, working seamlessly with HTML and CSS, and handling data with PHP, MySQL and JSON."
       },
       {
         "id": "2",
@@ -91,7 +103,9 @@
         "language": "English",
         "year": "2016",
         "page": "504",
-        "format": "PDF"
+        "format": "PDF",
+        "images": "http://www.it-ebooks.info/images/ebooks/6/beginning_oracle_application_express_5_3rd_edition.jpg",
+        "description": "Whether you're new to Oracle or an old hand who's yet to test the waters of APEX, Beginning Oracle Application Express 5 introduces the processes and best practices you'll need to become proficient with APEX. The book shows off the programming environment, the utilities and tools available, and then continues by walking through the process of building a working system from the ground up. All code is documented and explained so that those new to the languages will not be lost. After reading this book, power users and programmers alike can quickly put together robust and scalable applications for use by one person, by a department, by an entire company. Beginning Oracle Application Express 5 introduces version 5 of the popular and productive Oracle Application Express development platform. Called APEX for short, the platform enables rapid and easy development of web-based applications that make full use of Oracle Database. The release of APEX 5 brings major new changes to the page builder, an enhanced universal theme, better RESTful web services support, enhanced application packaging, and the many redesigned wizards give a new and fresh feel to the user interface."
       },
       {
         "id": "3",
@@ -102,24 +116,31 @@
         "language": "English",
         "year": "2015",
         "page": "320",
-        "format": "PDF"
+        "format": "PDF",
+        "images": "http://www.it-ebooks.info/images/ebooks/6/pro_react.jpg",
+        "description": "This book teaches you how to successfully structure increasingly complex front-end applications and interfaces. You'll explore the React library in depth, as well as detailing additional tools and libraries in the React ecosystem, enabling you to create complete, complex applications. You will learn how to use React completely, and learn best practices for creating interfaces in a composable way. You will also cover additional tools and libraries in the React ecosystem (such as React Router and Flux architecture). Each topic is covered clearly and concisely and is packed with the details you need to learn to be truly effective. The most important features are given no-nonsense, in-depth treatment, and every chapter details common problems and how to avoid them. If you already have experience creating front-end apps using jQuery or perhaps other JavaScript frameworks, but need to solve the increasingly common problem of structuring complex front-end applications, then this book is for you. Start working with React like a pro - add Pro React to your library today."
       },
       {
-        "id": "4",
-        "bookname": "Head First React",
+        "id": "5",
+        "bookname": "Head First JavaScript",
         "by": "Cassio de Sousa Antonio",
         "publisher": "Apress",
         "isbn": "978-1-484202-61-5",
         "language": "English",
         "year": "2015",
         "page": "320",
-        "format": "PDF"
+        "format": "PDF",
+        "images": "http://www.it-ebooks.info/images/ebooks/3/head_first_javascript.jpg",
+        "description": "Want to make the leap from writing HTML and CSS web pages and create dynamic web applications? Want to take your web skills to the next level? It sounds like you're ready to learn the Web's hottest programming language: JavaScript. Head First JavaScript is your ticket to going beyond copying and pasting the code from someone else's web site, and writing your own interactive web pages."
       }
     ]
   },
   "schema": {
     "user": {
       "id": {
+        "type": "string"
+      },
+      "age": {
         "type": "string"
       },
       "username": {
@@ -164,6 +185,12 @@
         "type": "string"
       },
       "format": {
+        "type": "string"
+      },
+      "images": {
+        "type": "string"
+      },
+      "description": {
         "type": "string"
       },
       "createdAt": {

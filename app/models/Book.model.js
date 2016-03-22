@@ -39,6 +39,12 @@ var Book = Waterline.Collection.extend({
     format: {
         type: 'string',
         required: true,
+    },
+    images:{
+        type: 'string',
+    },
+    description:{
+        type: 'string',
     }
   }
 });

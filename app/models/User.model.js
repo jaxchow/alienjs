@@ -8,6 +8,9 @@ var User = Waterline.Collection.extend({
       type:'string',
       required:true
     },
+    age:{
+      type:'string'
+    },
     username:{
       type:'string',
       required:true

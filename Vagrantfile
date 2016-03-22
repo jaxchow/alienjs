@@ -17,21 +17,21 @@ Vagrant.configure(2) do |config|
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
-  # config.vm.box_check_update = false
+   config.vm.box_check_update = false
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
+  # config.vm.network "forwarded_port", guest: 4000, host:4000
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
- # config.vm.network "private_network", ip: "192.168.33.10"
+  # config.vm.network "private_network", ip: "192.168.222.93"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-   config.vm.network "public_network"
+   config.vm.network "public_network",:bridge => 'en0: Ethernet'
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
@@ -39,7 +39,7 @@ Vagrant.configure(2) do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
 
-  config.vm.synced_folder "~/.m2", "/home/vagrant/.m2"
+   config.vm.synced_folder "~/.m2", "/home/vagrant/.m2"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -50,8 +50,8 @@ Vagrant.configure(2) do |config|
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-     vb.memory = "1024"
-      vb.cpus = 2
+    vb.memory = "128"
+    vb.cpus = 1
    end
   #
   # View the documentation for the provider you are using for more
@@ -74,7 +74,7 @@ Vagrant.configure(2) do |config|
     source ~/.bashrc
     nvm install v5.0.0
     npm install
-    
+
   SHELL
 
   config.vm.provision "shell", inline: $initEnv, run: "once"
@@ -85,7 +85,7 @@ Vagrant.configure(2) do |config|
     npm start
   AUTORUN
 
-  #config.vm.provision "shell", inline: $autorun, run: "always"
+  config.vm.provision "shell", inline: $autorun, run: "always"
 
 
 
