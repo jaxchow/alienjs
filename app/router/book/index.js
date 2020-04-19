@@ -9,20 +9,47 @@ let router= Router({
 router.get('/',async (ctx,next)=>{
   let result = Object.create({exception:false,msg:'请求成功'})
   let Book = ctx.app.context.db.book;
-  let total= await Book.count()
-  let list =await Book.find().paginate({page: 1, limit: 10})
+  // let total= await Book.count()
+  let list 
+  if(ctx.query.year){
+    list = await Book.find().where({year:{'>':ctx.query.year}}).paginate({page: 1, limit: 10})
+  }else{
+    list = await Book.find().paginate({page: 1, limit: 10})
+  }
+
 
   result['exception']=false
   result['msg']='请求成功'
-  result['total']=total
+  // result['total']=total
   result['list']=list
 	ctx.body = result
 });
+
+// get 5
+router.get('/find5',async (ctx,next)=>{
+  let result = Object.create(null)
+  console.log("find5")
+  let Book = ctx.app.context.db.book
+  let data = await Book.find().paginate({page: 1, limit: 2})
+  console.log("111",data)
+  if(!data){
+    result['exception']=true
+    result['msg']="找不到数据"
+  }else{
+    result['exception']=false
+    result['msg']="请求成功"
+    result['item']=data
+  }
+  ctx.body=result
+})
+
+
 // get id
 router.get('/:id',async (ctx,next)=>{
   let result = Object.create(null)
   let id=ctx.params.id
   let Book = ctx.app.context.db.book
+  console.log("id",id)
   let data =await Book.findOne(id)
   if(!data){
     result['exception']=true
@@ -30,18 +57,20 @@ router.get('/:id',async (ctx,next)=>{
   }else{
     result['exception']=false
     result['msg']="请求成功"
-    result['list']=[data]
+    result['item']=data
   }
 	ctx.body=result
 })
 
+
 // new
 router.post('/',async (ctx,next)=>{
   let result = Object.create(null)
-  let param= ctx.req.body
-  let id=ctx.params.id
+ 
+  let param= ctx.request.body
   let Book = ctx.app.context.db.book
-  let data =await Book.findOne(id)
+  let data =await Book.create(param)
+
 
   if(!data){
     result['exception']=true
@@ -49,29 +78,33 @@ router.post('/',async (ctx,next)=>{
   }else{
     result['exception']=false
     result['msg']="保存成功"
-    result['list']=[data]
+    result['list']=[]
   }
+
 
 	ctx.body=result
 })
 //edit
 router.put('/:id',async (ctx,next)=>{
-
   let result = Object.create(null)
-  let param= ctx.req.body
+  let id= ctx.params.id
+  let body= ctx.request.body
   let Book = ctx.app.context.db.book
-  let data =await Book.create(param)
+  console.log(body,id)
+  await Book.update({id:id},body).exec(function(err,data){
+    console.log(err)  
+  })
 
-  if(!data){
-    result['exception']=true
-    result['msg']="保存失败"
-  }else{
+  // if(err){
+  //   result['exception']=true
+  //   result['msg']="保存失败"
+  // }else{
     result['exception']=false
-    result['msg']="保存成功"
-    result['list']=[data]
-  }
-
-	ctx.body=result
+    result['msg']="更新成功"
+    result['list']=[]
+  // }
+  // console.log(ctx)
+  ctx.body=result
 })
 
 router.delete('/:id',async (ctx,next)=>{

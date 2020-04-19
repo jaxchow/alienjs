@@ -6,26 +6,46 @@ var User = Waterline.Collection.extend({
   attributes: {
     id:{
       type:'string',
-      required:true
+      autoIncrement: true,
+      unique: true,
+      primaryKey: true,
     },
-    age:{
+    icon:{
       type:'string'
     },
     username:{
       type:'string',
-      required:true
     },
-    email: {
-        type: 'string',
-        required: true,
+    gender: {
+      type: 'string',
     },
-    password: {
-        type: 'string',
-        required: true,
+    birthday: {
+      type: 'date',
+      before:function(){    
+        return new Date()
+      }
     },
-    passwordConfirmation: function(){
-        return this.passwordConfirmation;
-    }
+    height: {
+      type: 'integer',
+    },
+    weight: {
+      type: 'integer',
+    },
+    waistline: {
+      type: 'integer',
+    },
+    createdAt: {
+      type: 'date',
+      before:function(){    
+        return new Date()
+      }
+    },
+    updatedAt: {
+      type: 'date',
+      before:function(){    
+        return new Date()
+      }
+    },
   },
 });
 

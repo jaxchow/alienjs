@@ -37,10 +37,9 @@ router.get('/:id',async (ctx,next)=>{
 // new
 router.post('/',async (ctx,next)=>{
   let result = Object.create(null)
-  let param= ctx.req.body
-  let id=ctx.params.id
+  let param= ctx.request.body
   let User = ctx.app.context.db.user
-  let data =await User.findOne(id)
+  let data = User.create(param)
 
   if(!data){
     result['exception']=true
