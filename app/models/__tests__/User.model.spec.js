@@ -19,7 +19,7 @@ var dbs;
 
 
 describe("User model", function() {
-  before(function(done){
+  beforeAll(function(done){
     waterline.loadCollection(User)
     waterline.initialize(config, function  (err, ontology) {
       if (err) {
@@ -36,10 +36,9 @@ describe("User model", function() {
       email:'jaxchow@gmail.com',
       password:"1234"
     }
-    let user=await User.create(expected)
-    //console.log(user)
+		let user=await User.create(expected)
+		// console.log(user)
     expect(user).to.include(expected)
-  //  done()
   })
   it("should be findOne user by {1}", async()=>{
     let User = waterline.collections.user;

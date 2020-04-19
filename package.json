@@ -4,16 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node app/app",
-    "test-model": "mocha --compilers js:babel-core/register --require babel-polyfill app/models/spec/*.spec.js",
-    "test-router": "mocha --compilers js:babel-core/register --require babel-polyfill app/router/spec/*.spec.js",
+    "start": "babel-node app/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
 		"babel": "^6.3.26",
-		"babel-node":"^6.26.0",
+		"babel-node":"0.0.1-security",
     "babel-polyfill": "^6.3.14",
     "bcrypt": "^0.8.5",
     "chai": "^3.5.0",

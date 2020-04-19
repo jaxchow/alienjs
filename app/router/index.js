@@ -12,10 +12,8 @@ let router= Router({
 })
 
 
-router.get('index.do',function(next){
-  let User = this.models.user;
-  let UserObj = User.find()
-  this.body = 'Hello World!';
+router.get('/',function(ctx,next){
+	ctx.body="Hello World!"
 });
 
 // use sub router

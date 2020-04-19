@@ -6,7 +6,6 @@ var Book = Waterline.Collection.extend({
   attributes: {
     id:{
       type:'string',
-    //   required:true
     },
     bookname: {
         type: 'string',
