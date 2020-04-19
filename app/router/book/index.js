@@ -37,11 +37,12 @@ router.get('/:id',async (ctx,next)=>{
 
 // new
 router.post('/',async (ctx,next)=>{
-  let result = Object.create(null)
-  let param= ctx.req.body
-  let id=ctx.params.id
-  let Book = ctx.app.context.db.book
-  let data =await Book.findOne(id)
+	let result = Object.create(null)
+	console.log(`Request Body: ${JSON.stringify(ctx.request.body)}`)
+	let param = ctx.request.body
+	let Book = ctx.app.context.db.book
+	console.log(param)
+	let data = await Book.create(param)
 
   if(!data){
     result['exception']=true

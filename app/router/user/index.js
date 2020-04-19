@@ -6,7 +6,7 @@ let router= Router({
 
 // get data list
 router.get('/',async (ctx,next)=>{
-  let result = Object.create({exception:false,msg:'请求成功'})
+	let result = Object.create({exception:false,msg:'请求成功'})
   let User = ctx.app.context.db.user;
   let total= await User.count()
   let list =await User.find().paginate({page: 1, limit: 10})

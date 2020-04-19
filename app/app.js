@@ -4,12 +4,11 @@ import responseTime from 'koa-response-time'
 import cors from 'koa-cors'
 import gzip from 'koa-gzip'
 import body from 'koa-body'
-import slow from 'koa-slow'
 import session from 'koa-session'
 import Alien from 'koa'
 //import Alien from './alien'
 import router from './router'
-import models from './models'
+import {initialize} from './models'
 
 let	app =new Alien()
 
@@ -26,23 +25,16 @@ app.use(convert(responseTime()))
 app.use(convert(gzip()))
 app.use(convert(cors()))
 app.use(convert(body()))
-models.initialize(function(err, ontology){
+// app.use(ctx => {
+// 	ctx.body = `Request Body: ${JSON.stringify(ctx.request.body)}`;
+// });
+const orm =initialize(function(err, ontology){
+	// console.log("initial")
 	if(err){throw err}
-	app.context.db=ontology.collections
-	console.log('database adapter initialized connection')
 })
-
-/*
-app.mw(slow({
-    url: /\.do$/i,
-    delay: 5000
-}))
-*/
+app.context.db = orm.collections
+// console.log(app.context.db)
 app.use(router.routes())
 //app.mw(livereload())
 app.use(convert(session(app)))
-app.listen(4000,(err)=>{
-	if(err) throw err;
-	console.log("alien app is running!")
-});
 export default app
