@@ -1,7 +1,7 @@
 import Waterline from 'waterline'
-
-var User = Waterline.Collection.extend({
-  identity: 'user',
+//用户附加表
+var Data = Waterline.Collection.extend({
+  identity: 'data',
   connection: 'default',
   attributes: {
     id:{
@@ -10,35 +10,36 @@ var User = Waterline.Collection.extend({
       unique: true,
       primaryKey: true,
     },
-    //名称
-    name:{
-      type:'string',
+    // 设备id
+    deviceId:{
+      type:'integer',
     },
-    // 头像
-    avatar:{
-      type:'string'
+    // 用户id
+    userId:{
+      type:'integer'
     },
-    // 性别
-    sex: {
+    // 设备类型id
+    catalog_id: {
+      type: 'integer',
+    },
+    // 单位数量
+    value: {
+      type: 'integer',
+    },
+    // 设备单位
+    unit: {
       type: 'string',
     },
-    // 生日
-    birthday: {
-      type: 'date',
-      before:function(){    
-        return new Date()
-      }
-    },
-    // 身高（cm）
-    height: {
+    // 卡路里（千卡）
+    calorie: {
       type: 'integer',
     },
-    // 体重（kg）
-    weight: {
+    // 运动时间（s）
+    time: {
       type: 'integer',
     },
-    // 腰围（cm）
-    waistline: {
+    // 甩脂数（g）
+    fatcut: {
       type: 'integer',
     },
     createdAt: {
@@ -57,4 +58,4 @@ var User = Waterline.Collection.extend({
 });
 
 
-module.exports= User;
+module.exports= Data;

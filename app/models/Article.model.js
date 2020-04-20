@@ -1,7 +1,7 @@
 import Waterline from 'waterline'
-
-var User = Waterline.Collection.extend({
-  identity: 'user',
+//用户附加表
+var Article = Waterline.Collection.extend({
+  identity: 'article',
   connection: 'default',
   attributes: {
     id:{
@@ -10,35 +10,32 @@ var User = Waterline.Collection.extend({
       unique: true,
       primaryKey: true,
     },
-    //名称
-    name:{
-      type:'string',
+    // 栏目id
+    columnId:{
+      type:'integer',
     },
-    // 头像
-    avatar:{
+    // 标题
+    title:{
       type:'string'
     },
-    // 性别
-    sex: {
+    // 正文
+    content: {
       type: 'string',
     },
-    // 生日
-    birthday: {
-      type: 'date',
-      before:function(){    
-        return new Date()
-      }
+    // 图片
+    pic: {
+      type: 'string',
     },
-    // 身高（cm）
-    height: {
+    // 浏览数
+    views: {
       type: 'integer',
     },
-    // 体重（kg）
-    weight: {
-      type: 'integer',
+    // 标签
+    tag: {
+      type: 'string',
     },
-    // 腰围（cm）
-    waistline: {
+    // 点赞数
+    praiseNumber: {
       type: 'integer',
     },
     createdAt: {
@@ -57,4 +54,4 @@ var User = Waterline.Collection.extend({
 });
 
 
-module.exports= User;
+module.exports= Article;
