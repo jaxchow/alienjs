@@ -9,38 +9,35 @@ let router= Router({
 router.get('/',async (ctx,next)=>{
   let result = Object.create({exception:false,msg:'请求成功'})
   let Book = ctx.app.context.db.book;
-  // let total= await Book.count()
-  let list 
+  let total= await Book.count()
+  let list
   if(ctx.query.year){
     list = await Book.find().where({year:{'>':ctx.query.year}}).paginate({page: 1, limit: 10})
   }else{
     list = await Book.find().paginate({page: 1, limit: 10})
   }
 
-
-  result['exception']=false
-  result['msg']='请求成功'
+	ctx.append('X-Total',total)
+  // result['exception']=false
+  // result['msg']='请求成功'
   // result['total']=total
-  result['list']=list
-	ctx.body = result
+	ctx.body =list
 });
 
 // get 5
 router.get('/find5',async (ctx,next)=>{
   let result = Object.create(null)
-  console.log("find5")
   let Book = ctx.app.context.db.book
   let data = await Book.find().paginate({page: 1, limit: 2})
-  console.log("111",data)
-  if(!data){
-    result['exception']=true
-    result['msg']="找不到数据"
-  }else{
-    result['exception']=false
-    result['msg']="请求成功"
-    result['item']=data
-  }
-  ctx.body=result
+  // if(!data){
+  //   result['exception']=true
+  //   result['msg']="找不到数据"
+  // }else{
+  //   result['exception']=false
+  //   result['msg']="请求成功"
+  //   result['item']=data
+  // }
+  ctx.body=data
 })
 
 
@@ -51,15 +48,15 @@ router.get('/:id',async (ctx,next)=>{
   let Book = ctx.app.context.db.book
   console.log("id",id)
   let data =await Book.findOne(id)
-  if(!data){
-    result['exception']=true
-    result['msg']="找不到数据"
-  }else{
-    result['exception']=false
-    result['msg']="请求成功"
-    result['item']=data
-  }
-	ctx.body=result
+  // if(!data){
+  //   result['exception']=true
+  //   result['msg']="找不到数据"
+  // }else{
+  //   result['exception']=false
+  //   result['msg']="请求成功"
+  //   result['item']=data
+  // }
+	ctx.body=data
 })
 
 
@@ -92,7 +89,7 @@ router.put('/:id',async (ctx,next)=>{
   let Book = ctx.app.context.db.book
   console.log(body,id)
   await Book.update({id:id},body).exec(function(err,data){
-    console.log(err)  
+    console.log(err)
   })
 
   // if(err){
