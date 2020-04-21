@@ -31,24 +31,18 @@ describe("User model", function() {
   it('should be add user model',async()=>{
     let User = waterline.collections.user;
     let expected={
-      id:'1',
-      username:'jaxchow',
-      email:'jaxchow@gmail.com',
-      password:"1234"
+      name:'jaxchow',
     }
 		let user=await User.create(expected)
-		// console.log(user)
     expect(user).to.include(expected)
   })
   it("should be findOne user by {1}", async()=>{
     let User = waterline.collections.user;
     let expected={
-      id:"1",
-      username:'jaxchow',
-      email:'jaxchow@gmail.com',
-      password:"1234"
+      id:"1"
     }
     let user=await User.findOne("1")
+    console.log(expect(user).to)
     expect(user).to.include(expected)
   })
 

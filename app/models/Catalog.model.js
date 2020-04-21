@@ -1,5 +1,5 @@
 import Waterline from 'waterline'
-//用户附加表
+//设备类型表
 var Catalog = Waterline.Collection.extend({
   identity: 'catalog',
   connection: 'default',

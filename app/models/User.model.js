@@ -1,5 +1,5 @@
 import Waterline from 'waterline'
-
+// 用户表
 var User = Waterline.Collection.extend({
   identity: 'user',
   connection: 'default',

@@ -1,5 +1,5 @@
 import Waterline from 'waterline'
-//用户附加表
+//我的设备表
 var Device = Waterline.Collection.extend({
   identity: 'device',
   connection: 'default',

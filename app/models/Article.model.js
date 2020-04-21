@@ -1,5 +1,5 @@
 import Waterline from 'waterline'
-//用户附加表
+//文章表
 var Article = Waterline.Collection.extend({
   identity: 'article',
   connection: 'default',
