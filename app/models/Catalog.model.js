@@ -1,7 +1,7 @@
 import Waterline from 'waterline'
-// 用户表
-var User = Waterline.Collection.extend({
-  identity: 'user',
+//设备类型表
+var Catalog = Waterline.Collection.extend({
+  identity: 'catalog',
   connection: 'default',
   attributes: {
     id:{
@@ -10,35 +10,28 @@ var User = Waterline.Collection.extend({
       unique: true,
       primaryKey: true,
     },
-    //名称
-    name:{
+    // 设备描述
+    description:{
       type:'string',
     },
-    // 头像
-    avatar:{
+    // 设备图片
+    pic:{
       type:'string'
     },
-    // 性别
-    sex: {
+    // 设备类型
+    type: {
       type: 'string',
     },
-    // 生日
-    birthday: {
-      type: 'date',
-      before:function(){    
-        return new Date()
-      }
+    // 设备单位
+    unit: {
+      type: 'string',
     },
-    // 身高（cm）
-    height: {
-      type: 'integer',
+    // 操作指南
+    refs: {
+      type: 'string',
     },
-    // 体重（kg）
-    weight: {
-      type: 'integer',
-    },
-    // 腰围（cm）
-    waistline: {
+    // 推荐指数
+    defaultValue: {
       type: 'integer',
     },
     createdAt: {
@@ -57,4 +50,4 @@ var User = Waterline.Collection.extend({
 });
 
 
-module.exports= User;
+module.exports= Catalog;
