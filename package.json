@@ -10,11 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-		"babel": "^6.3.26",
-		"babel-node":"0.0.1-security",
+    "babel": "^6.3.26",
+    "babel-node": "0.0.1-security",
     "babel-polyfill": "^6.3.14",
     "bcrypt": "^0.8.5",
     "chai": "^3.5.0",
+    "jest": "^22.2.0",
     "koa": "^2.0.0-alpha.3",
     "koa-body": "^1.4.0",
     "koa-convert": "^1.2.0",
@@ -44,7 +45,7 @@
     }
   },
   "devDependencies": {
-		"babel-cli": "^6.4.5",
+    "babel-cli": "^6.4.5",
     "babel-core": "^6.3.26",
     "babel-loader": "^6.2.1",
     "babel-plugin-transform-regenerator": "^6.6.5",

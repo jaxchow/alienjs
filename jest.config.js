@@ -18,7 +18,7 @@ module.exports = {
     'build',
     '<rootDir>/src/shared/libs/url/',
   ],
-  testRegex: '__tests__/.*\\.js?$', //要测试的文件目录及后缀
+  testRegex: '__tests__/.*\\.*\\.js?$', //要测试的文件目录及后缀
   testPathIgnorePatterns: [ //忽略该路径的文件测试
     '<rootDir>/node_modules/(?!lodash-es)',
     '<rootDir>/build/',
