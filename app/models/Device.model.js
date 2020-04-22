@@ -15,7 +15,7 @@ var Device = Waterline.Collection.extend({
       type:'integer',
     },
     // 设备类型id
-    catalog_id:{
+    catalogId:{
       type:'integer'
     },
     // 蓝牙地址
@@ -25,6 +25,10 @@ var Device = Waterline.Collection.extend({
     // 固件版本号
     version: {
       type: 'string',
+    },
+    // 目标
+    index:{
+      type:'integer'
     },
     createdAt: {
       type: 'date',

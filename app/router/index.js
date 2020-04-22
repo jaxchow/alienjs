@@ -1,9 +1,7 @@
 import Router from 'koa-router'
 
-import mock from './mock'
-import www from './www'
 import user from './user'
-import book from './book'
+import catalog from './catalog'
 //TODO: 未实现
 //import client from './client'
 
@@ -17,10 +15,8 @@ router.get('/',function(ctx,next){
 });
 
 // use sub router
-router.use(mock.routes())
 router.use(user.routes())
-router.use(book.routes())
-router.use(www.routes())
+router.use(catalog.routes())
 //router.use(client.routes())
 router.allowedMethods()
 

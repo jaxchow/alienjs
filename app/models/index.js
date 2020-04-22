@@ -6,11 +6,13 @@ let orm = new Waterline();
 
 export function initialize(callback) {
 	var User = require("./User.model");
+	var Catalog = require('./Catalog.model')
 	var Plant = require("./Plant.model")
 	var Data = require("./Data.model")
 	var Device = require("./Device.model")
 	var Article = require("./Article.model")
 	orm.loadCollection(User);
+	orm.loadCollection(Catalog);
 	orm.loadCollection(Plant);
 	orm.loadCollection(Data);
 	orm.loadCollection(Device);
