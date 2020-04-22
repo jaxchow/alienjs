@@ -19,7 +19,7 @@ var Data = Waterline.Collection.extend({
       type:'integer'
     },
     // 设备类型id
-    catalog_id: {
+    catalogId: {
       type: 'integer',
     },
     // 单位数量
