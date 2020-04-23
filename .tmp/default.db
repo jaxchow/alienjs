@@ -4,14 +4,19 @@
       {
         "id": 1,
         "username": "jaxchow",
-        "age": "31",
-        "email": "jaxchow@gmail.com"
+        "avatar": "av",
+        "sex": "男",
+        "name": "Bb",
+        "updatedAt": "2020-04-23T05:46:02.415Z"
       },
       {
         "id": 2,
         "username": "jax",
         "age": "31",
-        "email": "jax@qq.com"
+        "email": "jax@qq.com",
+        "name": "Bb",
+        "avatar": "av",
+        "updatedAt": "2020-04-23T05:48:25.144Z"
       },
       {
         "id": 3,

@@ -7,7 +7,6 @@ let router= Router({
 router.get('/:id',async (ctx,next)=>{
   let result = Object.create(null)
   let id = ctx.params.id
-  console.log(ctx.params)
   let User =ctx.app.context.db.user
   let data =await User.findOne(id)
   if(!data){
@@ -40,55 +39,24 @@ router.get('/:userId/device',async (ctx,next)=>{
 	ctx.body=result
 });
 
-// new
-router.post('/',async (ctx,next)=>{
+// 用户信息修改
+router.patch('/:id',async (ctx,next)=>{
   let result = Object.create(null)
-  let param= ctx.request.body
   let User = ctx.app.context.db.user
-  console.log(param)
-  let data = await User.create({})
-
-  if(!data){
+  let params = ctx.params
+  let reqbody = ctx.request.body
+  let data = await User.update(params,reqbody)
+  if(!data[0]){
     result['exception']=true
-    result['msg']="保存失败"
+    result['msg']="找不到数据"
   }else{
     result['exception']=false
-    result['msg']="保存成功"
-    result['list']=[data]
+    result['msg']="更新成功"
+    result['data']=data[0]
   }
-
-	ctx.body=result
-})
-//edit
-router.put('/:id',async (ctx,next)=>{
-
-  let result = Object.create(null)
-  let param= ctx.req.body
-  let User = ctx.app.context.db.user
-  let data =await User.create(param)
-
-  if(!data){
-    result['exception']=true
-    result['msg']="保存失败"
-  }else{
-    result['exception']=false
-    result['msg']="保存成功"
-    result['list']=[data]
-  }
-
-	ctx.body=result
+  ctx.body = result
 })
 
-router.delete('/:id',async (ctx,next)=>{
-  let result= Object.create(null);
-  let id = ctx.params.id
-  let User = ctx.app.context.db.user
-
-  let list =await User.destroy(id);
-  result['exception']=false
-  result['msg']='删除成功'
-  ctx.body=result
-})
 
 router.allowedMethods();
 
