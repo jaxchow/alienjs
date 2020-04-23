@@ -112,26 +112,40 @@
     ],
     "data": [
       {
-        "id": 1,
-        "deviceId": 1,
         "userId": 1,
-        "catalogId": 1,
-        "value": 23,
-        "unit": "圈",
-        "calorie": 233,
-        "time": 300,
-        "fatcut": 6
-      },
-      {
         "deviceId": 1,
         "catalogId": 1,
         "time": 300,
         "fatcut": 3,
         "calorie": 233,
         "value": 23,
-        "createdAt": "2020-04-23T10:04:12.574Z",
-        "updatedAt": "2020-04-23T10:04:12.574Z",
+        "createdAt": "2020-04-22T10:04:12.574Z",
+        "updatedAt": "2020-04-22T10:04:12.574Z",
         "id": 2
+      },
+      {
+        "userId": 1,
+        "deviceId": 1,
+        "catalogId": 1,
+        "time": 3080,
+        "fatcut": 33,
+        "calorie": 2133,
+        "value": 233,
+        "createdAt": "2020-04-21T00:00:00.000Z",
+        "updatedAt": "2020-04-21T00:00:00.000Z",
+        "id": 4
+      },
+      {
+        "userId": 1,
+        "deviceId": 1,
+        "catalogId": 1,
+        "time": 3080,
+        "fatcut": 33,
+        "calorie": 2133,
+        "value": 233,
+        "createdAt": "2020-04-23T14:14:42.878Z",
+        "updatedAt": "2020-04-23T14:17:07.055Z",
+        "id": 5
       }
     ],
     "device": [
@@ -348,7 +362,7 @@
       "userId": 1
     },
     "data": {
-      "id": 2
+      "id": 5
     },
     "device": {
       "id": 1
