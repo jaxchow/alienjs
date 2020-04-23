@@ -57,6 +57,40 @@ router.patch('/:id',async (ctx,next)=>{
   ctx.body = result
 })
 
+// 用户附加
+router.get('/:id/plant',async (ctx,next)=>{
+  let result = Object.create(null)
+  let id = ctx.params.id
+  let Plant =ctx.app.context.db.plant
+  let data =await Plant.findOne(id)
+  if(!data){
+    result['exception']=true
+    result['msg']="找不到数据"
+  }else{
+    result['exception']=false
+    result['msg']="请求成功"
+    result['data']=data
+  }
+	ctx.body=result
+})
+
+// 用户附加修改
+router.patch('/:id/plant',async (ctx,next)=>{
+  let result = Object.create(null)
+  let Plant =ctx.app.context.db.plant
+  let id = ctx.params.id
+  let reqbody = ctx.request.body
+  let data = await Plant.update({userId:id},reqbody)
+  if(!data[0]){
+    result['exception']=true
+    result['msg']="找不到数据"
+  }else{
+    result['exception']=false
+    result['msg']="更新成功"
+    result['data']=data[0]
+  }
+  ctx.body = result
+})
 
 router.allowedMethods();
 

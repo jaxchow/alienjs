@@ -101,8 +101,39 @@
         "defaultValue": 200
       }
     ],
-    "plant": [],
-    "data": [],
+    "plant": [
+      {
+        "userId": 1,
+        "want": "胖三斤",
+        "weekly": "每周一次",
+        "health": "瘦",
+        "updatedAt": "2020-04-23T06:50:52.342Z"
+      }
+    ],
+    "data": [
+      {
+        "id": 1,
+        "deviceId": 1,
+        "userId": 1,
+        "catalogId": 1,
+        "value": 23,
+        "unit": "圈",
+        "calorie": 233,
+        "time": 300,
+        "fatcut": 6
+      },
+      {
+        "deviceId": 1,
+        "catalogId": 1,
+        "time": 300,
+        "fatcut": 3,
+        "calorie": 233,
+        "value": 23,
+        "createdAt": "2020-04-23T10:04:12.574Z",
+        "updatedAt": "2020-04-23T10:04:12.574Z",
+        "id": 2
+      }
+    ],
     "device": [
       {
         "id": 1,
@@ -184,7 +215,7 @@
       }
     },
     "plant": {
-      "id": {
+      "userId": {
         "type": "integer",
         "autoIncrement": true,
         "unique": true,
@@ -313,8 +344,12 @@
     "user": {
       "id": 11
     },
-    "plant": {},
-    "data": {},
+    "plant": {
+      "userId": 1
+    },
+    "data": {
+      "id": 2
+    },
     "device": {
       "id": 1
     },

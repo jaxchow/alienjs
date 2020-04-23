@@ -2,6 +2,7 @@ import Router from 'koa-router'
 
 import user from './user'
 import catalog from './catalog'
+import device from './device'
 //TODO: 未实现
 //import client from './client'
 
@@ -17,7 +18,7 @@ router.get('/',function(ctx,next){
 // use sub router
 router.use(user.routes())
 router.use(catalog.routes())
-//router.use(client.routes())
+router.use(device.routes())
 router.allowedMethods()
 
 export default router
