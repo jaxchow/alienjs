@@ -126,7 +126,7 @@
       {
         "userId": 1,
         "deviceId": 1,
-        "catalogId": 1,
+        "catalogId": 2,
         "time": 3080,
         "fatcut": 33,
         "calorie": 2133,
@@ -146,6 +146,30 @@
         "createdAt": "2020-04-23T14:14:42.878Z",
         "updatedAt": "2020-04-23T14:17:07.055Z",
         "id": 5
+      },
+      {
+        "userId": 1,
+        "deviceId": 1,
+        "catalogId": 1,
+        "time": 980,
+        "fatcut": 93,
+        "calorie": 2833,
+        "value": 933,
+        "createdAt": "2020-04-24T14:14:42.878Z",
+        "updatedAt": "2020-04-24T01:42:04.989Z",
+        "id": 6
+      },
+      {
+        "userId": 2,
+        "catalogId": 1,
+        "deviceId": 1,
+        "time": 1000,
+        "fatcut": 100,
+        "calorie": 2833,
+        "value": 933,
+        "createdAt": "2020-04-24T14:14:42.878Z",
+        "updatedAt": "2020-04-24T01:50:30.917Z",
+        "id": 7
       }
     ],
     "device": [
@@ -362,7 +386,7 @@
       "userId": 1
     },
     "data": {
-      "id": 5
+      "id": 7
     },
     "device": {
       "id": 1
