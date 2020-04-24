@@ -53,6 +53,24 @@ router.post('/data/:userId',async (ctx,next)=>{
 	ctx.body = result
 });
 
+// 修改我的目标
+router.patch('/data/index',async (ctx,next)=>{
+  let result = Object.create(null)
+  let resbody = ctx.request.body
+  let Device = ctx.app.context.db.device
+  console.log(resbody)
+  let data = await Device.update(
+    {id:resbody.deviceId},
+    {index:resbody.index}
+  )
+  console.log(data)
+
+  result['exception']=false
+  result['msg']='请求成功'
+  result['data'] = data
+  ctx.body = result
+})
+
 router.allowedMethods();
 
 export default router

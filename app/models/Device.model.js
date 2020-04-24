@@ -3,6 +3,8 @@ import Waterline from 'waterline'
 var Device = Waterline.Collection.extend({
   identity: 'device',
   connection: 'default',
+  autoCreatedAt: false,
+  autoUpdatedAt: false,
   attributes: {
     id:{
       type:'integer',
