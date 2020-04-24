@@ -3,6 +3,7 @@ import Router from 'koa-router'
 import user from './user'
 import catalog from './catalog'
 import device from './device'
+import rank from './rank'
 //TODO: 未实现
 //import client from './client'
 
@@ -19,6 +20,7 @@ router.get('/',function(ctx,next){
 router.use(user.routes())
 router.use(catalog.routes())
 router.use(device.routes())
+router.use(rank.routes())
 router.allowedMethods()
 
 export default router
