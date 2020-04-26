@@ -38,18 +38,6 @@ var Article = Waterline.Collection.extend({
     praiseNumber: {
       type: 'integer',
     },
-    createdAt: {
-      type: 'date',
-      before:function(){    
-        return new Date()
-      }
-    },
-    updatedAt: {
-      type: 'date',
-      before:function(){    
-        return new Date()
-      }
-    },
   },
 });
 

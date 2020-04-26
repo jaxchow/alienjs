@@ -41,18 +41,6 @@ var User = Waterline.Collection.extend({
     waistline: {
       type: 'integer',
     },
-    createdAt: {
-      type: 'date',
-      before:function(){    
-        return new Date()
-      }
-    },
-    updatedAt: {
-      type: 'date',
-      before:function(){    
-        return new Date()
-      }
-    },
   },
 });
 

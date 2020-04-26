@@ -4,10 +4,14 @@
       {
         "id": 1,
         "username": "jaxchow",
-        "avatar": "av",
-        "sex": "男",
-        "name": "Bb",
-        "updatedAt": "2020-04-23T05:46:02.415Z"
+        "avatar": "new-avatar",
+        "sex": "new-sex",
+        "name": "new-name",
+        "updatedAt": "2020-04-26T07:57:31.721Z",
+        "birthday": "1999-01-01T00:00:00.000Z",
+        "height": 167,
+        "weight": 56,
+        "waistline": 232
       },
       {
         "id": 2,
@@ -176,7 +180,7 @@
       {
         "id": 1,
         "userId": 1,
-        "index": 50,
+        "index": 400,
         "catalogId": 1,
         "mac": "蓝牙地址",
         "version": "A011"
@@ -214,10 +218,10 @@
         "type": "integer"
       },
       "createdAt": {
-        "type": "date"
+        "type": "datetime"
       },
       "updatedAt": {
-        "type": "date"
+        "type": "datetime"
       }
     },
     "catalog": {
@@ -245,11 +249,14 @@
       "defaultValue": {
         "type": "integer"
       },
+      "maxValue": {
+        "type": "integer"
+      },
       "createdAt": {
-        "type": "date"
+        "type": "datetime"
       },
       "updatedAt": {
-        "type": "date"
+        "type": "datetime"
       }
     },
     "plant": {
@@ -269,10 +276,10 @@
         "type": "string"
       },
       "createdAt": {
-        "type": "date"
+        "type": "datetime"
       },
       "updatedAt": {
-        "type": "date"
+        "type": "datetime"
       }
     },
     "data": {
@@ -307,10 +314,10 @@
         "type": "integer"
       },
       "createdAt": {
-        "type": "date"
+        "type": "datetime"
       },
       "updatedAt": {
-        "type": "date"
+        "type": "datetime"
       }
     },
     "device": {
@@ -335,11 +342,17 @@
       "index": {
         "type": "integer"
       },
-      "createdAt": {
-        "type": "date"
+      "deviceId": {
+        "type": "string"
       },
-      "updatedAt": {
-        "type": "date"
+      "serviceId": {
+        "type": "string"
+      },
+      "characteristicId": {
+        "type": "string"
+      },
+      "value": {
+        "type": "integer"
       }
     },
     "article": {
@@ -371,10 +384,10 @@
         "type": "integer"
       },
       "createdAt": {
-        "type": "date"
+        "type": "datetime"
       },
       "updatedAt": {
-        "type": "date"
+        "type": "datetime"
       }
     }
   },

@@ -22,18 +22,6 @@ var Plant = Waterline.Collection.extend({
     health: {
       type: 'string',
     },
-    createdAt: {
-      type: 'date',
-      before:function(){    
-        return new Date()
-      }
-    },
-    updatedAt: {
-      type: 'date',
-      before:function(){    
-        return new Date()
-      }
-    },
   },
 });
 

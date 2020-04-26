@@ -60,14 +60,17 @@ router.patch('/data/index',async (ctx,next)=>{
   let Device = ctx.app.context.db.device
   console.log(resbody)
   let data = await Device.update(
-    {id:resbody.deviceId},
+    {id:resbody.id},
     {index:resbody.index}
   )
-  console.log(data)
-
-  result['exception']=false
-  result['msg']='请求成功'
-  result['data'] = data
+  if(data){
+    result['exception']=false
+    result['msg']='请求成功'
+    result['data'] = data
+  }else{
+    result['exception']=false
+    result['msg']='未找到数据'
+  }
   ctx.body = result
 })
 

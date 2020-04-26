@@ -42,18 +42,6 @@ var Data = Waterline.Collection.extend({
     fatcut: {
       type: 'integer',
     },
-    createdAt: {
-      type: 'date',
-      before:function(){    
-        return new Date()
-      }
-    },
-    updatedAt: {
-      type: 'date',
-      before:function(){    
-        return new Date()
-      }
-    },
   },
 });
 

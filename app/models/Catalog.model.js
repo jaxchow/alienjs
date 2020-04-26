@@ -34,17 +34,9 @@ var Catalog = Waterline.Collection.extend({
     defaultValue: {
       type: 'integer',
     },
-    createdAt: {
-      type: 'date',
-      before:function(){    
-        return new Date()
-      }
-    },
-    updatedAt: {
-      type: 'date',
-      before:function(){    
-        return new Date()
-      }
+    // 最大值    
+    maxValue: {
+      type: 'integer',
     },
   },
 });

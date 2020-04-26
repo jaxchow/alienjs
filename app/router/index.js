@@ -4,6 +4,7 @@ import user from './user'
 import catalog from './catalog'
 import device from './device'
 import rank from './rank'
+import article from './article'
 //TODO: 未实现
 //import client from './client'
 
@@ -21,6 +22,7 @@ router.use(user.routes())
 router.use(catalog.routes())
 router.use(device.routes())
 router.use(rank.routes())
+router.use(article.routes())
 router.allowedMethods()
 
 export default router

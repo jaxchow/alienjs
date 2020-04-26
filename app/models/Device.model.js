@@ -28,22 +28,26 @@ var Device = Waterline.Collection.extend({
     version: {
       type: 'string',
     },
-    // 目标
+    // 我的目标
     index:{
       type:'integer'
     },
-    createdAt: {
-      type: 'date',
-      before:function(){    
-        return new Date()
-      }
+    // 蓝牙设备id
+    deviceId:{
+      type:'string'
     },
-    updatedAt: {
-      type: 'date',
-      before:function(){    
-        return new Date()
-      }
+    // 蓝牙特征值对应服务的uuid
+    serviceId:{
+      type:'string'
     },
+    // 蓝牙特征值的uuid
+    characteristicId:{
+      type:'string'
+    },
+    // 特征值最新的值
+    value:{
+      type:'integer'
+    }
   },
 });
 
