@@ -3,6 +3,8 @@ import Waterline from 'waterline'
 var Catalog = Waterline.Collection.extend({
   identity: 'catalog',
   connection: 'default',
+  autoCreatedAt: false,
+  autoUpdatedAt: false,
   attributes: {
     id:{
       type:'integer',

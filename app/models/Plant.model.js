@@ -12,15 +12,15 @@ var Plant = Waterline.Collection.extend({
     },
     //我想要
     want:{
-      type:'string',
+      type:'integer',
     },
     //每周运动
     weekly:{
-      type:'string'
+      type:'integer'
     },
     //健康状态
     health: {
-      type: 'string',
+      type: 'integer',
     },
   },
 });
