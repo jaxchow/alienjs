@@ -2,14 +2,14 @@ import Router from 'koa-router'
 import  Redis from 'redis'
 import Request from 'request'
 
-const RedisClient = Redis.createClient()
+//const RedisClient = Redis.createClient()
 let router= Router({
   prefix: 'weapp'
 })
 
 // 小程序参数
-const APP_ID = 'xxxxxx'
-const APP_SECRET = 'xxxxxxxxxxxxxxxxx'
+const APP_ID = 'wx8b2741c6d5d7fece'
+const APP_SECRET = 'd7b2db4a511e46eec9701dffbce98cb3'
 
 /********** 业务处理开始 **********/
 
@@ -59,60 +59,67 @@ const decrypt = (sessionKey, encryptedData, iv, callback) => {
 // 存储登录状态
 const saveAuth = (peopleId, callback) => {
 	const token = uuid.v1()
+/*
 	RedisClient.set('WEAPP_AUTH:' + token, peopleId, (err, ret) => {
 		console.log(err, ret)
 		callback(err, token)
 	})
+*/
 }
 
 // 获取登录状态
 const checkAuth = (token, callback) => {
+/*
 	RedisClient.get('WEAPP_AUTH:' + token, (err, ret) => {
 		callback(err, ret)
 	})
+*/
 }
 
 // 清除登录状态
 const clearAuth = (token, callback) => {
+/*
 	RedisClient.del('WEAPP_AUTH:' + token, (err, ret) => {
 		callback(err, ret)
 	})
+*/
 }
 
 
 // 小程序登录
-router.post('/signIn', (req, res) => {
-	const data = req.body
+router.post('/login', (ctx) => {
+	const data = ctx.request.body
 	console.log('POST：/signIn, 参数：', data)
 
 	if (!data.code) {
-		res.send({
+		ctx.body={
 			code: 1,
 			message: '缺少参数：code'
-		})
+		}
 		return
 	} else if (!data.encryptedData) {
-		res.send({
+		ctx.body={
 			code: 1,
 			message: '缺少参数：encryptedData'
-		})
+		}
 		return
 	} else if (!data.iv) {
-		res.send({
+		ctx.body={
 			code: 1,
 			message: '缺少参数：iv'
-		})
+		}
 		return
 	}
 
 	// 获取sessionkey
 	getSessionKey(data.code, (err, ret) => {
 		if (err) {
-			res.send(err)
+			ctx.body=err
 			return
 		}
 		console.log(ret)
 		// 解密
+/*
 		decrypt(ret.session_key, data.encryptedData, data.iv, (err, ret) => {
 			if (err) {
 				res.end(err)
@@ -172,12 +179,13 @@ router.post('/signIn', (req, res) => {
 				}
 			})
 		})
+	*/
 	})
 
 })
 
 // 退出登录
-router.post('/signOut', (req, res) => {
+router.post('/logout', (req, res) => {
 	const data = req.body
 	console.log('POST：/signOut, 参数：', data)
 	if (!data.token) {

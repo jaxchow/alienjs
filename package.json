@@ -18,6 +18,7 @@
     "jest": "^22.2.0",
     "koa": "^2.0.0-alpha.3",
     "koa-body": "^1.4.0",
+    "koa-bodyparser": "^4.3.0",
     "koa-convert": "^1.2.0",
     "koa-cors": "0.0.16",
     "koa-favicon": "^1.2.0",
@@ -31,6 +32,7 @@
     "koa.io": "0.0.3",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
+    "redis": "^3.0.2",
     "sails-disk": "^0.10.8",
     "waterline": "^0.10.31"
   },
