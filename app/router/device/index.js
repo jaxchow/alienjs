@@ -6,28 +6,35 @@ let router= Router({
 
 // 设备数据
 router.get('/data/:userId',async (ctx,next)=>{
-  let result = Object.create(null)
   let userId = ctx.params.userId
   let param = ctx.query
   let endDate = param.endDate+' 23:59:59'
   let Data = ctx.app.context.db.data;
-  let data = await Data.find().where(
+  let Catalog = ctx.app.context.db.catalog;
+  let Device = ctx.app.context.db.device;
+  let data = await Data.find(
     {
-      updatedAt:{
-        '>=':param.startDate,
-        '<=':endDate
-      },userId:userId,catalogId:param.type
+      where:{
+        updatedAt:{
+          '>=':param.startDate,
+          '<=':endDate
+        },
+        userId:userId,
+        catalogId:param.type
+      },
+      groupBy:['userId','catalogId'],
+      sum:['time','fatcut','calorie','value']
     }
   )
-  result['exception']=false
-  result['msg']='请求成功'
-  result['total']=data.length
-  result['data']=data
-	ctx.body = result
+  let catalogData = await Catalog.findOne(param.type)
+  let deviceData = await Device.findOne({catalogId:param.type,userId:userId})
+  data[0].unit = catalogData.unit
+  data[0].deviceType = catalogData.type
+  data[0].index = deviceData.index
+	ctx.body = data[0]
 });
 // 上报设备数据
 router.post('/data/:userId',async (ctx,next)=>{
-  let result = Object.create(null)
   let userId = Number(ctx.params.userId)
   let resbody = ctx.request.body
   let Data = ctx.app.context.db.data;
@@ -46,11 +53,8 @@ router.post('/data/:userId',async (ctx,next)=>{
   }else{
     data = await Data.update({id:lastData[0].id},resbody)
   }
-  result['exception']=false
-  result['msg']='请求成功'
-  result['data']=data
 
-	ctx.body = result
+	ctx.body = data
 });
 
 // 修改我的目标

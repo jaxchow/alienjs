@@ -6,7 +6,6 @@ let router= Router({
 
 // 用户排行(已登录)
 router.get('/:userId',async (ctx,next)=>{
-	let result = Object.create(null)
   let Data = ctx.app.context.db.data;
   let userId = Number(ctx.params.userId)
   let param = ctx.query // startDate endDate startNum endNum type
@@ -39,17 +38,11 @@ router.get('/:userId',async (ctx,next)=>{
     }
   }
 
-  result['exception']=false
-  result['msg']='请求成功'
-  result['total']=list.length
-  result['list']=list
-  result['myData']=myData
-	ctx.body = result
+	ctx.body = myData
 });
 
 // 用户排行(未登录)
 router.get('/',async (ctx,next)=>{
-	let result = Object.create(null)
   let Data = ctx.app.context.db.data;
   let param = ctx.query // startDate endDate startNum endNum type
   let endDate = param.endDate+' 23:59:59'
@@ -73,11 +66,7 @@ router.get('/',async (ctx,next)=>{
     list[i].rank = i
   }
 
-  result['exception']=false
-  result['msg']='请求成功'
-  result['total']=list.length
-  result['list']=list
-	ctx.body = result
+	ctx.body = list
 });
 
 router.allowedMethods();

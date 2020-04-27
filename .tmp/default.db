@@ -7,7 +7,7 @@
         "avatar": "new-avatar",
         "sex": "new-sex",
         "name": "new-name",
-        "updatedAt": "2020-04-26T07:57:31.721Z",
+        "updatedAt": "2020-04-27T09:35:12.129Z",
         "birthday": "1999-01-01T00:00:00.000Z",
         "height": 167,
         "weight": 56,
@@ -108,12 +108,13 @@
     "plant": [
       {
         "userId": 1,
-        "want": "胖三斤",
-        "weekly": "每周一次",
-        "health": "瘦",
-        "updatedAt": "2020-04-23T06:50:52.342Z"
+        "want": 1,
+        "weekly": 4,
+        "health": 4,
+        "updatedAt": "2020-04-27T09:38:31.888Z"
       }
     ],
+    "plantinfo": [],
     "data": [
       {
         "userId": 1,
@@ -251,12 +252,6 @@
       },
       "maxValue": {
         "type": "integer"
-      },
-      "createdAt": {
-        "type": "datetime"
-      },
-      "updatedAt": {
-        "type": "datetime"
       }
     },
     "plant": {
@@ -267,19 +262,33 @@
         "primaryKey": true
       },
       "want": {
-        "type": "string"
+        "type": "integer"
       },
       "weekly": {
-        "type": "string"
+        "type": "integer"
       },
       "health": {
-        "type": "string"
+        "type": "integer"
       },
       "createdAt": {
         "type": "datetime"
       },
       "updatedAt": {
         "type": "datetime"
+      }
+    },
+    "plantinfo": {
+      "Id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "unique": true,
+        "primaryKey": true
+      },
+      "options": {
+        "type": "string"
+      },
+      "itemCode": {
+        "type": "integer"
       }
     },
     "data": {
@@ -407,6 +416,7 @@
     "article": {},
     "catalog": {
       "id": 1
-    }
+    },
+    "plantinfo": {}
   }
 }

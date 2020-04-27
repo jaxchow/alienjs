@@ -25,9 +25,6 @@ var User = Waterline.Collection.extend({
     // 生日
     birthday: {
       type: 'date',
-      before:function(){    
-        return new Date()
-      }
     },
     // 身高（cm）
     height: {
