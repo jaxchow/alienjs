@@ -9,6 +9,7 @@ import Alien from 'koa'
 //import Alien from './alien'
 import router from './router'
 import {initialize} from './models'
+import bodyParser from 'koa-bodyparser'
 
 let	app =new Alien()
 
@@ -24,10 +25,8 @@ app.use(convert(responseTime()))
 //app.use(rewrite('/cebbank/*','/$1'))
 app.use(convert(gzip()))
 app.use(convert(cors()))
-app.use(convert(body()))
-// app.use(ctx => {
-// 	ctx.body = `Request Body: ${JSON.stringify(ctx.request.body)}`;
-// });
+//app.use(convert(body({ multipart: true })))
+app.use(convert(bodyParser()))
 const orm =initialize(function(err, ontology){
 	// console.log("initial")
 	if(err){throw err}
