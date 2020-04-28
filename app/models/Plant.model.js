@@ -5,8 +5,7 @@ var Plant = Waterline.Collection.extend({
   connection: 'default',
   attributes: {
     userId:{
-      type:'integer',
-      autoIncrement: true,
+      type:'string',
       unique: true,
       primaryKey: true,
     },

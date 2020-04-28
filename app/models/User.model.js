@@ -5,11 +5,13 @@ var User = Waterline.Collection.extend({
   connection: 'default',
   attributes: {
     id:{
-      type:'integer',
-      autoIncrement: true,
+      type:'string',
       unique: true,
       primaryKey: true,
     },
+    unionId:{
+      type:'string',
+    }, 
     //名称
     name:{
       type:'string',
@@ -38,7 +40,8 @@ var User = Waterline.Collection.extend({
     waistline: {
       type: 'integer',
     },
-  },
+  }
+
 });
 
 

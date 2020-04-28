@@ -1,6 +1,8 @@
 import Router from 'koa-router'
 import  Redis from 'redis'
 import Request from 'request'
+import WXBizDataCrypt from './crypto'
+
 
 //const RedisClient = Redis.createClient()
 let router= Router({
@@ -14,46 +16,49 @@ const APP_SECRET = 'd7b2db4a511e46eec9701dffbce98cb3'
 /********** 业务处理开始 **********/
 
 // 获取解密SessionKey
-const getSessionKey = (code, callback) => {
+const getSessionKey = (code) => {
 	const url = 'https://api.weixin.qq.com/sns/jscode2session?appid='
 		+ APP_ID + '&secret=' + APP_SECRET + '&js_code=' + code
 		+ '&grant_type=authorization_code'
-	Request(url, (error, response, body) => {
-		if (!error && response.statusCode == 200) {
-			console.log('getSessionKey:', body, typeof (body))
+	return new Promise(function(reslove,reject){
 
-			const data = JSON.parse(body)
-			if (!data.session_key) {
-				callback({
+		Request(url, (error, response, body) => {
+			if (!error && response.statusCode == 200) {
+				console.log('getSessionKey:', body, typeof (body))
+
+				const data = JSON.parse(body)
+				if (!data.session_key) {
+					reject({
+						code: 1,
+						message: data.errmsg
+					})
+				}
+				reslove(data)
+			} else {
+				reject({
 					code: 1,
-					message: data.errmsg
+					message: error
 				})
-				return
 			}
-			callback(null, data)
-		} else {
-			callback({
-				code: 1,
-				message: error
-			})
-		}
+		})
 	})
 }
 
 // 解密
 const decrypt = (sessionKey, encryptedData, iv, callback) => {
-	try {
-		const pc = new WXBizDataCrypt(APP_ID, sessionKey)
-		const data = pc.decryptData(encryptedData, iv)
-		console.log('decrypted:', data)
-		callback(null, data)
-	} catch (e) {
-		console.log(e)
-		callback({
-			code: 1,
-			message: e
-		})
-	}
+	return new Promise(function(reslove,reject){
+		try {
+			const pc = new WXBizDataCrypt(APP_ID, sessionKey)
+			const data = pc.decryptData(encryptedData, iv)
+			console.log('decrypted:', data)
+			reslove(data)
+		} catch (e) {
+			reject({
+				code: 1,
+				message: e
+			})
+		}
+	})
 }
 
 // 存储登录状态
@@ -87,8 +92,9 @@ const clearAuth = (token, callback) => {
 
 
 // 小程序登录
-router.post('/login', (ctx) => {
+router.post('/login', async(ctx) => {
 	const data = ctx.request.body
+	let User = ctx.app.context.db.user
 	console.log('POST：/signIn, 参数：', data)
 
 	if (!data.code) {
@@ -112,31 +118,26 @@ router.post('/login', (ctx) => {
 	}
 
 	// 获取sessionkey
-	getSessionKey(data.code, (err, ret) => {
-		if (err) {
-			ctx.body=err
-			return
-		}
-		console.log(ret)
-		// 解密
-/*
-		decrypt(ret.session_key, data.encryptedData, data.iv, (err, ret) => {
-			if (err) {
-				res.end(err)
-				return
-			}
+	const rethh = await getSessionKey(data.code)
+	const ret= await decrypt(rethh.session_key, data.encryptedData, data.iv)
 
-			console.log(ret)
-			// 保存用户信息
-			const people = {
-				peopleId: uuid.v1(),
-				channel: 'wechat',
-				unionId: (ret.unionId) ? ret.unionId : ret.openId,
-				name: ret.nickName,
-				avatar: ret.avatarUrl,
-				created: new Date().getTime(),
-				updated: new Date().getTime()
-			}
+	const people = {
+		id: ret.openId,
+		sex:ret.gender,
+		unionId: (ret.unionId) ? ret.unionId : ret.openId,
+		name: ret.nickName,
+		avatar: ret.avatarUrl
+	}
+	const user = await User.find({id:ret.openId})
+	if(user.length>0){
+		await User.update(ret.openId,people)
+	}else{
+		await User.create(people)
+	}
+	console.log("body",people)
+	ctx.body=people
+
+	/*
 			Peoples.findAndModify({
 				query: {
 					channel: 'wechat',
@@ -178,9 +179,7 @@ router.post('/login', (ctx) => {
 					})
 				}
 			})
-		})
 	*/
-	})
 
 })
 
