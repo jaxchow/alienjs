@@ -20,6 +20,10 @@ var Catalog = Waterline.Collection.extend({
     pic:{
       type:'string'
     },
+    // 设备名称
+    name: {
+      type: 'string',
+    },
     // 设备类型
     type: {
       type: 'string',
@@ -39,6 +43,14 @@ var Catalog = Waterline.Collection.extend({
     // 最大值    
     maxValue: {
       type: 'integer',
+    },
+    // 是否启用 
+    isUse: {
+      type: 'string',
+    },
+    // 颜色值 
+    colorValue: {
+      type: 'string',
     },
   },
 });
