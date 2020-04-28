@@ -99,41 +99,41 @@
         "id": 1,
         "description": "你瘦身的好搭档",
         "pic": "呼啦圈pic",
-        "name":"呼啦圈",
+        "name": "呼啦圈",
         "type": "hlq",
         "unit": "圈",
         "refs": "呼啦圈操作指南",
         "defaultValue": 200,
-        "maxValue": 300
-        "isUse": 1
-        "colorValue":"#555"
+        "maxValue": 300,
+        "isUse": "1",
+        "colorValue": "#555"
       },
       {
         "id": 2,
         "description": "你瘦身的好搭档1",
         "pic": "跳绳pic",
-        "name":"跳绳"
+        "name": "跳绳",
         "type": "ts",
         "unit": "下",
         "refs": "跳绳操作指南",
         "defaultValue": 100,
-        "maxValue": 200
-        "isUse": 1
-        "colorValue":"#666"
+        "maxValue": 200,
+        "isUse": "1",
+        "colorValue": "#666"
       },
       {
         "id": 3,
         "description": "你瘦身的好搭档2",
         "pic": "健腹轮pic",
-        "name":"健腹轮"
+        "name": "健腹轮",
         "type": "jfl",
         "unit": "次",
         "refs": "健腹轮操作指南",
         "defaultValue": 50,
-        "maxValue": 200
-        "isUse": 0
-        "colorValue":"#777"
-      },
+        "maxValue": 200,
+        "isUse": "0",
+        "colorValue": "#777"
+      }
     ],
     "plant": [
       {
@@ -287,7 +287,10 @@
         "type": "integer"
       },
       "isUse": {
-        "type": "integer"
+        "type": "string"
+      },
+      "colorValue": {
+        "type": "string"
       }
     },
     "plant": {
@@ -451,7 +454,7 @@
     },
     "article": {},
     "catalog": {
-      "id": 1
+      "id": 3
     },
     "plantinfo": {}
   }

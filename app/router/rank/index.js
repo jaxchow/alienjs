@@ -25,11 +25,7 @@ router.get('/:userId',async (ctx,next)=>{
       groupBy:['userId'],
       sum:['calorie','value']
     }
-  ).sort('value desc','calorie desc')
-
-  for(let i = 0;i<list.length;i++){
-    list[i].rank = i
-  }
+  ).sort('value desc','calorie desc').skip(param.startNum).limit(param.endNum-param.startNum+1)
 
   for(let i = 0;i<list.length;i++){
     if(list[i].userId === userId){
@@ -38,7 +34,7 @@ router.get('/:userId',async (ctx,next)=>{
     }
   }
 
-	ctx.body = myData
+	ctx.body = {myData:myData,list:list}
 });
 
 // 用户排行(未登录)
@@ -60,11 +56,8 @@ router.get('/',async (ctx,next)=>{
       groupBy:['userId'],
       sum:['calorie','value']
     }
-  ).sort('value desc','calorie desc')
+  ).sort('value desc','calorie desc').skip(param.startNum).limit(param.endNum-param.startNum+1)
   
-  for(let i = 0;i<list.length;i++){
-    list[i].rank = i
-  }
 
 	ctx.body = list
 });
