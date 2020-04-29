@@ -1,5 +1,6 @@
 {
   "data": {
+    "article": [],
     "user": [
       {
         "id": 1,
@@ -7,91 +8,12 @@
         "avatar": "new-avatar",
         "sex": "new-sex",
         "name": "new-name",
+        "phoneNumber": "13887767541",
         "updatedAt": "2020-04-27T09:35:12.129Z",
         "birthday": "1999-01-01T00:00:00.000Z",
         "height": 167,
         "weight": 56,
         "waistline": 232
-      },
-      {
-        "id": 2,
-        "username": "jax",
-        "age": "31",
-        "email": "jax@qq.com",
-        "name": "Bb",
-        "avatar": "av",
-        "updatedAt": "2020-04-23T05:48:25.144Z"
-      },
-      {
-        "id": 3,
-        "username": "jax11",
-        "age": "31",
-        "email": "jaxchow@mac.com"
-      },
-      {
-        "id": 4,
-        "username": "MR.J",
-        "age": "31",
-        "email": "jaxchow@163.com"
-      },
-      {
-        "id": 5,
-        "username": "jaxchow",
-        "age": "31",
-        "email": "jaxchow@qq.com",
-        "password": "1234561",
-        "createdAt": "2016-03-08T03:16:45.494Z",
-        "updatedAt": "2016-03-08T03:16:45.494Z"
-      },
-      {
-        "id": 6,
-        "username": "jaxchow",
-        "age": "31",
-        "password": "123134",
-        "email": "23",
-        "createdAt": "2016-03-08T07:47:48.437Z",
-        "updatedAt": "2016-03-08T07:47:48.437Z"
-      },
-      {
-        "id": 7,
-        "username": "jaxchow7",
-        "age": "31",
-        "password": "123134",
-        "email": "23",
-        "createdAt": "2016-03-08T07:47:48.437Z",
-        "updatedAt": "2016-03-08T07:47:48.437Z"
-      },
-      {
-        "id": 8,
-        "username": "jaxchow8",
-        "age": "31",
-        "password": "123134",
-        "email": "23",
-        "createdAt": "2016-03-08T07:47:48.437Z",
-        "updatedAt": "2016-03-08T07:47:48.437Z"
-      },
-      {
-        "id": 9,
-        "username": "jaxchow9",
-        "age": "31",
-        "password": "123134",
-        "email": "23",
-        "createdAt": "2016-03-08T07:47:48.437Z",
-        "updatedAt": "2016-03-08T07:47:48.437Z"
-      },
-      {
-        "id": 10,
-        "username": "jaxchow10",
-        "age": "31",
-        "password": "123134",
-        "email": "23",
-        "createdAt": "2016-03-08T07:47:48.437Z",
-        "updatedAt": "2016-03-08T07:47:48.437Z"
-      },
-      {
-        "createdAt": "2020-04-22T05:58:43.947Z",
-        "updatedAt": "2020-04-22T05:58:43.947Z",
-        "id": 11
       }
     ],
     "catalog": [
@@ -216,16 +138,53 @@
         "mac": "蓝牙地址",
         "version": "A011"
       }
-    ],
-    "article": []
+    ]
   },
   "schema": {
+    "article": {
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "unique": true,
+        "primaryKey": true
+      },
+      "columnId": {
+        "type": "integer"
+      },
+      "title": {
+        "type": "string"
+      },
+      "content": {
+        "type": "string"
+      },
+      "pic": {
+        "type": "string"
+      },
+      "views": {
+        "type": "integer"
+      },
+      "tag": {
+        "type": "string"
+      },
+      "praiseNumber": {
+        "type": "integer"
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
     "user": {
       "id": {
         "type": "integer",
         "autoIncrement": true,
         "unique": true,
         "primaryKey": true
+      },
+      "unionId": {
+        "type": "string"
       },
       "name": {
         "type": "string"
@@ -234,6 +193,9 @@
         "type": "string"
       },
       "sex": {
+        "type": "string"
+      },
+      "phoneNumber": {
         "type": "string"
       },
       "birthday": {
@@ -401,41 +363,6 @@
       },
       "value": {
         "type": "integer"
-      }
-    },
-    "article": {
-      "id": {
-        "type": "integer",
-        "autoIncrement": true,
-        "unique": true,
-        "primaryKey": true
-      },
-      "columnId": {
-        "type": "integer"
-      },
-      "title": {
-        "type": "string"
-      },
-      "content": {
-        "type": "string"
-      },
-      "pic": {
-        "type": "string"
-      },
-      "views": {
-        "type": "integer"
-      },
-      "tag": {
-        "type": "string"
-      },
-      "praiseNumber": {
-        "type": "integer"
-      },
-      "createdAt": {
-        "type": "datetime"
-      },
-      "updatedAt": {
-        "type": "datetime"
       }
     }
   },

@@ -25,6 +25,10 @@ var User = Waterline.Collection.extend({
     sex: {
       type: 'string',
     },
+    // 手机号
+    phoneNumber:{
+      type:'string'
+    },
     // 生日
     birthday: {
       type: 'date',
