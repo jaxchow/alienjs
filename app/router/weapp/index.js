@@ -122,15 +122,14 @@ router.post('/login', async(ctx) => {
 	const ret= await decrypt(rethh.session_key, data.encryptedData, data.iv)
 
 	const people = {
-		id: ret.openId,
 		sex:ret.gender,
 		unionId: (ret.unionId) ? ret.unionId : ret.openId,
 		name: ret.nickName,
 		avatar: ret.avatarUrl
 	}
-	const user = await User.find({id:ret.openId})
+	const user = await User.find({unionId:ret.openId})
 	if(user.length>0){
-		await User.update(ret.openId,people)
+		await User.update(user[0].openId,people)
 	}else{
 		await User.create(people)
 	}
