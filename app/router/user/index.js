@@ -3,6 +3,13 @@ import Router from 'koa-router'
 let router= Router({
   prefix: 'user'
 })
+
+// 用户附加信息字典
+router.get('/plantinfo',async (ctx,next)=>{
+  let PlantInfo =ctx.app.context.db.plantinfo
+  let data = await PlantInfo.find()
+	ctx.body = data
+})
 // 用户信息
 router.get('/:id',async (ctx,next)=>{
   let result = Object.create(null)
@@ -21,8 +28,7 @@ router.get('/:userId/device',async (ctx,next)=>{
   let deviceData = await Device.find({userId:ctx.params.userId})
   for(let i=0;i<deviceData.length;i++){
     let catalogData = await Catalog.findOne(deviceData[i].catalogId)
-    deviceData[i].deviceType = catalogData.type
-    deviceData[i].maxValue = catalogData.maxValue
+    deviceData[i].catalog = catalogData
   }
 
 	ctx.body=deviceData
@@ -44,6 +50,7 @@ router.get('/:id/plant',async (ctx,next)=>{
   let data =await Plant.findOne(id)
 	ctx.body=data
 })
+
 
 // 用户附加修改
 router.patch('/:id/plant',async (ctx,next)=>{

@@ -22,7 +22,7 @@
         "description": "你瘦身的好搭档",
         "pic": "呼啦圈pic",
         "name": "呼啦圈",
-        "type": "hlq",
+        "type": "DM",
         "unit": "圈",
         "refs": "呼啦圈操作指南",
         "defaultValue": 200,
@@ -66,7 +66,71 @@
         "updatedAt": "2020-04-27T09:38:31.888Z"
       }
     ],
-    "plantinfo": [],
+    "plantinfo": [
+      {
+        "id": 1,
+        "options": "want",
+        "itemCode": 1,
+        "itemContent": "想瘦",
+        "Id": 1
+      },
+      {
+        "id": 2,
+        "options": "want",
+        "itemCode": 2,
+        "itemContent": "想胖",
+        "Id": 2
+      },
+      {
+        "id": 3,
+        "options": "want",
+        "itemCode": 3,
+        "itemContent": "想健身",
+        "Id": 3
+      },
+      {
+        "id": 4,
+        "options": "weekly",
+        "itemCode": 1,
+        "itemContent": "每周一次",
+        "Id": 4
+      },
+      {
+        "id": 5,
+        "options": "weekly",
+        "itemCode": 2,
+        "itemContent": "每周三次",
+        "Id": 5
+      },
+      {
+        "id": 6,
+        "options": "health",
+        "itemCode": 3,
+        "itemContent": "每天锻炼",
+        "Id": 6
+      },
+      {
+        "id": 7,
+        "options": "health",
+        "itemCode": 1,
+        "itemContent": "超重",
+        "Id": 7
+      },
+      {
+        "id": 8,
+        "options": "health",
+        "itemCode": 2,
+        "itemContent": "太瘦",
+        "Id": 8
+      },
+      {
+        "id": 9,
+        "options": "health",
+        "itemCode": 3,
+        "itemContent": "健康",
+        "Id": 9
+      }
+    ],
     "data": [
       {
         "userId": 1,
@@ -611,6 +675,8 @@
     "catalog": {
       "id": 3
     },
-    "plantinfo": {}
+    "plantinfo": {
+      "Id": 9
+    }
   }
 }
