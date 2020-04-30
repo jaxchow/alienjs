@@ -127,6 +127,234 @@
         "createdAt": "2020-04-24T14:14:42.878Z",
         "updatedAt": "2020-04-24T01:50:30.917Z",
         "id": 7
+      },
+      {
+        "userId": 3,
+        "catalogId": 1,
+        "deviceId": 3,
+        "time": 12320,
+        "fatcut": 3423,
+        "calorie": 8233,
+        "value": 9323,
+        "createdAt": "2020-04-30T08:40:31.434Z",
+        "updatedAt": "2020-04-30T08:40:31.434Z",
+        "id": 8
+      },
+      {
+        "userId": 4,
+        "catalogId": 1,
+        "deviceId": 4,
+        "time": 3240,
+        "fatcut": 64363,
+        "calorie": 65433,
+        "value": 9993,
+        "createdAt": "2020-04-30T08:41:31.171Z",
+        "updatedAt": "2020-04-30T08:41:31.171Z",
+        "id": 9
+      },
+      {
+        "userId": 5,
+        "catalogId": 1,
+        "deviceId": 5,
+        "time": 35540,
+        "fatcut": 64363,
+        "calorie": 65739,
+        "value": 9493,
+        "createdAt": "2020-04-30T08:42:13.399Z",
+        "updatedAt": "2020-04-30T08:42:13.399Z",
+        "id": 10
+      },
+      {
+        "userId": 6,
+        "catalogId": 1,
+        "deviceId": 6,
+        "time": 340,
+        "fatcut": 63,
+        "calorie": 739,
+        "value": 993,
+        "createdAt": "2020-04-30T08:42:32.631Z",
+        "updatedAt": "2020-04-30T08:42:32.631Z",
+        "id": 11
+      },
+      {
+        "userId": 7,
+        "catalogId": 1,
+        "deviceId": 7,
+        "time": 2340,
+        "fatcut": 563,
+        "calorie": 7639,
+        "value": 7993,
+        "createdAt": "2020-04-30T08:44:18.945Z",
+        "updatedAt": "2020-04-30T08:44:18.945Z",
+        "id": 12
+      },
+      {
+        "userId": 8,
+        "catalogId": 1,
+        "deviceId": 8,
+        "time": 2540,
+        "fatcut": 663,
+        "calorie": 6639,
+        "value": 6993,
+        "createdAt": "2020-04-30T08:44:43.383Z",
+        "updatedAt": "2020-04-30T08:44:43.383Z",
+        "id": 13
+      },
+      {
+        "userId": 9,
+        "catalogId": 1,
+        "deviceId": 9,
+        "time": 540,
+        "fatcut": 6263,
+        "calorie": 639,
+        "value": 693,
+        "createdAt": "2020-04-30T08:45:17.200Z",
+        "updatedAt": "2020-04-30T08:45:17.200Z",
+        "id": 14
+      },
+      {
+        "userId": 10,
+        "catalogId": 1,
+        "deviceId": 10,
+        "time": 5040,
+        "fatcut": 2653,
+        "calorie": 4639,
+        "value": 1693,
+        "createdAt": "2020-04-30T08:45:39.598Z",
+        "updatedAt": "2020-04-30T08:45:39.598Z",
+        "id": 15
+      },
+      {
+        "userId": 11,
+        "catalogId": 1,
+        "deviceId": 11,
+        "time": 5041,
+        "fatcut": 2651,
+        "calorie": 4139,
+        "value": 1193,
+        "createdAt": "2020-04-30T08:45:57.436Z",
+        "updatedAt": "2020-04-30T08:45:57.436Z",
+        "id": 16
+      },
+      {
+        "userId": 12,
+        "catalogId": 1,
+        "deviceId": 12,
+        "time": 5042,
+        "fatcut": 2621,
+        "calorie": 2139,
+        "value": 1123,
+        "createdAt": "2020-04-30T08:46:16.347Z",
+        "updatedAt": "2020-04-30T08:46:16.347Z",
+        "id": 17
+      },
+      {
+        "userId": 13,
+        "catalogId": 1,
+        "deviceId": 13,
+        "time": 9042,
+        "fatcut": 2321,
+        "calorie": 3139,
+        "value": 1323,
+        "createdAt": "2020-04-30T08:46:32.855Z",
+        "updatedAt": "2020-04-30T08:46:32.855Z",
+        "id": 18
+      },
+      {
+        "userId": 14,
+        "catalogId": 1,
+        "deviceId": 14,
+        "time": 9442,
+        "fatcut": 2341,
+        "calorie": 4139,
+        "value": 4323,
+        "createdAt": "2020-04-30T08:46:48.813Z",
+        "updatedAt": "2020-04-30T08:46:48.813Z",
+        "id": 19
+      },
+      {
+        "userId": 15,
+        "catalogId": 1,
+        "deviceId": 15,
+        "time": 542,
+        "fatcut": 251,
+        "calorie": 459,
+        "value": 323,
+        "createdAt": "2020-04-30T08:47:08.248Z",
+        "updatedAt": "2020-04-30T08:47:08.248Z",
+        "id": 20
+      },
+      {
+        "userId": 16,
+        "catalogId": 1,
+        "deviceId": 16,
+        "time": 5426,
+        "fatcut": 6251,
+        "calorie": 4659,
+        "value": 623,
+        "createdAt": "2020-04-30T08:47:22.279Z",
+        "updatedAt": "2020-04-30T08:47:22.279Z",
+        "id": 21
+      },
+      {
+        "userId": 17,
+        "catalogId": 1,
+        "deviceId": 17,
+        "time": 5726,
+        "fatcut": 2751,
+        "calorie": 3659,
+        "value": 627,
+        "createdAt": "2020-04-30T08:47:43.611Z",
+        "updatedAt": "2020-04-30T08:47:43.611Z",
+        "id": 22
+      },
+      {
+        "userId": 18,
+        "catalogId": 1,
+        "deviceId": 18,
+        "time": 526,
+        "fatcut": 271,
+        "calorie": 659,
+        "value": 67,
+        "createdAt": "2020-04-30T08:48:13.647Z",
+        "updatedAt": "2020-04-30T08:48:13.647Z",
+        "id": 23
+      },
+      {
+        "userId": 19,
+        "catalogId": 1,
+        "deviceId": 19,
+        "time": 5296,
+        "fatcut": 2971,
+        "calorie": 6959,
+        "value": 167,
+        "createdAt": "2020-04-30T08:48:29.841Z",
+        "updatedAt": "2020-04-30T08:48:29.841Z",
+        "id": 24
+      },
+      {
+        "userId": 20,
+        "catalogId": 1,
+        "deviceId": 20,
+        "time": 5936,
+        "fatcut": 2951,
+        "calorie": 6929,
+        "value": 467,
+        "createdAt": "2020-04-30T08:48:50.728Z",
+        "updatedAt": "2020-04-30T08:48:50.728Z",
+        "id": 25
+      },
+      {
+        "userId": 21,
+        "catalogId": 1,
+        "deviceId": 21,
+        "time": 936,
+        "fatcut": 2451,
+        "calorie": 4929,
+        "value": 267,
+        "createdAt": "2020-04-30T08:49:07.323Z",
+        "updatedAt": "2020-04-30T08:49:07.323Z",
+        "id": 26
       }
     ],
     "device": [
@@ -374,7 +602,7 @@
       "userId": 1
     },
     "data": {
-      "id": 7
+      "id": 26
     },
     "device": {
       "id": 1
