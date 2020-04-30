@@ -20,8 +20,9 @@ router.get('/:userId/device',async (ctx,next)=>{
   //这里应该将选出来的数据与设备类型表之间做关联的
   let deviceData = await Device.find({userId:ctx.params.userId})
   for(let i=0;i<deviceData.length;i++){
-    let catalog = await Catalog.findOne(deviceData[i].catalogId)
-    deviceData[i].deviceType = catalog.type
+    let catalogData = await Catalog.findOne(deviceData[i].catalogId)
+    deviceData[i].deviceType = catalogData.type
+    deviceData[i].maxValue = catalogData.maxValue
   }
 
 	ctx.body=deviceData
