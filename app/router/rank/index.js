@@ -45,6 +45,7 @@ router.get('/:userId',async (ctx,next)=>{
         catalogId:param.catalogId
       },
       groupBy:['userId'],
+      sum:['calorie','value']
     }
   )
 	ctx.body = {
@@ -89,6 +90,7 @@ router.get('/',async (ctx,next)=>{
         catalogId:param.catalogId
       },
       groupBy:['userId'],
+      sum:['calorie','value']
     }
   )
 	ctx.body = {
