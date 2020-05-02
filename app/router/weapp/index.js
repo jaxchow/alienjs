@@ -127,14 +127,17 @@ router.post('/login', async(ctx) => {
 		name: ret.nickName,
 		avatar: ret.avatarUrl
 	}
+	console.log("ret:",ret)
 	const user = await User.find({unionId:ret.openId})
+        let u=null
 	if(user.length>0){
-		await User.update(user[0].openId,people)
+	 let us	=await User.update({id:user[0].id},people)
+		u = us[0]
 	}else{
-		await User.create(people)
+		u =await User.create(people)
 	}
-	console.log("body",people)
-	ctx.body=people
+	console.log("body",u)
+	ctx.body=u
 
 	/*
 			Peoples.findAndModify({
