@@ -20,14 +20,14 @@ router.get('/data/:userId',async (ctx,next)=>{
           '<=':endDate
         },
         userId:userId,
-        catalogId:param.type
+        catalogId:param.catalogId
       },
       groupBy:['userId','catalogId'],
       sum:['time','fatcut','calorie','value']
     }
   )
-  let catalogData = await Catalog.findOne(param.type)
-  let deviceData = await Device.findOne({catalogId:param.type,userId:userId})
+  let catalogData = await Catalog.findOne(param.catalogId)
+  let deviceData = await Device.findOne({catalogId:param.catalogId,userId:userId})
   data[0].unit = catalogData.unit
   data[0].deviceType = catalogData.type
   data[0].index = deviceData.index
