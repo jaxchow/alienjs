@@ -12,11 +12,13 @@ router.get('/plantinfo',async (ctx,next)=>{
 })
 // 用户信息
 router.get('/:id',async (ctx,next)=>{
-  let result = Object.create(null)
-  let id = ctx.params.id
   let User =ctx.app.context.db.user
-  let data =await User.findOne(id)
-	ctx.body=data
+  let data =await User.findOne(ctx.params.id)
+  if(data){
+	  ctx.body=data
+  }else{
+	  ctx.body={}
+  }
 })
 
 // 用户设备
@@ -37,18 +39,24 @@ router.get('/:userId/device',async (ctx,next)=>{
 // 用户信息修改
 router.patch('/:id',async (ctx,next)=>{
   let User = ctx.app.context.db.user
-  let params = ctx.params
   let reqbody = ctx.request.body
-  let data = await User.update(params,reqbody)
-  ctx.body = data[0]
+  let data = await User.update(ctx.params,reqbody)
+  if(data[0]){
+    ctx.body = data[0]
+  }else{
+    ctx.body = {}
+  }
 })
 
 // 用户附加
 router.get('/:id/plant',async (ctx,next)=>{
-  let id = ctx.params.id
   let Plant =ctx.app.context.db.plant
-  let data =await Plant.findOne(id)
-	ctx.body=data
+  let data =await Plant.findOne(ctx.params.id)
+  if(data){
+    ctx.body=data
+  }else{
+    ctx.body={}
+  }
 })
 
 
@@ -58,7 +66,11 @@ router.patch('/:id/plant',async (ctx,next)=>{
   let id = ctx.params.id
   let reqbody = ctx.request.body
   let data = await Plant.update({userId:id},reqbody)
-  ctx.body = data[0]
+  if(data[0]){
+    ctx.body = data[0]
+  }else{
+    ctx.body = {}
+  }
 })
 
 router.allowedMethods();

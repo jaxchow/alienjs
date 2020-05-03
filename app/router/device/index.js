@@ -26,12 +26,17 @@ router.get('/data/:userId',async (ctx,next)=>{
       sum:['time','fatcut','calorie','value']
     }
   )
-  let catalogData = await Catalog.findOne(param.catalogId)
-  let deviceData = await Device.findOne({catalogId:param.catalogId,userId:userId})
-  data[0].unit = catalogData.unit
-  data[0].deviceType = catalogData.type
-  data[0].index = deviceData.index
-	ctx.body = data[0]
+  if(data[0]){
+    let catalogData = await Catalog.findOne(param.catalogId)
+    let deviceData = await Device.findOne({catalogId:param.catalogId,userId:userId})
+    data[0].unit = catalogData.unit
+    data[0].deviceType = catalogData.type
+    data[0].index = deviceData.index
+    ctx.body = data[0]
+  }else{
+    ctx.body = {}
+  }
+  
 });
 // 上报设备数据
 router.post('/data/:userId',async (ctx,next)=>{
@@ -62,20 +67,15 @@ router.patch('/data/index',async (ctx,next)=>{
   let result = Object.create(null)
   let resbody = ctx.request.body
   let Device = ctx.app.context.db.device
-  console.log(resbody)
   let data = await Device.update(
     {id:resbody.id},
     {index:resbody.index}
   )
   if(data){
-    result['exception']=false
-    result['msg']='请求成功'
-    result['data'] = data
+    ctx.body = data
   }else{
-    result['exception']=false
-    result['msg']='未找到数据'
+    ctx.body = {}
   }
-  ctx.body = result
 })
 
 router.allowedMethods();
