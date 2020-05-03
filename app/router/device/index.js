@@ -30,7 +30,7 @@ router.get('/data/:userId',async (ctx,next)=>{
     let catalogData = await Catalog.findOne(param.catalogId)
     let deviceData = await Device.findOne({catalogId:param.catalogId,userId:userId})
     data[0].unit = catalogData.unit
-    data[0].deviceType = catalogData.type
+    data[0].type = catalogData.type
     data[0].index = deviceData.index
     ctx.body = data[0]
   }else{
