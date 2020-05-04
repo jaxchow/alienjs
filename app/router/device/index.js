@@ -47,7 +47,7 @@ router.get('/data/:userId',async (ctx,next)=>{
       unit:catalogData.unit,
       name:catalogData.name,
       type:catalogData.type,
-      index:deviceData?deviceData.index:10
+      index:deviceData?deviceData.index:5
     }
   }
   
