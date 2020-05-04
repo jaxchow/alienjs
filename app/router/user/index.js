@@ -37,7 +37,7 @@ router.get('/:userId/device',async (ctx,next)=>{
 });
 
 // 用户信息修改
-router.patch('/:id',async (ctx,next)=>{
+router.put('/:id',async (ctx,next)=>{
   let User = ctx.app.context.db.user
   let reqbody = ctx.request.body
   let data = await User.update(ctx.params,reqbody)
@@ -61,7 +61,7 @@ router.get('/:id/plant',async (ctx,next)=>{
 
 
 // 用户附加修改
-router.patch('/:id/plant',async (ctx,next)=>{
+router.put('/:id/plant',async (ctx,next)=>{
   let Plant =ctx.app.context.db.plant
   let id = ctx.params.id
   let reqbody = ctx.request.body

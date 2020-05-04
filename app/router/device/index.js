@@ -47,7 +47,7 @@ router.get('/data/:userId',async (ctx,next)=>{
       unit:catalogData.unit,
       name:catalogData.name,
       type:catalogData.type,
-      index:deviceData?deviceData.index:0
+      index:deviceData?deviceData.index:10
     }
   }
   
@@ -77,8 +77,7 @@ router.post('/data/:userId',async (ctx,next)=>{
 });
 
 // 修改我的目标
-router.patch('/data/index',async (ctx,next)=>{
-  let result = Object.create(null)
+router.put('/data/index',async (ctx,next)=>{
   let resbody = ctx.request.body
   let Device = ctx.app.context.db.device
   let data = await Device.update(
