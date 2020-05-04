@@ -91,7 +91,7 @@ router.put('/data/index',async (ctx,next)=>{
   }
 })
 
-router.put('/connect',async (ctx,next)=>{
+router.post('/connect',async (ctx,next)=>{
   let resbody = ctx.request.body
   let Device = ctx.app.context.db.device
 	let data =null
