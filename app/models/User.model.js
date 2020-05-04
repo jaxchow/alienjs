@@ -1,4 +1,5 @@
 import Waterline from 'waterline'
+import moment from 'moment'
 // 用户表
 var User = Waterline.Collection.extend({
   identity: 'user',
@@ -45,6 +46,14 @@ var User = Waterline.Collection.extend({
     waistline: {
       type: 'integer',
     },
+    getBirthday:function(){
+	return moment(this.birthday).format('YYYY-MM-DD')
+    },
+    toJSON:function(){
+      var obj = this.toObject();
+      obj.birthday=this.getBirthday();
+      return obj;
+    }
   }
 
 });

@@ -55,7 +55,7 @@ router.get('/:id/plant',async (ctx,next)=>{
   if(data){
     ctx.body=data
   }else{
-    ctx.body={}
+    ctx.body=data
   }
 })
 

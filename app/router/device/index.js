@@ -95,14 +95,16 @@ router.post('/connect',async (ctx,next)=>{
   let resbody = ctx.request.body
   let Device = ctx.app.context.db.device
 	let data =null
-	let device=Device.findOne({deviceId:resbody.deviceId})
-	if(device==null){
-		 data = await Device.create(resbody)
+	console.log("resbody",resbody)
+	let device=await Device.findOne({deviceId:resbody.deviceId})
+	console.log("length",device)
+	if(!device){
+	 data = await Device.create(resbody)
 	}
   if(data){
     ctx.body = data
   }else{
-    ctx.body = {}
+    ctx.body = device
   }
 })
 
