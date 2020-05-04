@@ -91,6 +91,21 @@ router.put('/data/index',async (ctx,next)=>{
   }
 })
 
+router.put('/connect',async (ctx,next)=>{
+  let resbody = ctx.request.body
+  let Device = ctx.app.context.db.device
+	let data =null
+	let device=Device.findOne({deviceId:resbody.deviceId})
+	if(device==null){
+		 data = await Device.create(resbody)
+	}
+  if(data){
+    ctx.body = data
+  }else{
+    ctx.body = {}
+  }
+})
+
 router.allowedMethods();
 
 export default router
