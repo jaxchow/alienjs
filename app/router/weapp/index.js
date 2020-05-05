@@ -24,16 +24,19 @@ const getSessionKey = (code) => {
 
 		Request(url, (error, response, body) => {
 			if (!error && response.statusCode == 200) {
+				console.log("remote error",error)
 				console.log('getSessionKey:', body, typeof (body))
 
 				const data = JSON.parse(body)
+				console.log("remote data",data)
 				if (!data.session_key) {
 					reject({
 						code: 1,
 						message: data.errmsg
 					})
+				}else{
+					reslove(data)
 				}
-				reslove(data)
 			} else {
 				reject({
 					code: 1,
@@ -53,6 +56,7 @@ const decrypt = (sessionKey, encryptedData, iv, callback) => {
 			console.log('decrypted:', data)
 			reslove(data)
 		} catch (e) {
+			console.log("decrypt",e)
 			reject({
 				code: 1,
 				message: e
@@ -95,6 +99,8 @@ const clearAuth = (token, callback) => {
 router.post('/login', async(ctx) => {
 	const data = ctx.request.body
 	let User = ctx.app.context.db.user
+	let Plant = ctx.app.context.db.plant
+
 	console.log('POST：/signIn, 参数：', data)
 
 	if (!data.code) {
@@ -135,6 +141,7 @@ router.post('/login', async(ctx) => {
 		u = us[0]
 	}else{
 		u =await User.create(people)
+		 await Plant.create({id:u.id})
 	}
 	console.log("body",u)
 	ctx.body=u

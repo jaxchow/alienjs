@@ -32,11 +32,14 @@ router.get('/data/:userId',async (ctx,next)=>{
     data[0].unit = catalogData.unit
     data[0].name = catalogData.name
     data[0].type = catalogData.type
-    data[0].index = deviceData.index
+    if(deviceData){
+	    data[0].index = deviceData.index
+	}
     ctx.body = data[0]
   }else{
     let catalogData = await Catalog.findOne(param.catalogId)
     let deviceData = await Device.findOne({catalogId:param.catalogId,userId:userId})
+    if(deviceData){
     ctx.body = {
       userId:userId,
       catalogId:param.catalogId,
@@ -47,8 +50,11 @@ router.get('/data/:userId',async (ctx,next)=>{
       unit:catalogData.unit,
       name:catalogData.name,
       type:catalogData.type,
-      index:deviceData?deviceData.index:5
+      index:deviceData.index
     }
+	}else{
+	 ctx.body={}
+	}
   }
   
 });
@@ -81,7 +87,9 @@ router.put('/data/index',async (ctx,next)=>{
   let resbody = ctx.request.body
   let Device = ctx.app.context.db.device
   let data = await Device.update(
-    {id:resbody.id},
+    {
+        deviceId:resbody.deviceId,
+    },
     {index:resbody.index}
   )
   if(data){
