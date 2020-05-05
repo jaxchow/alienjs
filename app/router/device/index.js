@@ -99,6 +99,7 @@ router.post('/connect',async (ctx,next)=>{
 	let device=await Device.findOne({deviceId:resbody.deviceId})
 	console.log("length",device)
 	if(!device){
+	 resbody.index=10
 	 data = await Device.create(resbody)
 	}
   if(data){
