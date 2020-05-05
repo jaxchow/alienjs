@@ -8,6 +8,7 @@ let router= Router({
 router.get('/:userId',async (ctx,next)=>{
   let Data = ctx.app.context.db.data;
   let Catalog = ctx.app.context.db.catalog;
+  let User = ctx.app.context.db.user;
   let userId = Number(ctx.params.userId)
   let param = ctx.query // startDate endDate startNum endNum type
   let endDate = param.endDate+'T23:59:59Z'
@@ -15,8 +16,6 @@ router.get('/:userId',async (ctx,next)=>{
   if(!catalogData){
     ctx.body = {}
   }else{
-      // 当前用户的数据
-    let myData = {}
     // 排行的用户数据
     let list = await Data.find(
       {
@@ -32,28 +31,26 @@ router.get('/:userId',async (ctx,next)=>{
       }
     )
     .sort('value desc','calorie desc').skip(param.startNum).limit(param.endNum-param.startNum+1)
-  // 查找完整数据
-    let allList = await Data.find(
-      {
-        where:{
-          updatedAt:{
-            '>':param.startDate,
-            '<':endDate
-          },
-          catalogId:param.catalogId
-        },
-        groupBy:['userId'],
-        sum:['calorie','value']
-      }
-    )
-    .sort('value desc','calorie desc')
-    // 利用完整数据匹配找出当前用户数据
-    for(let i = 0;i<allList.length;i++){
-      if(allList[i].userId === userId){
-        myData = allList[i]
-        break;
-      }
+    for(let i = 1;i<=list.length;i++){
+      let userData = await User.find(list[i-1].userId)
+      list[i-1].user = userData
+      list[i-1].rank = i+Number(param.startNum)
     }
+    let myData = await Data.find({
+      where:{
+        updatedAt:{
+          '>':param.startDate,
+          '<':endDate
+        },
+        catalogId:param.catalogId,
+        userId:userId
+      },
+      groupBy:['userId'],
+      sum:['calorie','value']
+    })
+    let myUser = await User.find(userId)
+    myData[0].user = myUser[0]
+    myData[0].rank = 99
     let total = await Data.count({
       where:{
         updatedAt:{
@@ -66,7 +63,7 @@ router.get('/:userId',async (ctx,next)=>{
       sum:['calorie','value']
     })
     ctx.body = {
-      myData:myData,
+      myData:myData[0],
       total:total,
       list:list,
       catalogId:catalogData.id,
@@ -80,6 +77,7 @@ router.get('/:userId',async (ctx,next)=>{
 router.get('/',async (ctx,next)=>{
   let Data = ctx.app.context.db.data;
   let Catalog = ctx.app.context.db.catalog;
+  let User = ctx.app.context.db.user;
   let param = ctx.query // startDate endDate startNum endNum type
   let endDate = param.endDate+'T23:59:59Z'
  
@@ -97,6 +95,11 @@ router.get('/',async (ctx,next)=>{
       sum:['calorie','value']
     }
   ).sort('value desc','calorie desc').skip(param.startNum).limit(param.endNum-param.startNum+1)
+  for(let i = 1;i<=list.length;i++){
+    let userData = await User.find(list[i-1].userId)
+    list[i-1].user = userData
+    list[i-1].rank = i+Number(param.startNum)
+  }
   let catalogData = await Catalog.findOne(param.catalogId)
   if(!catalogData){
     ctx.body={}
