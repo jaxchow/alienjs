@@ -7,8 +7,7 @@ var Device = Waterline.Collection.extend({
   autoUpdatedAt: false,
   attributes: {
     id:{
-      type:'integer',
-      autoIncrement: true,
+      type:'string',
       unique: true,
       primaryKey: true,
     },

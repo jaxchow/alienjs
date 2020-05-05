@@ -12,7 +12,7 @@ var Data = Waterline.Collection.extend({
     },
     // 设备id
     deviceId:{
-      type:'integer',
+      type:'string',
     },
     // 用户id
     userId:{

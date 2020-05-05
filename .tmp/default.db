@@ -1,19 +1,60 @@
 {
   "data": {
-    "article": [],
     "user": [
       {
         "id": 1,
         "username": "jaxchow",
-        "avatar": "new-avatar",
-        "sex": "new-sex",
-        "name": "new-name",
-        "phoneNumber": "13887767541",
-        "updatedAt": "2020-04-27T09:35:12.129Z",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJzwO0L6w4icqhsHtg47IwP4fpCUdSB8YQSajJMT4YxAiaYfEDw8178P2UZVdaoq5njTLk5s8tLyibZQ/132",
+        "sex": "1",
+        "name": "土豆的艺术",
+        "updatedAt": "2020-05-05T04:52:47.401Z",
         "birthday": "1999-01-01T00:00:00.000Z",
-        "height": 167,
-        "weight": 56,
-        "waistline": 232
+        "height": 180,
+        "weight": 80,
+        "waistline": 232,
+        "unionId": "1onahL5BifLcpwZ5Ahmsbf2Di6xZY"
+      },
+      {
+        "id": 2,
+        "username": "jax",
+        "age": "31",
+        "email": "jax@qq.com",
+        "name": "土豆的艺术",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJzwO0L6w4icqhsHtg47IwP4fpCUdSB8YQSajJMT4YxAiaYfEDw8178P2UZVdaoq5njTLk5s8tLyibZQ/132",
+        "updatedAt": "2020-05-02T02:34:21.400Z",
+        "sex": "1",
+        "unionId": "3o2nahL5BifLcpwZ5Ahmsbf2Di6xZY"
+      },
+      {
+        "id": 12,
+        "sex": "1",
+        "unionId": "onahL5BifLcpwZ5Ahmsbf2Di6xZY",
+        "name": "土豆的艺术",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJzwO0L6w4icqhsHtg47IwP4fpCUdSB8YQSajJMT4YxAiaYfEDw8178P2UZVdaoq5njTLk5s8tLyibZQ/132",
+        "createdAt": "2020-04-28T15:07:52.594Z",
+        "updatedAt": "2020-05-04T15:04:42.528Z",
+        "height": 83,
+        "weight": 66,
+        "waistline": 71,
+        "birthday": "1987-02-01T00:00:00.000Z"
+      },
+      {
+        "sex": "1",
+        "unionId": "onahL5BifLcpwZ5Ahmsbf2Di6xZY",
+        "name": "土豆的艺术",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJzwO0L6w4icqhsHtg47IwP4fpCUdSB8YQSajJMT4YxAiaYfEDw8178P2UZVdaoq5njTLk5s8tLyibZQ/132",
+        "createdAt": "2020-05-02T02:44:20.040Z",
+        "updatedAt": "2020-05-02T02:44:20.040Z",
+        "id": 13
+      },
+      {
+        "sex": "1",
+        "unionId": "onahL5BifLcpwZ5Ahmsbf2Di6xZY",
+        "name": "土豆的艺术",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJzwO0L6w4icqhsHtg47IwP4fpCUdSB8YQSajJMT4YxAiaYfEDw8178P2UZVdaoq5njTLk5s8tLyibZQ/132",
+        "createdAt": "2020-05-02T02:44:35.430Z",
+        "updatedAt": "2020-05-02T02:44:35.430Z",
+        "id": 14
       }
     ],
     "catalog": [
@@ -64,6 +105,12 @@
         "weekly": 4,
         "health": 4,
         "updatedAt": "2020-04-27T09:38:31.888Z"
+      },
+      {
+        "id": "onahL5BifLcpwZ5Ahmsbf2Di6xZY",
+        "createdAt": "2020-04-28T15:07:52.599Z",
+        "updatedAt": "2020-04-28T15:07:52.599Z",
+        "userId": 2
       }
     ],
     "plantinfo": [
@@ -71,64 +118,57 @@
         "id": 1,
         "options": "want",
         "itemCode": 1,
-        "itemContent": "想瘦",
+        "itemContent": "健身",
         "Id": 1
       },
       {
         "id": 2,
         "options": "want",
         "itemCode": 2,
-        "itemContent": "想胖",
+        "itemContent": "减肥",
         "Id": 2
       },
       {
         "id": 3,
         "options": "want",
         "itemCode": 3,
-        "itemContent": "想健身",
+        "itemContent": "健美",
         "Id": 3
       },
       {
         "id": 4,
         "options": "weekly",
         "itemCode": 1,
-        "itemContent": "每周一次",
+        "itemContent": "小于一次",
         "Id": 4
       },
       {
         "id": 5,
         "options": "weekly",
         "itemCode": 2,
-        "itemContent": "每周三次",
+        "itemContent": "1-2次",
         "Id": 5
       },
       {
         "id": 6,
-        "options": "health",
+        "options": "weekly",
         "itemCode": 3,
-        "itemContent": "每天锻炼",
+        "itemContent": "3次以上",
         "Id": 6
       },
       {
         "id": 7,
         "options": "health",
         "itemCode": 1,
-        "itemContent": "超重",
+        "itemContent": "良好",
         "Id": 7
       },
       {
         "id": 8,
         "options": "health",
         "itemCode": 2,
-        "itemContent": "太瘦",
+        "itemContent": "不宜剧烈运动",
         "Id": 8
-      },
-      {
-        "id": 9,
-        "options": "health",
-        "itemCode": 3,
-        "itemContent": "健康",
-        "Id": 9
       }
     ],
     "data": [
@@ -200,8 +240,8 @@
         "fatcut": 3423,
         "calorie": 8233,
         "value": 9323,
-        "createdAt": "2020-04-30T08:40:31.434Z",
-        "updatedAt": "2020-04-30T08:40:31.434Z",
+        "createdAt": "2020-05-05T08:40:31.434Z",
+        "updatedAt": "2020-05-05T08:40:31.434Z",
         "id": 8
       },
       {
@@ -212,8 +252,8 @@
         "fatcut": 64363,
         "calorie": 65433,
         "value": 9993,
-        "createdAt": "2020-04-30T08:41:31.171Z",
-        "updatedAt": "2020-04-30T08:41:31.171Z",
+        "createdAt": "2020-05-05T08:41:31.171Z",
+        "updatedAt": "2020-05-05T08:41:31.171Z",
         "id": 9
       },
       {
@@ -224,8 +264,8 @@
         "fatcut": 64363,
         "calorie": 65739,
         "value": 9493,
-        "createdAt": "2020-04-30T08:42:13.399Z",
-        "updatedAt": "2020-04-30T08:42:13.399Z",
+        "createdAt": "2020-05-05T08:42:13.399Z",
+        "updatedAt": "2020-05-05T08:42:13.399Z",
         "id": 10
       },
       {
@@ -236,8 +276,8 @@
         "fatcut": 63,
         "calorie": 739,
         "value": 993,
-        "createdAt": "2020-04-30T08:42:32.631Z",
-        "updatedAt": "2020-04-30T08:42:32.631Z",
+        "createdAt": "2020-05-05T08:42:32.631Z",
+        "updatedAt": "2020-05-05T08:42:32.631Z",
         "id": 11
       },
       {
@@ -248,8 +288,8 @@
         "fatcut": 563,
         "calorie": 7639,
         "value": 7993,
-        "createdAt": "2020-04-30T08:44:18.945Z",
-        "updatedAt": "2020-04-30T08:44:18.945Z",
+        "createdAt": "2020-05-05T08:44:18.945Z",
+        "updatedAt": "2020-05-05T08:44:18.945Z",
         "id": 12
       },
       {
@@ -260,8 +300,8 @@
         "fatcut": 663,
         "calorie": 6639,
         "value": 6993,
-        "createdAt": "2020-04-30T08:44:43.383Z",
-        "updatedAt": "2020-04-30T08:44:43.383Z",
+        "createdAt": "2020-05-05T08:44:43.383Z",
+        "updatedAt": "2020-05-05T08:44:43.383Z",
         "id": 13
       },
       {
@@ -272,8 +312,8 @@
         "fatcut": 6263,
         "calorie": 639,
         "value": 693,
-        "createdAt": "2020-04-30T08:45:17.200Z",
-        "updatedAt": "2020-04-30T08:45:17.200Z",
+        "createdAt": "2020-05-05T08:45:17.200Z",
+        "updatedAt": "2020-05-05T08:45:17.200Z",
         "id": 14
       },
       {
@@ -284,8 +324,8 @@
         "fatcut": 2653,
         "calorie": 4639,
         "value": 1693,
-        "createdAt": "2020-04-30T08:45:39.598Z",
-        "updatedAt": "2020-04-30T08:45:39.598Z",
+        "createdAt": "2020-05-05T08:45:39.598Z",
+        "updatedAt": "2020-05-05T08:45:39.598Z",
         "id": 15
       },
       {
@@ -296,8 +336,8 @@
         "fatcut": 2651,
         "calorie": 4139,
         "value": 1193,
-        "createdAt": "2020-04-30T08:45:57.436Z",
-        "updatedAt": "2020-04-30T08:45:57.436Z",
+        "createdAt": "2020-05-05T08:45:57.436Z",
+        "updatedAt": "2020-05-05T08:45:57.436Z",
         "id": 16
       },
       {
@@ -308,8 +348,8 @@
         "fatcut": 2621,
         "calorie": 2139,
         "value": 1123,
-        "createdAt": "2020-04-30T08:46:16.347Z",
-        "updatedAt": "2020-04-30T08:46:16.347Z",
+        "createdAt": "2020-05-05T08:46:16.347Z",
+        "updatedAt": "2020-05-05T08:46:16.347Z",
         "id": 17
       },
       {
@@ -320,8 +360,8 @@
         "fatcut": 2321,
         "calorie": 3139,
         "value": 1323,
-        "createdAt": "2020-04-30T08:46:32.855Z",
-        "updatedAt": "2020-04-30T08:46:32.855Z",
+        "createdAt": "2020-05-05T08:46:32.855Z",
+        "updatedAt": "2020-05-05T08:46:32.855Z",
         "id": 18
       },
       {
@@ -332,8 +372,8 @@
         "fatcut": 2341,
         "calorie": 4139,
         "value": 4323,
-        "createdAt": "2020-04-30T08:46:48.813Z",
-        "updatedAt": "2020-04-30T08:46:48.813Z",
+        "createdAt": "2020-05-05T08:46:48.813Z",
+        "updatedAt": "2020-05-05T08:46:48.813Z",
         "id": 19
       },
       {
@@ -344,8 +384,8 @@
         "fatcut": 251,
         "calorie": 459,
         "value": 323,
-        "createdAt": "2020-04-30T08:47:08.248Z",
-        "updatedAt": "2020-04-30T08:47:08.248Z",
+        "createdAt": "2020-05-05T08:47:08.248Z",
+        "updatedAt": "2020-05-05T08:47:08.248Z",
         "id": 20
       },
       {
@@ -356,8 +396,8 @@
         "fatcut": 6251,
         "calorie": 4659,
         "value": 623,
-        "createdAt": "2020-04-30T08:47:22.279Z",
-        "updatedAt": "2020-04-30T08:47:22.279Z",
+        "createdAt": "2020-05-05T08:47:22.279Z",
+        "updatedAt": "2020-05-05T08:47:22.279Z",
         "id": 21
       },
       {
@@ -368,8 +408,8 @@
         "fatcut": 2751,
         "calorie": 3659,
         "value": 627,
-        "createdAt": "2020-04-30T08:47:43.611Z",
-        "updatedAt": "2020-04-30T08:47:43.611Z",
+        "createdAt": "2020-05-05T08:47:43.611Z",
+        "updatedAt": "2020-05-05T08:47:43.611Z",
         "id": 22
       },
       {
@@ -380,8 +420,8 @@
         "fatcut": 271,
         "calorie": 659,
         "value": 67,
-        "createdAt": "2020-04-30T08:48:13.647Z",
-        "updatedAt": "2020-04-30T08:48:13.647Z",
+        "createdAt": "2020-05-05T08:48:13.647Z",
+        "updatedAt": "2020-05-05T08:48:13.647Z",
         "id": 23
       },
       {
@@ -392,8 +432,8 @@
         "fatcut": 2971,
         "calorie": 6959,
         "value": 167,
-        "createdAt": "2020-04-30T08:48:29.841Z",
-        "updatedAt": "2020-04-30T08:48:29.841Z",
+        "createdAt": "2020-05-05T08:48:29.841Z",
+        "updatedAt": "2020-05-05T08:48:29.841Z",
         "id": 24
       },
       {
@@ -404,70 +444,27 @@
         "fatcut": 2951,
         "calorie": 6929,
         "value": 467,
-        "createdAt": "2020-04-30T08:48:50.728Z",
-        "updatedAt": "2020-04-30T08:48:50.728Z",
+        "createdAt": "2020-05-05T08:48:50.728Z",
+        "updatedAt": "2020-05-05T08:48:50.728Z",
         "id": 25
       },
       {
         "userId": 21,
         "catalogId": 1,
-        "deviceId": 21,
+        "deviceId": "4B1623D0-FFA4-4826-A09D-5E2689CBE1C5",
         "time": 936,
         "fatcut": 2451,
         "calorie": 4929,
         "value": 267,
-        "createdAt": "2020-04-30T08:49:07.323Z",
-        "updatedAt": "2020-04-30T08:49:07.323Z",
+        "createdAt": "2020-05-05T08:49:07.323Z",
+        "updatedAt": "2020-05-05T08:49:07.323Z",
         "id": 26
       }
     ],
     "device": [
-      {
-        "id": 1,
-        "userId": 1,
-        "index": 400,
-        "catalogId": 1,
-        "mac": "蓝牙地址",
-        "version": "A011"
-      }
     ]
   },
   "schema": {
-    "article": {
-      "id": {
-        "type": "integer",
-        "autoIncrement": true,
-        "unique": true,
-        "primaryKey": true
-      },
-      "columnId": {
-        "type": "integer"
-      },
-      "title": {
-        "type": "string"
-      },
-      "content": {
-        "type": "string"
-      },
-      "pic": {
-        "type": "string"
-      },
-      "views": {
-        "type": "integer"
-      },
-      "tag": {
-        "type": "string"
-      },
-      "praiseNumber": {
-        "type": "integer"
-      },
-      "createdAt": {
-        "type": "datetime"
-      },
-      "updatedAt": {
-        "type": "datetime"
-      }
-    },
     "user": {
       "id": {
         "type": "integer",
@@ -660,16 +657,16 @@
   },
   "counters": {
     "user": {
-      "id": 11
+      "id": 14
     },
     "plant": {
-      "userId": 1
+      "userId": 2
     },
     "data": {
-      "id": 26
+      "id": 33
     },
     "device": {
-      "id": 1
+      "id": 21
     },
     "article": {},
     "catalog": {

@@ -87,7 +87,7 @@ router.put('/data/index',async (ctx,next)=>{
   if(data){
     ctx.body = data
   }else{
-    ctx.body = {}
+    ctx.body = {message:"修改失败"}
   }
 })
 
