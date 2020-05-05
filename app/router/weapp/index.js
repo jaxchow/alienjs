@@ -34,8 +34,9 @@ const getSessionKey = (code) => {
 						code: 1,
 						message: data.errmsg
 					})
+				}else{
+					reslove(data)
 				}
-				reslove(data)
 			} else {
 				reject({
 					code: 1,
@@ -55,6 +56,7 @@ const decrypt = (sessionKey, encryptedData, iv, callback) => {
 			console.log('decrypted:', data)
 			reslove(data)
 		} catch (e) {
+			console.log("decrypt",e)
 			reject({
 				code: 1,
 				message: e

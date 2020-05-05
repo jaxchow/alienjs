@@ -87,7 +87,9 @@ router.put('/data/index',async (ctx,next)=>{
   let resbody = ctx.request.body
   let Device = ctx.app.context.db.device
   let data = await Device.update(
-    {id:resbody.id},
+    {
+        deviceId:resbody.deviceId,
+    },
     {index:resbody.index}
   )
   if(data){
