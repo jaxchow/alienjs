@@ -80,8 +80,8 @@ router.get('/',async (ctx,next)=>{
     }
   ).sort('value desc','calorie desc').skip(param.startNum).limit(param.endNum-param.startNum+1)
   for(let i = 1;i<=list.length;i++){
-    let userData = await User.find(list[i-1].userId)
-    list[i-1].user = userData
+    let userData = await User.findOne(list[i-1].userId)
+    list[i-1].user = userData?userData:{}
     list[i-1].rank = i+Number(param.startNum)
   }
   let catalogData = await Catalog.findOne(param.catalogId)
