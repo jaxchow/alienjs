@@ -12,6 +12,7 @@ router.get('/:userId',async (ctx,next)=>{
   let userId = Number(ctx.params.userId)
   let param = ctx.query // startDate endDate startNum endNum type
   let endDate = param.endDate+'T23:59:59Z'
+  let myData = {}
   let catalogData = await Catalog.findOne(param.catalogId)
   if(!catalogData){
     ctx.body = {}
@@ -30,42 +31,25 @@ router.get('/:userId',async (ctx,next)=>{
         sum:['calorie','value']
       }
     )
-    .sort('value desc','calorie desc').skip(param.startNum).limit(param.endNum-param.startNum+1)
-    for(let i = 1;i<=list.length;i++){
-      let userData = await User.find(list[i-1].userId)
-      list[i-1].user = userData
-      list[i-1].rank = i+Number(param.startNum)
+    .sort('value desc','calorie desc')
+
+    for(let i = 0;i<list.length;i++){
+      let userData = await User.findOne(list[i].userId)
+      list[i].user = userData?userData:{}
+      list[i].rank = i+1
     }
-    let myData = await Data.find({
-      where:{
-        updatedAt:{
-          '>':param.startDate,
-          '<':endDate
-        },
-        catalogId:param.catalogId,
-        userId:userId
-      },
-      groupBy:['userId'],
-      sum:['calorie','value']
-    })
-    let myUser = await User.find(userId)
-    myData[0].user = myUser[0]
-    myData[0].rank = 99
-    let total = await Data.count({
-      where:{
-        updatedAt:{
-          '>=':param.startDate,
-          '<=':endDate
-        },
-        catalogId:param.catalogId
-      },
-      groupBy:['userId'],
-      sum:['calorie','value']
-    })
+
+    for(let i = 0;i<list.length;i++){
+      if(list[i].userId == userId){
+        myData = list[i]
+        break
+      }
+    }
+    let cutList = list.slice(param.startNum,Number(param.endNum)+1)
     ctx.body = {
-      myData:myData[0],
-      total:total,
-      list:list,
+      myData:myData,
+      total:list.length,
+      list:cutList,
       catalogId:catalogData.id,
       type:catalogData.type,
       unit:catalogData.unit
