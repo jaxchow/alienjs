@@ -40,7 +40,7 @@ var Data = Waterline.Collection.extend({
     },
     // 甩脂数（g）
     fatcut: {
-      type: 'integer',
+      type: 'float',
     },
   },
 });
