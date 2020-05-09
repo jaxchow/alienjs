@@ -10,8 +10,8 @@ let router= Router({
 })
 
 // 小程序参数
-const APP_ID = 'wx8b2741c6d5d7fece'
-const APP_SECRET = 'd7b2db4a511e46eec9701dffbce98cb3'
+const APP_ID = 'wx9b131ef491a04d81'
+const APP_SECRET = 'b960b3273c51bfdbf3b65555882aa1f7'
 
 /********** 业务处理开始 **********/
 
