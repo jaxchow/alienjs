@@ -92,8 +92,8 @@ router.put('/data/index',async (ctx,next)=>{
     },
     {index:resbody.index}
   )
-  if(data){
-    ctx.body = data
+  if(data[0]){
+    ctx.body = data[0]
   }else{
     ctx.body = {message:"修改失败"}
   }
