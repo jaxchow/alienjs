@@ -10,8 +10,8 @@ let router= Router({
 })
 
 // 小程序参数
-const APP_ID = 'wx8b2741c6d5d7fece'
-const APP_SECRET = 'd7b2db4a511e46eec9701dffbce98cb3'
+const APP_ID = 'wx9b131ef491a04d81'
+const APP_SECRET = 'b960b3273c51bfdbf3b65555882aa1f7'
 
 /********** 业务处理开始 **********/
 
@@ -27,7 +27,8 @@ const getSessionKey = (code) => {
 				console.log("remote error",error)
 				console.log('getSessionKey:', body, typeof (body))
 
-				const data = JSON.parse(body)
+				console.log("replace:",body.replace(/\//g,"\\\/"))
+				const data = JSON.parse(body.replace(/\//g,"\\\/"))
 				console.log("remote data",data)
 				if (!data.session_key) {
 					reject({
@@ -94,6 +95,40 @@ const clearAuth = (token, callback) => {
 */
 }
 
+// 小程序登录
+router.post('/decrypt', async(ctx) => {
+        const data = ctx.request.body
+        let User = ctx.app.context.db.user
+        let Plant = ctx.app.context.db.plant
+
+        console.log('POST：/decrpt, 参数：', data)
+
+        if (!data.code) {
+                ctx.body={
+                        code: 1,
+                        message: '缺少参数：code'
+                }
+                return
+        } else if (!data.encryptedData) {
+                ctx.body={
+                        code: 1,
+                        message: '缺少参数：encryptedData'
+                }
+                return
+        } else if (!data.iv) {
+                ctx.body={
+                        code: 1,
+                        message: '缺少参数：iv'
+                }
+                return
+        }
+
+        // 获取sessionkey
+        const rethh = await getSessionKey(data.code)
+        const ret= await decrypt(rethh.session_key, data.encryptedData, data.iv)
+	console.log("ret",ret)
+	ctx.body = ret
+})
 
 // 小程序登录
 router.post('/login', async(ctx) => {
