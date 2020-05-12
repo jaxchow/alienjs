@@ -10,6 +10,7 @@ import Alien from 'koa'
 import router from './router'
 import {initialize} from './models'
 import bodyParser from 'koa-bodyparser'
+import serve from 'koa-static'
 
 let	app =new Alien()
 
@@ -36,4 +37,5 @@ app.context.db = orm.collections
 app.use(router.routes())
 //app.mw(livereload())
 app.use(convert(session(app)))
+app.use(serve('public'))
 export default app
