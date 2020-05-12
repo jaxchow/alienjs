@@ -55,7 +55,7 @@ router.get('/:id/plant',async (ctx,next)=>{
   if(data){
     ctx.body=data
   }else{
-    ctx.body=data
+    ctx.body={message:'未查询到用户数据'}
   }
 })
 
