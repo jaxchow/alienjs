@@ -65,11 +65,13 @@ router.put('/:id/plant',async (ctx,next)=>{
   let Plant =ctx.app.context.db.plant
   let id = ctx.params.id
   let reqbody = ctx.request.body
-  let data = await Plant.update({userId:id},reqbody)
-  if(data[0]){
-    ctx.body = data[0]
+  let data = await Plant.findOne(id)
+  if(data){
+    let dataArr = await Plant.update({userId:id},reqbody)
+    ctx.body = dataArr[0]
   }else{
-    ctx.body = {}
+    let data = await Plant.create({userId:id,...reqbody})
+    ctx.body = data
   }
 })
 
