@@ -34,16 +34,6 @@ const orm =initialize(function(err, ontology){
 })
 app.context.db = orm.collections
 // console.log(app.context.db)
-app.use(async (ctx,next)=>{
-	const User =ctx.app.context.db.user
-	const token = ctx.request.header['token']
-	let data = User.find({unionId:token})
-	if(data.length>0){
-		await next()
-	}else{
-		ctx.status=401
-	}
-})
 app.use(router.routes())
 app.use(convert(session(app)))
 app.use(serve('public'))
