@@ -497,20 +497,6 @@
         "userId": 15,
         "catalogId": 1,
         "index": 300
-      },
-      {
-        "mac": "FF:FF:64:00:3F",
-        "deviceId": "4B1623D0-FFA4-4826-A09D-5E2689CBE1C5",
-        "userId": 16,
-        "catalogId": 1,
-        "index": 287
-      },
-      {
-        "mac": "FF:FF:64:00:3F",
-        "deviceId": "3E2E398F-4AD3-4716-8CCA-8F37976B184A",
-        "userId": 16,
-        "catalogId": 1,
-        "index": 287
       }
     ]
   },
