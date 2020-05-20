@@ -2,59 +2,133 @@
   "data": {
     "user": [
       {
-        "id": 1,
-        "username": "jaxchow",
-        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJzwO0L6w4icqhsHtg47IwP4fpCUdSB8YQSajJMT4YxAiaYfEDw8178P2UZVdaoq5njTLk5s8tLyibZQ/132",
-        "sex": "1",
-        "name": "土豆的艺术",
-        "updatedAt": "2020-05-05T04:52:47.401Z",
-        "birthday": "1999-01-01T00:00:00.000Z",
-        "height": 180,
-        "weight": 80,
-        "waistline": 232,
-        "unionId": "1onahL5BifLcpwZ5Ahmsbf2Di6xZY"
-      },
-      {
-        "id": 2,
-        "username": "jax",
-        "age": "31",
-        "email": "jax@qq.com",
-        "name": "土豆的艺术",
-        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJzwO0L6w4icqhsHtg47IwP4fpCUdSB8YQSajJMT4YxAiaYfEDw8178P2UZVdaoq5njTLk5s8tLyibZQ/132",
-        "updatedAt": "2020-05-02T02:34:21.400Z",
-        "sex": "1",
-        "unionId": "3o2nahL5BifLcpwZ5Ahmsbf2Di6xZY"
-      },
-      {
-        "id": 12,
         "sex": "1",
         "unionId": "onahL5BifLcpwZ5Ahmsbf2Di6xZY",
         "name": "土豆的艺术",
         "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJzwO0L6w4icqhsHtg47IwP4fpCUdSB8YQSajJMT4YxAiaYfEDw8178P2UZVdaoq5njTLk5s8tLyibZQ/132",
-        "createdAt": "2020-04-28T15:07:52.594Z",
-        "updatedAt": "2020-05-04T15:04:42.528Z",
-        "height": 83,
-        "weight": 66,
-        "waistline": 71,
-        "birthday": "1987-02-01T00:00:00.000Z"
+        "createdAt": "2020-05-05T06:53:42.166Z",
+        "updatedAt": "2020-05-05T12:32:20.188Z",
+        "id": 2
       },
       {
         "sex": "1",
-        "unionId": "onahL5BifLcpwZ5Ahmsbf2Di6xZY",
-        "name": "土豆的艺术",
+        "unionId": "onahL5B2323pwZ5Ahmsbf2Di6xZY",
+        "name": "土豆的艺术1",
         "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJzwO0L6w4icqhsHtg47IwP4fpCUdSB8YQSajJMT4YxAiaYfEDw8178P2UZVdaoq5njTLk5s8tLyibZQ/132",
-        "createdAt": "2020-05-02T02:44:20.040Z",
-        "updatedAt": "2020-05-02T02:44:20.040Z",
+        "createdAt": "2020-05-05T06:53:42.166Z",
+        "updatedAt": "2020-05-05T12:32:20.188Z",
+        "id": 3
+      },
+      {
+        "sex": "1",
+        "unionId": "onahL5Bxxx2323pwZ5Ahmsbf2Di6xZY",
+        "name": "土豆的艺术4",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJzwO0L6w4icqhsHtg47IwP4fpCUdSB8YQSajJMT4YxAiaYfEDw8178P2UZVdaoq5njTLk5s8tLyibZQ/132",
+        "createdAt": "2020-05-05T06:53:42.166Z",
+        "updatedAt": "2020-05-05T12:32:20.188Z",
+        "id": 4
+      },
+      {
+        "sex": "1",
+        "unionId": "onahL5B2323Ahmsbf2Di6xZY",
+        "name": "土豆的艺术5",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJzwO0L6w4icqhsHtg47IwP4fpCUdSB8YQSajJMT4YxAiaYfEDw8178P2UZVdaoq5njTLk5s8tLyibZQ/132",
+        "createdAt": "2020-05-05T06:53:42.166Z",
+        "updatedAt": "2020-05-05T12:32:20.188Z",
+        "id": 5
+      },
+      {
+        "sex": "1",
+        "unionId": "onahL5B2323pwZ5Ahmsbf2Di6xZY",
+        "name": "土豆的艺术6",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJzwO0L6w4icqhsHtg47IwP4fpCUdSB8YQSajJMT4YxAiaYfEDw8178P2UZVdaoq5njTLk5s8tLyibZQ/132",
+        "createdAt": "2020-05-05T06:53:42.166Z",
+        "updatedAt": "2020-05-05T12:32:20.188Z",
+        "id": 6
+      },
+      {
+        "sex": "1",
+        "unionId": "onahL5B72323pwZ5Ahmsbf2Di6xZY",
+        "name": "土豆的艺术7",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJzwO0L6w4icqhsHtg47IwP4fpCUdSB8YQSajJMT4YxAiaYfEDw8178P2UZVdaoq5njTLk5s8tLyibZQ/132",
+        "createdAt": "2020-05-05T06:53:42.166Z",
+        "updatedAt": "2020-05-05T12:32:20.188Z",
+        "id": 7
+      },
+      {
+        "sex": "1",
+        "unionId": "onahL5B72323wZ5hmsbf2Di6xZY",
+        "name": "土豆的艺术8",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJzwO0L6w4icqhsHtg47IwP4fpCUdSB8YQSajJMT4YxAiaYfEDw8178P2UZVdaoq5njTLk5s8tLyibZQ/132",
+        "createdAt": "2020-05-05T06:53:42.166Z",
+        "updatedAt": "2020-05-05T12:32:20.188Z",
+        "id": 8
+      },
+      {
+        "sex": "1",
+        "unionId": "ozbAa4_jPwfroQ7_sPY3ROafgA8I",
+        "name": "梦的河流",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epMzeEcIfE447hcS4MAoSibbHp9fOaGXsEiaEVbIDYcAT2iaB6zt9tJzk4OQkYiaINNERZuCj4FZGWibZQ/132",
+        "createdAt": "2020-05-12T05:01:11.810Z",
+        "updatedAt": "2020-05-18T01:19:32.935Z",
+        "id": 10
+      },
+      {
+        "sex": "2",
+        "unionId": "ozbAa4wtzsTmsWTNN4NQL9j_4HKw",
+        "name": "母笑阳",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/PiajxSqBRaEKaOfKP2w6V7fHjeZ5IkXBjRKnrWpaccwBoeHXx3sdvZKVicahUnzPg069P4K258Hu1JbOpaV3ia02Q/132",
+        "createdAt": "2020-05-12T06:35:37.008Z",
+        "updatedAt": "2020-05-13T10:07:07.727Z",
+        "id": 11
+      },
+      {
+        "sex": "1",
+        "unionId": "ozbAa4w3QA1oECX6OrkOfIQDs9zc",
+        "name": "魏剑帆",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/4uib7Ijwf6nS7dFKVUaoIhh9YF8iawG09AWiaWHiaHHhvic2xiaZN83uZxl0ZTFnIt91d0EUHrBIOU8u8ib6Ihp60k7ibQ/132",
+        "createdAt": "2020-05-13T10:02:57.731Z",
+        "updatedAt": "2020-05-13T10:02:57.731Z",
+        "id": 12
+      },
+      {
+        "sex": "2",
+        "unionId": "ozbAa43uIWSCOuZ_kNJZd-z74lpA",
+        "name": "超_越梦想",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/6FmlwOSTIIrcjia1q0iaIGU5839Lbn3HPRIicNdzBITP3991PibCBm1DpPyYouQtibsGh3t6pliarIjEXjjEjeS5N2yg/132",
+        "createdAt": "2020-05-13T10:41:37.436Z",
+        "updatedAt": "2020-05-13T10:41:37.436Z",
         "id": 13
       },
       {
         "sex": "1",
-        "unionId": "onahL5BifLcpwZ5Ahmsbf2Di6xZY",
+        "unionId": "ozbAa44yKoLtuhHWlO-qDOWEzt4M",
+        "name": "A0",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKvibPMVibTP85niaKbDjl5OwKbBHDhwh2S07t9FhG95u5AEuZhAhCicgnC6FonZhlDvHSicKWfsD34Dkg/132",
+        "createdAt": "2020-05-14T15:27:11.456Z",
+        "updatedAt": "2020-05-14T15:27:15.680Z",
+        "id": 14,
+        "phoneNumber": "15356929567"
+      },
+      {
+        "sex": "2",
+        "unionId": "ozbAa49X4rJ2Scf7zMCH55K5RLXE",
+        "name": "轻轻家教颜霞惠15957196806",
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/K84ibNDDuAefmL6FPzRjsIhoQRck2gM9VrEBKU3XYy1zvApwUh5JpJBMxEK1xhHOfs7PQQbajtXv4wl5cZLdiaicQ/132",
+        "createdAt": "2020-05-16T08:55:54.797Z",
+        "updatedAt": "2020-05-16T09:04:29.912Z",
+        "id": 15,
+        "phoneNumber": "15957196806"
+      },
+      {
+        "sex": "1",
+        "unionId": "ozbAa45bZ5mnAf_aRBZH9KwevhE4",
         "name": "土豆的艺术",
-        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJzwO0L6w4icqhsHtg47IwP4fpCUdSB8YQSajJMT4YxAiaYfEDw8178P2UZVdaoq5njTLk5s8tLyibZQ/132",
-        "createdAt": "2020-05-02T02:44:35.430Z",
-        "updatedAt": "2020-05-02T02:44:35.430Z",
-        "id": 14
+        "avatar": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJsJtZ7jb0eFxjT2rGs0AxCbibCOfPmnicf2wTSaQvCzzUujHWrRCv9MIRkua4qnbVXcSXJs6iaBdttQ/132",
+        "createdAt": "2020-05-17T10:00:43.712Z",
+        "updatedAt": "2020-05-18T12:29:40.249Z",
+        "id": 16,
+        "phoneNumber": "18806505616"
       }
     ],
     "catalog": [
@@ -63,7 +137,7 @@
         "description": "你瘦身的好搭档",
         "pic": "呼啦圈pic",
         "name": "呼啦圈",
-        "type": "DM",
+        "type": "LB",
         "unit": "圈",
         "refs": "呼啦圈操作指南",
         "defaultValue": 200,
@@ -76,7 +150,7 @@
         "description": "你瘦身的好搭档1",
         "pic": "跳绳pic",
         "name": "跳绳",
-        "type": "ts",
+        "type": "LS",
         "unit": "下",
         "refs": "跳绳操作指南",
         "defaultValue": 100,
@@ -89,7 +163,7 @@
         "description": "你瘦身的好搭档2",
         "pic": "健腹轮pic",
         "name": "健腹轮",
-        "type": "jfl",
+        "type": "LH",
         "unit": "次",
         "refs": "健腹轮操作指南",
         "defaultValue": 50,
@@ -100,17 +174,54 @@
     ],
     "plant": [
       {
-        "userId": 1,
-        "want": 1,
-        "weekly": 4,
-        "health": 4,
-        "updatedAt": "2020-04-27T09:38:31.888Z"
+        "id": 2,
+        "createdAt": "2020-05-05T06:53:42.170Z",
+        "updatedAt": "2020-05-06T16:22:55.319Z",
+        "userId": 2,
+        "want": 3
       },
       {
-        "id": "onahL5BifLcpwZ5Ahmsbf2Di6xZY",
-        "createdAt": "2020-04-28T15:07:52.599Z",
-        "updatedAt": "2020-04-28T15:07:52.599Z",
-        "userId": 2
+        "id": 9,
+        "createdAt": "2020-05-09T01:02:27.237Z",
+        "updatedAt": "2020-05-09T01:02:27.237Z",
+        "userId": 3
+      },
+      {
+        "id": 10,
+        "createdAt": "2020-05-12T05:01:11.813Z",
+        "updatedAt": "2020-05-12T05:01:11.813Z",
+        "userId": 4
+      },
+      {
+        "id": 11,
+        "createdAt": "2020-05-12T06:35:37.021Z",
+        "updatedAt": "2020-05-12T06:35:37.021Z",
+        "userId": 5
+      },
+      {
+        "id": 12,
+        "createdAt": "2020-05-13T10:02:57.738Z",
+        "updatedAt": "2020-05-13T10:02:57.738Z"
+      },
+      {
+        "id": 13,
+        "createdAt": "2020-05-13T10:41:37.438Z",
+        "updatedAt": "2020-05-13T10:41:37.438Z"
+      },
+      {
+        "id": 14,
+        "createdAt": "2020-05-14T15:27:11.459Z",
+        "updatedAt": "2020-05-14T15:27:11.459Z"
+      },
+      {
+        "id": 15,
+        "createdAt": "2020-05-16T08:55:54.800Z",
+        "updatedAt": "2020-05-16T08:55:54.800Z"
+      },
+      {
+        "id": 16,
+        "createdAt": "2020-05-17T10:00:43.716Z",
+        "updatedAt": "2020-05-17T10:00:43.716Z"
       }
     ],
     "plantinfo": [
@@ -173,295 +284,234 @@
     ],
     "data": [
       {
-        "userId": 1,
-        "deviceId": 1,
-        "catalogId": 1,
-        "time": 300,
-        "fatcut": 3,
-        "calorie": 233,
-        "value": 23,
-        "createdAt": "2020-04-22T10:04:12.574Z",
-        "updatedAt": "2020-04-22T10:04:12.574Z",
-        "id": 2
-      },
-      {
-        "userId": 1,
-        "deviceId": 1,
-        "catalogId": 2,
-        "time": 3080,
-        "fatcut": 33,
-        "calorie": 2133,
-        "value": 233,
-        "createdAt": "2020-04-21T00:00:00.000Z",
-        "updatedAt": "2020-04-21T00:00:00.000Z",
-        "id": 4
-      },
-      {
-        "userId": 1,
-        "deviceId": 1,
-        "catalogId": 1,
-        "time": 3080,
-        "fatcut": 33,
-        "calorie": 2133,
-        "value": 233,
-        "createdAt": "2020-04-23T14:14:42.878Z",
-        "updatedAt": "2020-04-23T14:17:07.055Z",
-        "id": 5
-      },
-      {
-        "userId": 1,
-        "deviceId": 1,
-        "catalogId": 1,
-        "time": 980,
-        "fatcut": 93,
-        "calorie": 2833,
-        "value": 933,
-        "createdAt": "2020-04-24T14:14:42.878Z",
-        "updatedAt": "2020-04-24T01:42:04.989Z",
-        "id": 6
-      },
-      {
         "userId": 2,
         "catalogId": 1,
-        "deviceId": 1,
-        "time": 1000,
-        "fatcut": 100,
-        "calorie": 2833,
-        "value": 933,
-        "createdAt": "2020-04-24T14:14:42.878Z",
-        "updatedAt": "2020-04-24T01:50:30.917Z",
-        "id": 7
-      },
-      {
-        "userId": 3,
-        "catalogId": 1,
-        "deviceId": 3,
-        "time": 12320,
-        "fatcut": 3423,
-        "calorie": 8233,
-        "value": 9323,
-        "createdAt": "2020-05-05T08:40:31.434Z",
-        "updatedAt": "2020-05-05T08:40:31.434Z",
-        "id": 8
-      },
-      {
-        "userId": 4,
-        "catalogId": 1,
-        "deviceId": 4,
-        "time": 3240,
-        "fatcut": 64363,
-        "calorie": 65433,
-        "value": 9993,
-        "createdAt": "2020-05-05T08:41:31.171Z",
-        "updatedAt": "2020-05-05T08:41:31.171Z",
-        "id": 9
-      },
-      {
-        "userId": 5,
-        "catalogId": 1,
-        "deviceId": 5,
-        "time": 35540,
-        "fatcut": 64363,
-        "calorie": 65739,
-        "value": 9493,
-        "createdAt": "2020-05-05T08:42:13.399Z",
-        "updatedAt": "2020-05-05T08:42:13.399Z",
-        "id": 10
-      },
-      {
-        "userId": 6,
-        "catalogId": 1,
-        "deviceId": 6,
-        "time": 340,
-        "fatcut": 63,
-        "calorie": 739,
-        "value": 993,
-        "createdAt": "2020-05-05T08:42:32.631Z",
-        "updatedAt": "2020-05-05T08:42:32.631Z",
-        "id": 11
+        "time": 0,
+        "fatcut": 0,
+        "calorie": 11,
+        "value": 150,
+        "deviceId": "4B1623D0-FFA4-4826-A09D-5E2689CBE1C5",
+        "createdAt": "2020-05-05T07:09:07.695Z",
+        "updatedAt": "2020-05-05T12:22:14.598Z",
+        "id": 2
       },
       {
         "userId": 7,
         "catalogId": 1,
-        "deviceId": 7,
-        "time": 2340,
-        "fatcut": 563,
-        "calorie": 7639,
-        "value": 7993,
-        "createdAt": "2020-05-05T08:44:18.945Z",
-        "updatedAt": "2020-05-05T08:44:18.945Z",
-        "id": 12
+        "time": 0,
+        "fatcut": 0,
+        "calorie": 11,
+        "value": 50,
+        "deviceId": "4B162-FFA4-4826-A09D-5E2689CBE1C5",
+        "createdAt": "2020-05-05T07:09:07.695Z",
+        "updatedAt": "2020-05-05T12:22:14.598Z",
+        "id": 3
+      },
+      {
+        "userId": 6,
+        "catalogId": 1,
+        "time": 0,
+        "fatcut": 0,
+        "calorie": 11,
+        "value": 50,
+        "deviceId": "4B13D0-FFA4-4826-A09D-5E2689CBE1C5",
+        "createdAt": "2020-05-05T07:09:07.695Z",
+        "updatedAt": "2020-05-05T12:22:14.598Z",
+        "id": 4
+      },
+      {
+        "userId": 5,
+        "catalogId": 1,
+        "time": 0,
+        "fatcut": 0,
+        "calorie": 11,
+        "value": 250,
+        "deviceId": "4623D0-FFA4-4826-A09D-5E2689CBE1C5",
+        "createdAt": "2020-05-05T07:09:07.695Z",
+        "updatedAt": "2020-05-05T12:22:14.598Z",
+        "id": 5
+      },
+      {
+        "userId": 4,
+        "catalogId": 1,
+        "time": 0,
+        "fatcut": 0,
+        "calorie": 11,
+        "value": 350,
+        "deviceId": "4B162D0-FFA4-4826-A09D-5E2689CBE1C5",
+        "createdAt": "2020-05-05T07:09:07.695Z",
+        "updatedAt": "2020-05-05T12:22:14.598Z",
+        "id": 6
+      },
+      {
+        "userId": 3,
+        "catalogId": 1,
+        "time": 0,
+        "fatcut": 0,
+        "calorie": 11,
+        "value": 150,
+        "deviceId": "4B1D0-FFA4-4826-A09D-5E2689CBE1C5",
+        "createdAt": "2020-05-05T07:09:07.695Z",
+        "updatedAt": "2020-05-05T12:22:14.598Z",
+        "id": 7
       },
       {
         "userId": 8,
         "catalogId": 1,
-        "deviceId": 8,
-        "time": 2540,
-        "fatcut": 663,
-        "calorie": 6639,
-        "value": 6993,
-        "createdAt": "2020-05-05T08:44:43.383Z",
-        "updatedAt": "2020-05-05T08:44:43.383Z",
-        "id": 13
+        "time": 0,
+        "fatcut": 0,
+        "calorie": 11,
+        "value": 50,
+        "deviceId": "4B1623D0-FFA4-4826-A09D-5E2689CBE1C5",
+        "createdAt": "2020-05-05T07:09:07.695Z",
+        "updatedAt": "2020-05-05T12:22:14.598Z",
+        "id": 8
       },
       {
-        "userId": 9,
+        "userId": 2,
         "catalogId": 1,
-        "deviceId": 9,
-        "time": 540,
-        "fatcut": 6263,
-        "calorie": 639,
-        "value": 693,
-        "createdAt": "2020-05-05T08:45:17.200Z",
-        "updatedAt": "2020-05-05T08:45:17.200Z",
-        "id": 14
+        "time": 0,
+        "fatcut": 33,
+        "calorie": 20,
+        "value": 327,
+        "deviceId": "4B1623D0-FFA4-4826-A09D-5E2689CBE1C5",
+        "createdAt": "2020-05-06T06:48:00.908Z",
+        "updatedAt": "2020-05-06T07:42:43.698Z",
+        "id": 9
       },
       {
-        "userId": 10,
+        "userId": 2,
         "catalogId": 1,
-        "deviceId": 10,
-        "time": 5040,
-        "fatcut": 2653,
-        "calorie": 4639,
-        "value": 1693,
-        "createdAt": "2020-05-05T08:45:39.598Z",
-        "updatedAt": "2020-05-05T08:45:39.598Z",
-        "id": 15
-      },
-      {
-        "userId": 11,
-        "catalogId": 1,
-        "deviceId": 11,
-        "time": 5041,
-        "fatcut": 2651,
-        "calorie": 4139,
-        "value": 1193,
-        "createdAt": "2020-05-05T08:45:57.436Z",
-        "updatedAt": "2020-05-05T08:45:57.436Z",
-        "id": 16
-      },
-      {
-        "userId": 12,
-        "catalogId": 1,
-        "deviceId": 12,
-        "time": 5042,
-        "fatcut": 2621,
-        "calorie": 2139,
-        "value": 1123,
-        "createdAt": "2020-05-05T08:46:16.347Z",
-        "updatedAt": "2020-05-05T08:46:16.347Z",
-        "id": 17
-      },
-      {
-        "userId": 13,
-        "catalogId": 1,
-        "deviceId": 13,
-        "time": 9042,
-        "fatcut": 2321,
-        "calorie": 3139,
-        "value": 1323,
-        "createdAt": "2020-05-05T08:46:32.855Z",
-        "updatedAt": "2020-05-05T08:46:32.855Z",
-        "id": 18
+        "time": 0,
+        "fatcut": 2.3,
+        "calorie": 2,
+        "value": 16,
+        "deviceId": "4B1623D0-FFA4-4826-A09D-5E2689CBE1C5",
+        "createdAt": "2020-05-07T08:31:07.558Z",
+        "updatedAt": "2020-05-07T08:31:07.558Z",
+        "id": 10
       },
       {
         "userId": 14,
         "catalogId": 1,
-        "deviceId": 14,
-        "time": 9442,
-        "fatcut": 2341,
-        "calorie": 4139,
-        "value": 4323,
-        "createdAt": "2020-05-05T08:46:48.813Z",
-        "updatedAt": "2020-05-05T08:46:48.813Z",
-        "id": 19
+        "time": 0,
+        "fatcut": 36.5,
+        "calorie": 18,
+        "value": 256,
+        "deviceId": "BA688469-50AC-B763-C9AA-9F2D931AFD15",
+        "createdAt": "2020-05-14T15:46:08.420Z",
+        "updatedAt": "2020-05-14T15:53:33.006Z",
+        "id": 12
+      },
+      {
+        "userId": 14,
+        "catalogId": 1,
+        "time": 0,
+        "fatcut": 29,
+        "calorie": 4,
+        "value": 203,
+        "deviceId": "BA688469-50AC-B763-C9AA-9F2D931AFD15",
+        "createdAt": "2020-05-14T22:27:13.484Z",
+        "updatedAt": "2020-05-14T22:27:13.484Z",
+        "id": 13
+      },
+      {
+        "userId": 14,
+        "catalogId": 1,
+        "time": 0,
+        "fatcut": 19,
+        "calorie": 19,
+        "value": 133,
+        "deviceId": "8C469FDC-8783-AD75-AD03-54989093FAAD",
+        "createdAt": "2020-05-15T16:05:17.988Z",
+        "updatedAt": "2020-05-15T16:07:52.248Z",
+        "id": 14
+      },
+      {
+        "userId": 14,
+        "catalogId": 2,
+        "time": 0,
+        "fatcut": 19,
+        "calorie": 19,
+        "value": 133,
+        "deviceId": "8C469FDC-8783-AD75-AD03-54989093FAAD",
+        "createdAt": "2020-05-15T16:10:17.895Z",
+        "updatedAt": "2020-05-15T16:10:17.895Z",
+        "id": 15
       },
       {
         "userId": 15,
         "catalogId": 1,
-        "deviceId": 15,
-        "time": 542,
-        "fatcut": 251,
-        "calorie": 459,
-        "value": 323,
-        "createdAt": "2020-05-05T08:47:08.248Z",
-        "updatedAt": "2020-05-05T08:47:08.248Z",
+        "time": 0,
+        "fatcut": 106.4,
+        "calorie": 26,
+        "value": 745,
+        "deviceId": "ED:67:37:C5:8E:CA",
+        "createdAt": "2020-05-16T09:19:14.629Z",
+        "updatedAt": "2020-05-16T09:45:06.679Z",
+        "id": 16
+      },
+      {
+        "userId": 16,
+        "catalogId": 1,
+        "time": 0,
+        "fatcut": 6.2,
+        "calorie": 7,
+        "value": 43,
+        "deviceId": "4B1623D0-FFA4-4826-A09D-5E2689CBE1C5",
+        "createdAt": "2020-05-17T12:32:18.102Z",
+        "updatedAt": "2020-05-17T13:39:26.270Z",
         "id": 20
       },
       {
         "userId": 16,
         "catalogId": 1,
-        "deviceId": 16,
-        "time": 5426,
-        "fatcut": 6251,
-        "calorie": 4659,
-        "value": 623,
-        "createdAt": "2020-05-05T08:47:22.279Z",
-        "updatedAt": "2020-05-05T08:47:22.279Z",
+        "time": 0,
+        "fatcut": 0.9,
+        "calorie": 3,
+        "value": 6,
+        "deviceId": "3E2E398F-4AD3-4716-8CCA-8F37976B184A",
+        "createdAt": "2020-05-20T06:52:08.555Z",
+        "updatedAt": "2020-05-20T07:01:09.775Z",
         "id": 21
-      },
-      {
-        "userId": 17,
-        "catalogId": 1,
-        "deviceId": 17,
-        "time": 5726,
-        "fatcut": 2751,
-        "calorie": 3659,
-        "value": 627,
-        "createdAt": "2020-05-05T08:47:43.611Z",
-        "updatedAt": "2020-05-05T08:47:43.611Z",
-        "id": 22
-      },
-      {
-        "userId": 18,
-        "catalogId": 1,
-        "deviceId": 18,
-        "time": 526,
-        "fatcut": 271,
-        "calorie": 659,
-        "value": 67,
-        "createdAt": "2020-05-05T08:48:13.647Z",
-        "updatedAt": "2020-05-05T08:48:13.647Z",
-        "id": 23
-      },
-      {
-        "userId": 19,
-        "catalogId": 1,
-        "deviceId": 19,
-        "time": 5296,
-        "fatcut": 2971,
-        "calorie": 6959,
-        "value": 167,
-        "createdAt": "2020-05-05T08:48:29.841Z",
-        "updatedAt": "2020-05-05T08:48:29.841Z",
-        "id": 24
-      },
-      {
-        "userId": 20,
-        "catalogId": 1,
-        "deviceId": 20,
-        "time": 5936,
-        "fatcut": 2951,
-        "calorie": 6929,
-        "value": 467,
-        "createdAt": "2020-05-05T08:48:50.728Z",
-        "updatedAt": "2020-05-05T08:48:50.728Z",
-        "id": 25
-      },
-      {
-        "userId": 21,
-        "catalogId": 1,
-        "deviceId": "4B1623D0-FFA4-4826-A09D-5E2689CBE1C5",
-        "time": 936,
-        "fatcut": 2451,
-        "calorie": 4929,
-        "value": 267,
-        "createdAt": "2020-05-05T08:49:07.323Z",
-        "updatedAt": "2020-05-05T08:49:07.323Z",
-        "id": 26
       }
     ],
     "device": [
+      {
+        "mac": "FF:FF:64:00:3F",
+        "deviceId": "BA688469-50AC-B763-C9AA-9F2D931AFD15",
+        "userId": 14,
+        "catalogId": 1,
+        "index": 81
+      },
+      {
+        "mac": "FF:FF:64:00:3F",
+        "deviceId": "8C469FDC-8783-AD75-AD03-54989093FAAD",
+        "userId": 14,
+        "catalogId": 1,
+        "index": 10
+      },
+      {
+        "mac": "FF:FF:64:00:3F",
+        "deviceId": "ED:67:37:C5:8E:CA",
+        "userId": 15,
+        "catalogId": 1,
+        "index": 300
+      },
+      {
+        "mac": "FF:FF:64:00:3F",
+        "deviceId": "4B1623D0-FFA4-4826-A09D-5E2689CBE1C5",
+        "userId": 16,
+        "catalogId": 1,
+        "index": 287
+      },
+      {
+        "mac": "FF:FF:64:00:3F",
+        "deviceId": "3E2E398F-4AD3-4716-8CCA-8F37976B184A",
+        "userId": 16,
+        "catalogId": 1,
+        "index": 287
+      }
     ]
   },
   "schema": {
@@ -547,7 +597,6 @@
     "plant": {
       "userId": {
         "type": "integer",
-        "autoIncrement": true,
         "unique": true,
         "primaryKey": true
       },
@@ -589,7 +638,7 @@
         "primaryKey": true
       },
       "deviceId": {
-        "type": "integer"
+        "type": "string"
       },
       "userId": {
         "type": "integer"
@@ -610,7 +659,7 @@
         "type": "integer"
       },
       "fatcut": {
-        "type": "integer"
+        "type": "float"
       },
       "createdAt": {
         "type": "datetime"
@@ -621,8 +670,7 @@
     },
     "device": {
       "id": {
-        "type": "integer",
-        "autoIncrement": true,
+        "type": "string",
         "unique": true,
         "primaryKey": true
       },
@@ -656,24 +704,21 @@
     }
   },
   "counters": {
+    "plantinfo": {
+      "Id": 9
+    },
     "user": {
-      "id": 14
+      "id": 16
     },
-    "plant": {
-      "userId": 2
-    },
-    "data": {
-      "id": 33
-    },
-    "device": {
-      "id": 21
-    },
-    "article": {},
     "catalog": {
       "id": 3
     },
-    "plantinfo": {
-      "Id": 9
-    }
+    "plant": {
+      "userId": 5
+    },
+    "data": {
+      "id": 21
+    },
+    "device": {}
   }
 }
