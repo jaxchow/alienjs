@@ -170,10 +170,12 @@ router.post('/login', async(ctx) => {
 	}
 	console.log("ret:",ret)
 	const user = await User.find({unionId:ret.openId})
+	console.log("user",user)
         let u=null
 	if(user.length>0){
-	 let us	=await User.update({id:user[0].id},people)
-		u = us[0]
+	  u = user[0]
+	 console.log("u",u)
+	 //let u	=await User.update(user[0].id,people)
 	}else{
 		u =await User.create(people)
 		 await Plant.create({id:u.id})
