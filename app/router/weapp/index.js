@@ -27,8 +27,8 @@ const getSessionKey = (code) => {
 				console.log("remote error",error)
 				console.log('getSessionKey:', body, typeof (body))
 
-				console.log("replace:",body.replace(/\//g,"\\\/"))
-				const data = JSON.parse(body.replace(/\//g,"\\\/"))
+//				console.log("replace:",body.replace(/\//g,"\\\/"))
+				const data = JSON.parse(body)
 				console.log("remote data",data)
 				if (!data.session_key) {
 					reject({
