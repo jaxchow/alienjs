@@ -93,6 +93,25 @@ router.post('/data/:userId',async (ctx,next)=>{
     ctx.status=401
   }
 });
+// 删除设备及数据
+router.delete('/:deviceId',async (ctx,next)=>{
+  let Device = ctx.app.context.db.device
+  let User =ctx.app.context.db.user
+  let Data = ctx.app.context.db.data
+  let token = ctx.request.header['token']
+  let tokenData = await User.find({unionId:token})
+  if(tokenData.length>0){
+    let {deviceId} = ctx.params
+    let DeviceDesData = await Device.destroy({deviceId:deviceId})
+    let DataDes = await Data.destroy({deviceId:deviceId})
+    ctx.body = {
+      Device:DeviceDesData,
+      Data:DataDes
+    }
+  }else{
+    ctx.status=401
+  }
+});
 
 // 修改我的目标
 router.put('/data/index',async (ctx,next)=>{
