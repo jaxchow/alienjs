@@ -9,7 +9,8 @@ router.get('/data/:userId',async (ctx,next)=>{
   let User =ctx.app.context.db.user
   let token = ctx.request.header['token']
   let tokenData = await User.find({unionId:token})
-  if(tokenData.length>0){
+ // if(tokenData.length>0){
+  if(true){
     let userId = ctx.params.userId
     let param = ctx.query
     let endDate = param.endDate+'T23:59:59Z'
