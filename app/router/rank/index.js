@@ -87,7 +87,7 @@ router.get('/',async (ctx,next)=>{
     for(let i = 1;i<=list.length;i++){
       let userData = await User.findOne(list[i-1].userId)
       list[i-1].user = userData?userData:{}
-      list[i-1].rank = i+Number(param.startNum)
+      list[i-1].rank = i
     }
     let cutList = list.slice(param.startNum,Number(param.endNum)+1)
 
