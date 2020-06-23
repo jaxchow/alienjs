@@ -20,7 +20,9 @@ router.get('/:id',async (ctx,next)=>{
     if(data){
       ctx.body=data
     }else{
-      ctx.body={}
+      ctx.body={
+        msg:'未查询到该用户'
+      }
     }
   }else{
     ctx.status = 401
@@ -37,11 +39,17 @@ router.get('/:userId/device',async (ctx,next)=>{
     let Device = ctx.app.context.db.device;
     let Catalog = ctx.app.context.db.catalog;
     let deviceData = await Device.find({userId:ctx.params.userId})
-    for(let i=0;i<deviceData.length;i++){
-      let catalogData = await Catalog.findOne(deviceData[i].catalogId)
-      deviceData[i].catalog = catalogData
+    if(deviceData.length !== 0){
+      for(let i=0;i<deviceData.length;i++){
+        let catalogData = await Catalog.findOne(deviceData[i].catalogId)
+        deviceData[i].catalog = catalogData
+      }
+      ctx.body=deviceData
+    }else{
+      ctx.body={
+        msg:'未查询到该用户下存在设备'
+      }
     }
-    ctx.body=deviceData
   }else{
     ctx.status=401
   }
@@ -59,7 +67,9 @@ router.put('/:id',async (ctx,next)=>{
     if(data[0]){
       ctx.body = data[0]
     }else{
-      ctx.body = {}
+      ctx.body = {
+        msg:'未查询到该用户'
+      }
     }
   }else{
     ctx.status=401
@@ -77,7 +87,9 @@ router.get('/:id/plant',async (ctx,next)=>{
     if(data){
       ctx.body=data
     }else{
-      ctx.body={}
+      ctx.body={
+        msg:'未查询到该用户'
+      }
     }
   }else{
     ctx.status=401
