@@ -145,7 +145,11 @@ router.post('/connect',async (ctx,next)=>{
 	if(!device){
 	 //resbody.index=10
 	 data = await Device.create(resbody)
-	}
+	}else  if(device.userId!==resbody.userId){
+		ctx.body={
+      message:"该设备与其他用户绑定，请先解绑定"
+    }
+  }
   if(data){
     ctx.body = data
   }else{
