@@ -9,8 +9,8 @@ router.get('/data/:userId',async (ctx,next)=>{
   let User =ctx.app.context.db.user
   let token = ctx.request.header['token']
   let tokenData = await User.find({unionId:token})
- // if(tokenData.length>0){
-  if(true){
+ if(tokenData.length>0){
+  // if(true){
     let userId = ctx.params.userId
     let param = ctx.query
     let endDate = param.endDate+'T23:59:59Z'
@@ -46,6 +46,8 @@ router.get('/data/:userId',async (ctx,next)=>{
       let deviceData = await Device.findOne({catalogId:param.catalogId,userId:userId})
       if(deviceData){
         ctx.body = {
+          msg:'该用户在该时段无数据',
+          data:{
           userId:userId,
           catalogId:param.catalogId,
           time:0,
@@ -56,9 +58,9 @@ router.get('/data/:userId',async (ctx,next)=>{
           name:catalogData.name,
           type:catalogData.type,
           index:deviceData.index
-        }
+        }}
       }else{
-        ctx.body={}
+        ctx.body={msg:'未查询到该设备'}
       }
     }
   }else{
