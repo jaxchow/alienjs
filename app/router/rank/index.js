@@ -18,7 +18,7 @@ router.get('/:userId',async (ctx,next)=>{
     ctx.body = {}
   }else{
     // 排行的用户数据
-    let list = await Data.find(
+    let originlist = await Data.find(
       {
         where:{
           updatedAt:{
@@ -31,7 +31,10 @@ router.get('/:userId',async (ctx,next)=>{
         sum:['calorie','value']
       }
     )
-    .sort('value desc','calorie desc')
+    // .sort('value desc')
+    const list= originlist.sort((a,b)=>{
+      return b.value-a.value
+    })
 
     for(let i = 0;i<list.length;i++){
       let userData = await User.findOne(list[i].userId)
@@ -71,7 +74,7 @@ router.get('/',async (ctx,next)=>{
   if(!catalogData){
     ctx.body={}
   }else{
-    let list = await Data.find(
+    let originlist = await Data.find(
       {
         where:{
           updatedAt:{
@@ -83,7 +86,11 @@ router.get('/',async (ctx,next)=>{
         groupBy:['userId'],
         sum:['calorie','value']
       }
-    ).sort('value desc','calorie desc')
+    )
+    
+    let list = originlist.sort((a,b)=>{
+      return b.value-a.value
+    })
     for(let i = 1;i<=list.length;i++){
       let userData = await User.findOne(list[i-1].userId)
       list[i-1].user = userData?userData:{}
