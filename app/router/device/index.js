@@ -89,7 +89,14 @@ router.post('/data/:userId',async (ctx,next)=>{
     if(lastData.length == 0 || moment(lastData[0].updatedAt).format('YYYY-MM-DD') !== moment().format('YYYY-MM-DD')){
       data = await Data.create({userId:userId,...resbody})
     }else{
-      data = await Data.update({id:lastData[0].id},resbody)
+      const newDate = {
+        time:lastData[0].time+resbody.time,
+        fatcut:lastData[0].fatcut+resbody.fatcut,
+        calorie:lastData[0].calorie+resbody.calorie,
+        value:lastData[0].value+resbody.value
+      }
+      console.log(newDate)
+      data = await Data.update({id:lastData[0].id},newDate)
     }
     ctx.body = data
   }else{
