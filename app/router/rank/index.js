@@ -10,12 +10,43 @@ router.get('/:userId',async (ctx,next)=>{
   let Catalog = ctx.app.context.db.catalog;
   let User = ctx.app.context.db.user;
   let userId = Number(ctx.params.userId)
-  let param = ctx.query // startDate endDate startNum endNum type
+  let param = ctx.query // startDate endDate startNum endNum catalogId
+  if(!param.catalogId){
+    ctx.body={
+      code:1,
+      msg:'缺少参数：catalogId'
+    }
+    return
+  }else if(!param.startDate){
+    ctx.body={
+      code:1,
+      msg:'缺少参数：startDate'
+    }
+    return
+  }else if(!param.endDate){
+    ctx.body={
+      code:1,
+      msg:'缺少参数：endDate'
+    }
+    return
+  }else if(!param.endNum){
+    ctx.body={
+      code:1,
+      msg:'缺少参数：endNum'
+    }
+    return
+  }else if(!param.startNum){
+    ctx.body={
+      code:1,
+      msg:'缺少参数：startNum'
+    }
+    return
+  }
   let endDate = param.endDate+'T23:59:59Z'
   let myData = {}
   let catalogData = await Catalog.findOne(param.catalogId)
   if(!catalogData){
-    ctx.body = {}
+    ctx.body = {msg:'请输入正确catalogId'}
   }else{
     // 排行的用户数据
     let originlist = await Data.find(
@@ -65,14 +96,45 @@ router.get('/',async (ctx,next)=>{
   let Data = ctx.app.context.db.data;
   let Catalog = ctx.app.context.db.catalog;
   let User = ctx.app.context.db.user;
-  let param = ctx.query // startDate endDate startNum endNum type
+  let param = ctx.query // startDate endDate startNum endNum catalogId
+  if(!param.catalogId){
+    ctx.body={
+      code:1,
+      msg:'缺少参数：catalogId'
+    }
+    return
+  }else if(!param.startDate){
+    ctx.body={
+      code:1,
+      msg:'缺少参数：startDate'
+    }
+    return
+  }else if(!param.endDate){
+    ctx.body={
+      code:1,
+      msg:'缺少参数：endDate'
+    }
+    return
+  }else if(!param.endNum){
+    ctx.body={
+      code:1,
+      msg:'缺少参数：endNum'
+    }
+    return
+  }else if(!param.startNum){
+    ctx.body={
+      code:1,
+      msg:'缺少参数：startNum'
+    }
+    return
+  }
   let endDate = param.endDate+'T23:59:59Z'
  
   // 排行的用户数据
   
   let catalogData = await Catalog.findOne(param.catalogId)
   if(!catalogData){
-    ctx.body={}
+    ctx.body={msg:'请输入正确catalogId'}
   }else{
     let originlist = await Data.find(
       {

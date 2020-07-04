@@ -13,6 +13,25 @@ router.get('/data/:userId',async (ctx,next)=>{
   // if(true){
     let userId = ctx.params.userId
     let param = ctx.query
+    if(!param.endDate){
+      ctx.body = {
+			  code: 1,
+        msg: '缺少参数：endDate'
+      }
+      return
+    }else if(!param.startDate){
+      ctx.body={
+        code:1,
+        msg: '缺少参数：startDate'
+      }
+      return
+    }else if(!param.catalogId){
+      ctx.body={
+        code:1,
+        msg: '缺少参数：catalogId'
+      }
+      return
+    }
     let endDate = param.endDate+'T23:59:59Z'
     let Data = ctx.app.context.db.data;
     let Catalog = ctx.app.context.db.catalog;
@@ -77,6 +96,20 @@ router.post('/data/:userId',async (ctx,next)=>{
     let resbody = ctx.request.body
     let Data = ctx.app.context.db.data;
     let data;
+    //参数确认
+    if(!resbody.deviceId){
+      ctx.body = {
+			  code: 1,
+        msg: '缺少参数：deviceId'
+      }
+      return
+    }else if(!resbody.catalogId){
+      ctx.body = {
+			  code: 1,
+        msg: '缺少参数：catalogId'
+      }
+      return
+    }
     const lastData = await Data.find(
       {
         where:{
@@ -90,10 +123,10 @@ router.post('/data/:userId',async (ctx,next)=>{
       data = await Data.create({userId:userId,...resbody})
     }else{
       const newDate = {
-        time:lastData[0].time+resbody.time,
-        fatcut:lastData[0].fatcut+resbody.fatcut,
-        calorie:lastData[0].calorie+resbody.calorie,
-        value:lastData[0].value+resbody.value
+        time:(lastData[0].time||0)+(resbody.time||0),
+        fatcut:(lastData[0].fatcut||0)+(resbody.fatcut||0),
+        calorie:(lastData[0].calorie||0)+(resbody.calorie||0),
+        value:(lastData[0].value||0)+(resbody.value||0)
       }
       console.log(newDate)
       data = await Data.update({id:lastData[0].id},newDate)
@@ -127,6 +160,19 @@ router.put('/data/index',async (ctx,next)=>{
   let tokenData = await User.find({unionId:token})
   if(tokenData.length>0){
     let resbody = ctx.request.body
+    if(!resbody.index){
+      ctx.body = {
+			  code: 1,
+        msg: '缺少参数：index'
+      }
+      return
+    }else if(!resbody.deviceId){
+      ctx.body = {
+			  code: 1,
+        msg: '缺少参数：deviceId'
+      }
+      return
+    }
     let Device = ctx.app.context.db.device
     let data = await Device.update(
       {
@@ -137,7 +183,7 @@ router.put('/data/index',async (ctx,next)=>{
     if(data[0]){
       ctx.body = data[0]
     }else{
-      ctx.body = {message:"修改失败"}
+      ctx.body = {message:"修改失败,未查询到该设备"}
     }
   }else{
     ctx.status=401
@@ -148,7 +194,14 @@ router.post('/connect',async (ctx,next)=>{
   let resbody = ctx.request.body
   let Device = ctx.app.context.db.device
 	let data =null
-	console.log("resbody",resbody)
+  console.log("resbody",resbody)
+  if(!resbody.deviceId){
+    ctx.body = {
+      code: 1,
+      msg: '缺少参数：deviceId'
+    }
+    return
+  }
 	let device=await Device.findOne({deviceId:resbody.deviceId})
 	console.log("length",device)
 	if(!device){
