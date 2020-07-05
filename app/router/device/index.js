@@ -1,5 +1,7 @@
 import Router from 'koa-router'
 import moment from 'moment'
+import {successResData} from '../../Utils/RouterResultUtils'
+
 let router= Router({
   prefix: 'device'
 })
@@ -59,28 +61,9 @@ router.get('/data/:userId',async (ctx,next)=>{
       if(deviceData){
         data[0].index = deviceData.index
     }
-      ctx.body = data[0]
+      ctx.body = successResData(data[0])
     }else{
-      let catalogData = await Catalog.findOne(param.catalogId)
-      let deviceData = await Device.findOne({catalogId:param.catalogId,userId:userId})
-      if(deviceData){
-        ctx.body = {
-          msg:'该用户在该时段无数据',
-          data:{
-          userId:userId,
-          catalogId:param.catalogId,
-          time:0,
-          fatcat:0,
-          calorie:0,
-          value:0,
-          unit:catalogData.unit,
-          name:catalogData.name,
-          type:catalogData.type,
-          index:deviceData.index
-        }}
-      }else{
         ctx.body={msg:'未查询到该设备'}
-      }
     }
   }else{
     ctx.status=401
@@ -131,7 +114,7 @@ router.post('/data/:userId',async (ctx,next)=>{
       console.log(newDate)
       data = await Data.update({id:lastData[0].id},newDate)
     }
-    ctx.body = data
+    ctx.body = successResData(data)
   }else{
     ctx.status=401
   }
@@ -181,7 +164,7 @@ router.put('/data/index',async (ctx,next)=>{
       {index:resbody.index}
     )
     if(data[0]){
-      ctx.body = data[0]
+      ctx.body = successResData(data[0])
     }else{
       ctx.body = {message:"修改失败,未查询到该设备"}
     }
@@ -213,7 +196,7 @@ router.post('/connect',async (ctx,next)=>{
     }
   }
   if(data){
-    ctx.body = data
+    ctx.body = successResData(data)
   }else{
     ctx.body = device
   }

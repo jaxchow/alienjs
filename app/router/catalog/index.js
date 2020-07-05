@@ -1,4 +1,5 @@
 import Router from 'koa-router'
+import {successResData} from '../../Utils/RouterResultUtils'
 
 let router= Router({
   prefix: 'catalog'
@@ -8,7 +9,7 @@ let router= Router({
 router.get('/',async (ctx,next)=>{
   let Catalog = ctx.app.context.db.catalog;
   let list = await Catalog.find()
-	ctx.body = list
+	ctx.body = successResData(list)
 });
 
 router.allowedMethods();

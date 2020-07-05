@@ -1,4 +1,5 @@
 import Router from 'koa-router'
+import {successResData} from '../../Utils/RouterResultUtils'
 
 let router= Router({
   prefix: 'rank'
@@ -80,14 +81,14 @@ router.get('/:userId',async (ctx,next)=>{
       }
     }
     let cutList = list.slice(param.startNum,Number(param.endNum)+1)
-    ctx.body = {
+    ctx.body = successResData({
       myData:myData,
       total:list.length,
       list:cutList,
       catalogId:catalogData.id,
       type:catalogData.type,
       unit:catalogData.unit
-    }
+    })
   }
 });
 
@@ -160,13 +161,13 @@ router.get('/',async (ctx,next)=>{
     }
     let cutList = list.slice(param.startNum,Number(param.endNum)+1)
 
-    ctx.body = {
+    ctx.body = successResData({
       total:list.length,
       list:cutList,
       catalogId:catalogData.id,
       type:catalogData.type,
       unit:catalogData.unit,
-    }
+    })
   }
   
 });
