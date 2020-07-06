@@ -45,7 +45,7 @@ router.get('/:userId/device',async (ctx,next)=>{
       }
       ctx.body=successResData(deviceData)
     }else{
-      ctx.body=successResData({})
+      ctx.body=successResData([])
     }
   }else{
     ctx.status=401
