@@ -1,5 +1,5 @@
 import Router from 'koa-router'
-import {successResData} from '../../Utils/RouterResultUtils'
+import {successResData,failedRes} from '../../Utils/RouterResultUtils'
 
 let router= Router({
   prefix: 'rank'
@@ -13,41 +13,27 @@ router.get('/:userId',async (ctx,next)=>{
   let userId = Number(ctx.params.userId)
   let param = ctx.query // startDate endDate startNum endNum catalogId
   if(!param.catalogId){
-    ctx.body={
-      code:1,
-      msg:'缺少参数：catalogId'
-    }
+    ctx.body=failedRes('缺少参数：catalogId')
     return
   }else if(!param.startDate){
-    ctx.body={
-      code:1,
-      msg:'缺少参数：startDate'
-    }
+    ctx.body=failedRes('缺少参数：startDate')
     return
   }else if(!param.endDate){
-    ctx.body={
-      code:1,
-      msg:'缺少参数：endDate'
-    }
+    ctx.body=failedRes('缺少参数：endDate')
     return
   }else if(!param.endNum){
-    ctx.body={
-      code:1,
-      msg:'缺少参数：endNum'
-    }
+    ctx.body=failedRes('缺少参数：endNum')
     return
   }else if(!param.startNum){
-    ctx.body={
-      code:1,
-      msg:'缺少参数：startNum'
-    }
+    ctx.body=failedRes('缺少参数：startNum')
     return
   }
   let endDate = param.endDate+'T23:59:59Z'
   let myData = {}
   let catalogData = await Catalog.findOne(param.catalogId)
   if(!catalogData){
-    ctx.body = {msg:'请输入正确catalogId'}
+    ctx.body = failedRes('请输入正确catalogId')
+    return
   }else{
     // 排行的用户数据
     let originlist = await Data.find(
@@ -99,34 +85,19 @@ router.get('/',async (ctx,next)=>{
   let User = ctx.app.context.db.user;
   let param = ctx.query // startDate endDate startNum endNum catalogId
   if(!param.catalogId){
-    ctx.body={
-      code:1,
-      msg:'缺少参数：catalogId'
-    }
+    ctx.body=failedRes('缺少参数：catalogId')
     return
   }else if(!param.startDate){
-    ctx.body={
-      code:1,
-      msg:'缺少参数：startDate'
-    }
+    ctx.body=failedRes('缺少参数：startDate')
     return
   }else if(!param.endDate){
-    ctx.body={
-      code:1,
-      msg:'缺少参数：endDate'
-    }
+    ctx.body=failedRes('缺少参数：endDate')
     return
   }else if(!param.endNum){
-    ctx.body={
-      code:1,
-      msg:'缺少参数：endNum'
-    }
+    ctx.body=failedRes('缺少参数：endNum')
     return
   }else if(!param.startNum){
-    ctx.body={
-      code:1,
-      msg:'缺少参数：startNum'
-    }
+    ctx.body=failedRes('缺少参数：startNum')
     return
   }
   let endDate = param.endDate+'T23:59:59Z'
@@ -135,7 +106,7 @@ router.get('/',async (ctx,next)=>{
   
   let catalogData = await Catalog.findOne(param.catalogId)
   if(!catalogData){
-    ctx.body={msg:'请输入正确catalogId'}
+    ctx.body=failedRes('请输入正确catalogId')
   }else{
     let originlist = await Data.find(
       {

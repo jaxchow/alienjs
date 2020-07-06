@@ -1,5 +1,5 @@
 import Router from 'koa-router'
-import {successResData} from '../../Utils/RouterResultUtils'
+import {successResData,failedRes} from '../../Utils/RouterResultUtils'
 
 let router= Router({
   prefix: 'user'
@@ -21,9 +21,7 @@ router.get('/:id',async (ctx,next)=>{
     if(data){
       ctx.body=successResData(data)
     }else{
-      ctx.body={
-        msg:'未查询到该用户'
-      }
+      ctx.body=failedRes()
     }
   }else{
     ctx.status = 401
@@ -47,9 +45,7 @@ router.get('/:userId/device',async (ctx,next)=>{
       }
       ctx.body=successResData(deviceData)
     }else{
-      ctx.body={
-        msg:'未查询到该用户下存在设备'
-      }
+      ctx.body=failedRes()
     }
   }else{
     ctx.status=401
@@ -68,9 +64,7 @@ router.put('/:id',async (ctx,next)=>{
     if(data[0]){
       ctx.body = successResData(data[0])
     }else{
-      ctx.body = {
-        msg:'未查询到该用户'
-      }
+      ctx.body = failedRes('修改失败，未查询到该用户')
     }
   }else{
     ctx.status=401
@@ -88,9 +82,7 @@ router.get('/:id/plant',async (ctx,next)=>{
     if(data){
       ctx.body=successResData(data)
     }else{
-      ctx.body={
-        msg:'未查询到该用户'
-      }
+      ctx.body = failedRes()
     }
   }else{
     ctx.status=401

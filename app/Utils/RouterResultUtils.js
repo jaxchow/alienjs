@@ -5,3 +5,11 @@ export function successResData(data){
         status:200
     }
 }
+
+export function failedRes(message){
+    return {
+        data:{},
+        message:message||'未查询到数据',
+        status:1
+    }
+}

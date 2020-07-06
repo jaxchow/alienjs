@@ -1,6 +1,6 @@
 import Router from 'koa-router'
 import moment from 'moment'
-import {successResData} from '../../Utils/RouterResultUtils'
+import {successResData,failedRes} from '../../Utils/RouterResultUtils'
 
 let router= Router({
   prefix: 'device'
@@ -16,22 +16,13 @@ router.get('/data/:userId',async (ctx,next)=>{
     let userId = ctx.params.userId
     let param = ctx.query
     if(!param.endDate){
-      ctx.body = {
-			  code: 1,
-        msg: '缺少参数：endDate'
-      }
+      ctx.body = failedRes('缺少参数：endDate')
       return
     }else if(!param.startDate){
-      ctx.body={
-        code:1,
-        msg: '缺少参数：startDate'
-      }
+      ctx.body = failedRes('缺少参数：startDate')
       return
     }else if(!param.catalogId){
-      ctx.body={
-        code:1,
-        msg: '缺少参数：catalogId'
-      }
+      ctx.body = failedRes('缺少参数：catalogId')
       return
     }
     let endDate = param.endDate+'T23:59:59Z'
@@ -63,7 +54,7 @@ router.get('/data/:userId',async (ctx,next)=>{
     }
       ctx.body = successResData(data[0])
     }else{
-        ctx.body={msg:'未查询到该设备'}
+        ctx.body=failedRes()
     }
   }else{
     ctx.status=401
@@ -81,16 +72,10 @@ router.post('/data/:userId',async (ctx,next)=>{
     let data;
     //参数确认
     if(!resbody.deviceId){
-      ctx.body = {
-			  code: 1,
-        msg: '缺少参数：deviceId'
-      }
+      ctx.body = failedRes('缺少参数：deviceId')
       return
     }else if(!resbody.catalogId){
-      ctx.body = {
-			  code: 1,
-        msg: '缺少参数：catalogId'
-      }
+      ctx.body = failedRes('缺少参数：catalogId')
       return
     }
     const lastData = await Data.find(
@@ -128,9 +113,7 @@ router.delete('/:deviceId',async (ctx,next)=>{
   if(tokenData.length>0){
     let {deviceId} = ctx.params
     let DeviceDesData = await Device.destroy({deviceId:deviceId})
-    ctx.body = {
-      Device:DeviceDesData,
-    }
+    ctx.body = successResData({ Device:DeviceDesData})
   }else{
     ctx.status=401
   }
@@ -144,16 +127,10 @@ router.put('/data/index',async (ctx,next)=>{
   if(tokenData.length>0){
     let resbody = ctx.request.body
     if(!resbody.index){
-      ctx.body = {
-			  code: 1,
-        msg: '缺少参数：index'
-      }
+      ctx.body = failedRes('缺少参数：index')
       return
     }else if(!resbody.deviceId){
-      ctx.body = {
-			  code: 1,
-        msg: '缺少参数：deviceId'
-      }
+      ctx.body = failedRes('缺少参数：deviceId')
       return
     }
     let Device = ctx.app.context.db.device
@@ -166,7 +143,7 @@ router.put('/data/index',async (ctx,next)=>{
     if(data[0]){
       ctx.body = successResData(data[0])
     }else{
-      ctx.body = {message:"修改失败,未查询到该设备"}
+      ctx.body = failedRes('修改失败,未查询到该设备')
     }
   }else{
     ctx.status=401
@@ -179,10 +156,8 @@ router.post('/connect',async (ctx,next)=>{
 	let data =null
   console.log("resbody",resbody)
   if(!resbody.deviceId){
-    ctx.body = {
-      code: 1,
-      msg: '缺少参数：deviceId'
-    }
+    ctx.body = 
+    failedRes('缺少参数：deviceId')
     return
   }
 	let device=await Device.findOne({deviceId:resbody.deviceId})
@@ -191,14 +166,12 @@ router.post('/connect',async (ctx,next)=>{
 	 //resbody.index=10
 	 data = await Device.create(resbody)
 	}else  if(device.userId!==resbody.userId){
-		ctx.body={
-      message:"该设备与其他用户绑定，请先解绑定"
-    }
+		ctx.body = failedRes("该设备与其他用户绑定，请先解绑定")
   }
   if(data){
     ctx.body = successResData(data)
   }else{
-    ctx.body = device
+    ctx.body = successResData(device)
   }
 })
 
