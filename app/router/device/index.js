@@ -54,7 +54,7 @@ router.get('/data/:userId',async (ctx,next)=>{
     }
       ctx.body = successResData(data[0])
     }else{
-        ctx.body=failedRes()
+      ctx.body = successResData({})
     }
   }else{
     ctx.status=401
