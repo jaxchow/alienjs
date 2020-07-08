@@ -113,7 +113,11 @@ router.delete('/:deviceId',async (ctx,next)=>{
   if(tokenData.length>0){
     let {deviceId} = ctx.params
     let DeviceDesData = await Device.destroy({deviceId:deviceId})
-    ctx.body = successResData({ Device:DeviceDesData})
+    if(DeviceDesData[0]){
+      ctx.body = successResData({ Device:DeviceDesData[0]})
+    }else{
+      ctx.body = failedRes('不存在该设备')
+    }
   }else{
     ctx.status=401
   }
