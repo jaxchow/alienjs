@@ -2,6 +2,7 @@ import Router from 'koa-router'
 import  Redis from 'redis'
 import Request from 'request'
 import WXBizDataCrypt from './crypto'
+import {successResData} from '../../Utils/RouterResultUtils'
 
 
 //const RedisClient = Redis.createClient()
@@ -179,7 +180,7 @@ router.post('/login', async(ctx) => {
 		 await Plant.create({id:u.id})
 	}
 	console.log("body",u)
-	ctx.body=u
+	ctx.body=successResData(u)
 
 	/*
 			Peoples.findAndModify({
