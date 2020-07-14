@@ -1,5 +1,5 @@
 import Router from 'koa-router'
-import {successResData,failedRes} from '../../Utils/RouterResultUtils'
+import {successResData,failedRes,failedLoginRes} from '../../Utils/RouterResultUtils'
 
 let router= Router({
   prefix: 'user'
@@ -24,7 +24,7 @@ router.get('/:id',async (ctx,next)=>{
       ctx.body=failedRes()
     }
   }else{
-    ctx.status = 401
+    ctx.body=failedLoginRes()
   }
 })
 
@@ -48,7 +48,7 @@ router.get('/:userId/device',async (ctx,next)=>{
       ctx.body=successResData([])
     }
   }else{
-    ctx.status=401
+    ctx.body=failedLoginRes()
   }
   
 });
@@ -67,7 +67,7 @@ router.put('/:id',async (ctx,next)=>{
       ctx.body = failedRes('修改失败，未查询到该用户')
     }
   }else{
-    ctx.status=401
+    ctx.body=failedLoginRes()
   }
 })
 
@@ -85,7 +85,7 @@ router.get('/:id/plant',async (ctx,next)=>{
       ctx.body = failedRes()
     }
   }else{
-    ctx.status=401
+    ctx.body=failedLoginRes()
   }
 })
 
@@ -108,7 +108,7 @@ router.put('/:id/plant',async (ctx,next)=>{
       ctx.body = successResData(data)
     }
   }else{
-    ctx.status=401
+    ctx.body=failedLoginRes()
   }
 })
 

@@ -13,3 +13,11 @@ export function failedRes(message){
         status:500
     }
 }
+
+export function failedLoginRes(){
+    return {
+        status:401,
+        data:{},
+        message:'登录失败'
+    }
+}

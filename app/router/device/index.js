@@ -1,6 +1,6 @@
 import Router from 'koa-router'
 import moment from 'moment'
-import {successResData,failedRes} from '../../Utils/RouterResultUtils'
+import {successResData,failedRes,failedLoginRes} from '../../Utils/RouterResultUtils'
 
 let router= Router({
   prefix: 'device'
@@ -57,7 +57,7 @@ router.get('/data/:userId',async (ctx,next)=>{
       ctx.body = successResData({})
     }
   }else{
-    ctx.status=401
+    ctx.body=failedLoginRes()
   } 
 });
 // 上报设备数据
@@ -101,7 +101,7 @@ router.post('/data/:userId',async (ctx,next)=>{
     }
     ctx.body = successResData(data)
   }else{
-    ctx.status=401
+    ctx.body=failedLoginRes()
   }
 });
 // 解除绑定
@@ -119,7 +119,7 @@ router.delete('/:deviceId',async (ctx,next)=>{
       ctx.body = failedRes('不存在该设备')
     }
   }else{
-    ctx.status=401
+    ctx.body=failedLoginRes()
   }
 });
 
@@ -150,7 +150,7 @@ router.put('/data/index',async (ctx,next)=>{
       ctx.body = failedRes('修改失败,未查询到该设备')
     }
   }else{
-    ctx.status=401
+    ctx.body=failedLoginRes()
   }
 })
 
