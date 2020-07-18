@@ -60,6 +60,51 @@ router.get('/data/:userId',async (ctx,next)=>{
     ctx.body=failedLoginRes()
   } 
 });
+// 单设备数据
+router.get('/data/:userId/:deviceId',async (ctx,next)=>{
+  let User =ctx.app.context.db.user
+  let token = ctx.request.header['token']
+  let tokenData = await User.find({unionId:token})
+  if(tokenData.length>0){
+  // if(true){
+    const startDate = moment().format("YYYY-MM-DD");
+    let userId = ctx.params.userId
+    let deviceId = ctx.params.deviceId
+    let param = ctx.query
+    let endDate = startDate+'T23:59:59Z'
+    let Data = ctx.app.context.db.data;
+    let Catalog = ctx.app.context.db.catalog;
+    let Device = ctx.app.context.db.device;
+    let data = await Data.find(
+      {
+        where:{
+          updatedAt:{
+            '>=':startDate,
+            '<=':endDate
+          },
+          userId:userId,
+          catalogId:param.catalogId,
+          deviceId:deviceId
+        },
+      }
+    )
+    if(data[0]){
+      let catalogData = await Catalog.findOne(param.catalogId)
+      let deviceData = await Device.findOne({catalogId:param.catalogId,userId:userId})
+      data[0].unit = catalogData.unit
+      data[0].name = catalogData.name
+      data[0].type = catalogData.type
+      if(deviceData){
+        data[0].index = deviceData.index
+    }
+      ctx.body = successResData(data[0])
+    }else{
+      ctx.body = successResData({})
+    }
+  }else{
+    ctx.body=failedLoginRes()
+  } 
+});
 // 上报设备数据
 router.post('/data/:userId',async (ctx,next)=>{
   let User =ctx.app.context.db.user
