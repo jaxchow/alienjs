@@ -170,7 +170,7 @@ router.post('/connect',async (ctx,next)=>{
 	 //resbody.index=10
 	 data = await Device.create(resbody)
 	}else  if(device.userId!==resbody.userId){
-    ctx.body = failedRes("该设备与其他用户绑定，请先解绑定")
+    ctx.body = failedRes("该设备已被其他用户绑定")
     return
   }
   if(data){
