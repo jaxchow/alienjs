@@ -1,4 +1,5 @@
 import Router from 'koa-router'
+import {successResData,failedRes,failedLoginRes} from '../../Utils/RouterResultUtils'
 
 let router= Router({
   prefix: 'user'
@@ -8,7 +9,7 @@ let router= Router({
 router.get('/plantinfo',async (ctx,next)=>{
   let PlantInfo =ctx.app.context.db.plantinfo
   let data = await PlantInfo.find()
-	ctx.body = data
+	ctx.body = successResData(data)
 })
 // 用户信息
 router.get('/:id',async (ctx,next)=>{
@@ -18,12 +19,12 @@ router.get('/:id',async (ctx,next)=>{
   if(tokenData.length>0){
     let data =await User.findOne(ctx.params.id)
     if(data){
-      ctx.body=data
+      ctx.body=successResData(data)
     }else{
-      ctx.body={}
+      ctx.body=failedRes()
     }
   }else{
-    ctx.status = 401
+    ctx.body=failedLoginRes()
   }
 })
 
@@ -37,13 +38,17 @@ router.get('/:userId/device',async (ctx,next)=>{
     let Device = ctx.app.context.db.device;
     let Catalog = ctx.app.context.db.catalog;
     let deviceData = await Device.find({userId:ctx.params.userId})
-    for(let i=0;i<deviceData.length;i++){
-      let catalogData = await Catalog.findOne(deviceData[i].catalogId)
-      deviceData[i].catalog = catalogData
+    if(deviceData.length !== 0){
+      for(let i=0;i<deviceData.length;i++){
+        let catalogData = await Catalog.findOne(deviceData[i].catalogId)
+        deviceData[i].catalog = catalogData
+      }
+      ctx.body=successResData(deviceData)
+    }else{
+      ctx.body=successResData([])
     }
-    ctx.body=deviceData
   }else{
-    ctx.status=401
+    ctx.body=failedLoginRes()
   }
   
 });
@@ -57,12 +62,12 @@ router.put('/:id',async (ctx,next)=>{
     let reqbody = ctx.request.body
     let data = await User.update(ctx.params,reqbody)
     if(data[0]){
-      ctx.body = data[0]
+      ctx.body = successResData(data[0])
     }else{
-      ctx.body = {}
+      ctx.body = failedRes('修改失败，未查询到该用户')
     }
   }else{
-    ctx.status=401
+    ctx.body=failedLoginRes()
   }
 })
 
@@ -75,12 +80,12 @@ router.get('/:id/plant',async (ctx,next)=>{
     let Plant =ctx.app.context.db.plant
     let data =await Plant.findOne(ctx.params.id)
     if(data){
-      ctx.body=data
+      ctx.body=successResData(data)
     }else{
-      ctx.body={}
+      ctx.body = failedRes()
     }
   }else{
-    ctx.status=401
+    ctx.body=failedLoginRes()
   }
 })
 
@@ -97,13 +102,13 @@ router.put('/:id/plant',async (ctx,next)=>{
     let data = await Plant.findOne(id)
     if(data){
       let dataArr = await Plant.update({userId:id},reqbody)
-      ctx.body = dataArr[0]
+      ctx.body = successResData(dataArr[0])
     }else{
       let data = await Plant.create({userId:id,...reqbody})
-      ctx.body = data
+      ctx.body = successResData(data)
     }
   }else{
-    ctx.status=401
+    ctx.body=failedLoginRes()
   }
 })
 

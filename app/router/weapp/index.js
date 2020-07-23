@@ -2,6 +2,7 @@ import Router from 'koa-router'
 import  Redis from 'redis'
 import Request from 'request'
 import WXBizDataCrypt from './crypto'
+import {successResData,failedRes} from '../../Utils/RouterResultUtils'
 
 
 //const RedisClient = Redis.createClient()
@@ -104,22 +105,13 @@ router.post('/decrypt', async(ctx) => {
         console.log('POST：/decrpt, 参数：', data)
 
         if (!data.code) {
-                ctx.body={
-                        code: 1,
-                        message: '缺少参数：code'
-                }
+								ctx.body=failedRes('缺少参数：code')
                 return
         } else if (!data.encryptedData) {
-                ctx.body={
-                        code: 1,
-                        message: '缺少参数：encryptedData'
-                }
+                ctx.body=failedRes('缺少参数：encryptedData')
                 return
         } else if (!data.iv) {
-                ctx.body={
-                        code: 1,
-                        message: '缺少参数：iv'
-                }
+                ctx.body=failedRes('缺少参数：iv')
                 return
         }
 
@@ -127,7 +119,7 @@ router.post('/decrypt', async(ctx) => {
         const rethh = await getSessionKey(data.code)
         const ret= await decrypt(rethh.session_key, data.encryptedData, data.iv)
 	console.log("ret",ret)
-	ctx.body = ret
+	ctx.body = successResData(ret) 
 })
 
 // 小程序登录
@@ -139,22 +131,13 @@ router.post('/login', async(ctx) => {
 	console.log('POST：/signIn, 参数：', data)
 
 	if (!data.code) {
-		ctx.body={
-			code: 1,
-			message: '缺少参数：code'
-		}
+		ctx.body = failedRes('缺少参数：code')
 		return
 	} else if (!data.encryptedData) {
-		ctx.body={
-			code: 1,
-			message: '缺少参数：encryptedData'
-		}
+		ctx.body = failedRes('缺少参数：encryptedData')
 		return
 	} else if (!data.iv) {
-		ctx.body={
-			code: 1,
-			message: '缺少参数：iv'
-		}
+		ctx.body = failedRes('缺少参数：iv')
 		return
 	}
 
@@ -179,7 +162,7 @@ router.post('/login', async(ctx) => {
 		 await Plant.create({id:u.id})
 	}
 	console.log("body",u)
-	ctx.body=u
+	ctx.body=successResData(u)
 
 	/*
 			Peoples.findAndModify({

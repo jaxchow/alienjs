@@ -16,8 +16,12 @@ var Catalog = Waterline.Collection.extend({
     description:{
       type:'string',
     },
-    // 设备图片
-    pic:{
+    // 设备大图片
+    bigPic:{
+      type:'string'
+    },
+    // 设备小图片
+    smallPic:{
       type:'string'
     },
     // 设备名称

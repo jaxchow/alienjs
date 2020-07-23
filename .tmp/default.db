@@ -93,7 +93,8 @@
       {
         "id": 1,
         "description": "你瘦身的好搭档",
-        "pic": "呼啦圈pic",
+        "bigPic": "/images/device_hlq.png",
+        "smallPic": "/images/user_device_hlq.png",
         "name": "呼啦圈",
         "type": "LB",
         "unit": "圈",
@@ -106,7 +107,8 @@
       {
         "id": 2,
         "description": "你的身材加速器",
-        "pic": "跳绳pic",
+        "bigPic": "/images/device_ts.png",
+        "smallPic": "/images/user_device_ts.png",
         "name": "跳绳",
         "type": "LS",
         "unit": "下",
@@ -119,7 +121,8 @@
       {
         "id": 3,
         "description": "你的腹肌好伙伴",
-        "pic": "健腹轮pic",
+        "bigPic": "健腹轮pic",
+        "smallPic": "健腹轮pic",
         "name": "健腹轮",
         "type": "LH",
         "unit": "次",
@@ -680,7 +683,10 @@
       "description": {
         "type": "string"
       },
-      "pic": {
+      "bigPic": {
+        "type": "string"
+      },
+      "smallPic": {
         "type": "string"
       },
       "name": {
