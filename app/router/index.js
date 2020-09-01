@@ -1,5 +1,5 @@
 import Router from 'koa-router'
-
+import body from './body'
 import user from './user'
 import catalog from './catalog'
 import device from './device'
@@ -18,6 +18,7 @@ router.get('/',function(ctx,next){
 });
 
 // use sub router
+router.use(body.routes())
 router.use(user.routes())
 router.use(catalog.routes())
 router.use(device.routes())
