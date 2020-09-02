@@ -42,6 +42,10 @@ var Data = Waterline.Collection.extend({
     fatcut: {
       type: 'float',
     },
+    //训练类型
+    trainingType:{
+      type: 'string'
+    }
   },
 });
 

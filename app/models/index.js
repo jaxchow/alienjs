@@ -5,6 +5,8 @@ import sailsDesk from "sails-disk";
 let orm = new Waterline();
 
 export function initialize(callback) {
+	var Task = require("./Task.model")
+	var TaskRelation = require("./TaskRelation.model")
 	var Body = require("./Body.model")
 	var User = require("./User.model");
 	var Catalog = require('./Catalog.model')
@@ -12,6 +14,8 @@ export function initialize(callback) {
 	var PlantInfo = require("./PlantInfo.model")
 	var Data = require("./Data.model")
 	var Device = require("./Device.model")
+	orm.loadCollection(Task);
+	orm.loadCollection(TaskRelation);
 	orm.loadCollection(Body);
 	orm.loadCollection(User);
 	orm.loadCollection(Catalog);
