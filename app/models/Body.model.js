@@ -17,28 +17,56 @@ var Body = Waterline.Collection.extend({
     weight:{
       type:'float',
     },
+    // 目标体重(kg)
+    goalWeight:{
+      type:'float',
+    },
     // 身高(cm)
     height:{
+      type:'float'
+    },
+    // 目标身高(cm)
+    goalHeight:{
       type:'float'
     },
     // 胸围(cm)
     bust:{
       type:'float'
     },
+    // 目标胸围(cm)
+    goalBust:{
+      type:'float'
+    },
     // 腰围(cm)
     waist: {
+      type: 'float',
+    },
+    // 目标腰围(cm)
+    goalWaist: {
       type: 'float',
     },
     // 臀围(cm)
     hips: {
       type: 'float',
     },
+    // 目标臀围(cm)
+    goalHips: {
+      type: 'float',
+    },
     // BMI
     bmi: {
       type: 'float',
     },
+    // 目标BMI
+    goalBmi: {
+      type: 'float',
+    },
     // 心率(bmp)
     heartRate: {
+      type: 'integer',
+    },
+    // 目标心率(bmp)
+    goalHeartRate: {
       type: 'integer',
     },
   },
