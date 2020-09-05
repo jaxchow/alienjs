@@ -126,88 +126,33 @@ router.post('/decrypt', async(ctx) => {
 router.post('/login', async(ctx) => {
 	const data = ctx.request.body
 	let User = ctx.app.context.db.user
-	let Plant = ctx.app.context.db.plant
 
-	console.log('POST：/signIn, 参数：', data)
-
-	if (!data.code) {
-		ctx.body = failedRes('缺少参数：code')
+	if (!data.phoneNumber) {
+		ctx.body = failedRes('缺少参数：phoneNumber')
 		return
-	} else if (!data.encryptedData) {
-		ctx.body = failedRes('缺少参数：encryptedData')
-		return
-	} else if (!data.iv) {
-		ctx.body = failedRes('缺少参数：iv')
+	} else if (!data.loginType) {
+		ctx.body = failedRes('缺少参数：loginType')
 		return
 	}
-
 	// 获取sessionkey
-	const rethh = await getSessionKey(data.code)
-	const ret= await decrypt(rethh.session_key, data.encryptedData, data.iv)
-
+	// const rethh = await getSessionKey(data.code)
+	// const ret= await decrypt(rethh.session_key, data.encryptedData, data.iv)
+	/*
 	const people = {
 		sex:ret.gender,
 		unionId: (ret.unionId) ? ret.unionId : ret.openId,
 		name: ret.nickName,
 		avatar: ret.avatarUrl
 	}
-	console.log("ret:",ret)
-	const user = await User.find({unionId:ret.openId})
-        let u=null
-	if(user.length>0){
-	 let us	=await User.update({id:user[0].id},people)
-		u = us[0]
-	}else{
-		u =await User.create(people)
-		 await Plant.create({id:u.id})
-	}
-	console.log("body",u)
-	ctx.body=successResData(u)
-
-	/*
-			Peoples.findAndModify({
-				query: {
-					channel: 'wechat',
-					unionId: (ret.unionId) ? ret.unionId : ret.openId
-				},
-				update: {
-					"$set": {
-						name: ret.nickName,
-						avatar: ret.avatarUrl,
-						updated: new Date().getTime()
-					}
-				}
-			}, (err, exist) => {
-				if (!exist) { // 不存在帐户，创建新帐户
-					Peoples.save(people, (err, ret) => {
-						// 保存登录状态
-						saveAuth(people.peopleId, (err, ret) => {
-							res.send({
-								code: 0,
-								data: {
-									token: ret,
-									people: people
-								}
-							})
-						})
-					})
-					return
-				} else { // 存在帐户
-					// 保存登录状态
-					saveAuth(exist.peopleId, (err, ret) => {
-						console.log('token:', ret)
-						res.send({
-							code: 0,
-							data: {
-								token: ret,
-								people: exist
-							}
-						})
-					})
-				}
-			})
 	*/
-
+	const user = await User.find({phoneNumber:data.phoneNumber})
+	if(user.length>0){
+	 let us	=await User.update({id:user[0].id},{unionId:"jwtid"})
+	}else{
+		u =await User.create(data)
+		// await Plant.create({id:u.id})
+	}
+	ctx.body=successResData(u)
 })
 
 // 退出登录
