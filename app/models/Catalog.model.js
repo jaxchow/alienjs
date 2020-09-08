@@ -2,7 +2,7 @@ import Waterline from 'waterline'
 //设备类型表
 var Catalog = Waterline.Collection.extend({
   identity: 'catalog',
-  connection: 'default',
+	connection: 'mongo',
   autoCreatedAt: false,
   autoUpdatedAt: false,
   attributes: {
@@ -44,15 +44,15 @@ var Catalog = Waterline.Collection.extend({
     defaultValue: {
       type: 'integer',
     },
-    // 最大值    
+    // 最大值
     maxValue: {
       type: 'integer',
     },
-    // 是否启用 
+    // 是否启用
     isUse: {
       type: 'string',
     },
-    // 颜色值 
+    // 颜色值
     colorValue: {
       type: 'string',
     },

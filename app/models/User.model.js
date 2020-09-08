@@ -3,7 +3,7 @@ import moment from 'moment'
 // 用户表
 var User = Waterline.Collection.extend({
   identity: 'user',
-  connection: 'default',
+	connection: 'mongo',
   attributes: {
     id:{
       type:'integer',
@@ -13,7 +13,7 @@ var User = Waterline.Collection.extend({
     },
     unionId:{
       type:'string',
-    }, 
+    },
     //名称
     name:{
       type:'string',

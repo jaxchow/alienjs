@@ -1,6 +1,7 @@
 "use strict";
 import Waterline from "waterline";
 import sailsDesk from "sails-disk";
+import MongoAdapter from "sails-mongo"
 
 let orm = new Waterline();
 
@@ -26,16 +27,24 @@ export function initialize(callback) {
 	orm.initialize(
 		{
 			adapters: {
-				default: sailsDesk,
+				default: "mongo",
+				mongo: MongoAdapter,
 			},
-			config: {
-				filePath: "db/",
-				schema: false,
-			},
+			// config: {
+			// 	filePath: "db/",
+			// 	schema: false,
+			// },
 			connections: {
 				default: {
-					adapter: "default",
+					adapter: "mongo",
 				},
+				mongo: {
+					adapter: "mongo",
+					// url:"mongodb://127.0.0.1:27017/sails",
+					host: "127.0.0.1",
+					port: 27017,
+					database: "sails"
+				}
 			},
 			defaults: {
 				migrate: "alter",

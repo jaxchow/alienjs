@@ -2,7 +2,7 @@ import Waterline from 'waterline'
 //我的设备表
 var Device = Waterline.Collection.extend({
   identity: 'device',
-  connection: 'default',
+	connection: 'mongo',
   autoCreatedAt: false,
   autoUpdatedAt: false,
   attributes: {

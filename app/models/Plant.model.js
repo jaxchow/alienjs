@@ -2,7 +2,7 @@ import Waterline from 'waterline'
 //用户附加表
 var Plant = Waterline.Collection.extend({
   identity: 'plant',
-  connection: 'default',
+	connection: 'mongo',
   attributes: {
     userId:{
       type:'integer',

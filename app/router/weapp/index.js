@@ -134,17 +134,7 @@ router.post('/login', async(ctx) => {
 		ctx.body = failedRes('缺少参数：loginType')
 		return
 	}
-	// 获取sessionkey
-	// const rethh = await getSessionKey(data.code)
-	// const ret= await decrypt(rethh.session_key, data.encryptedData, data.iv)
-	/*
-	const people = {
-		sex:ret.gender,
-		unionId: (ret.unionId) ? ret.unionId : ret.openId,
-		name: ret.nickName,
-		avatar: ret.avatarUrl
-	}
-	*/
+	
 	const user = await User.find({phoneNumber:data.phoneNumber})
 	if(user.length>0){
 	 let us	=await User.update({id:user[0].id},{unionId:"jwtid"})

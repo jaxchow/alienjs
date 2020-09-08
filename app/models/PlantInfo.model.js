@@ -2,7 +2,7 @@ import Waterline from 'waterline'
 //用户附加表
 var PlantInfo = Waterline.Collection.extend({
   identity: 'plantinfo',
-  connection: 'default',
+	connection: 'mongo',
   autoCreatedAt: false,
   autoUpdatedAt: false,
   attributes: {
