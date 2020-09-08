@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+
+  mongodb-client:
+    image: mongo-express
+    ports:
+      - "8081:8081"
+    networks:
+      - nodeapp-network
+    depends_on:
+      - mongodb
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - nodeapp-network
+
+networks:
+  nodeapp-network:
+    driver: bridge
