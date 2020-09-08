@@ -2,73 +2,82 @@ import Waterline from 'waterline'
 //设备类型表
 var Body = Waterline.Collection.extend({
   identity: 'body',
-  connection: 'default',
+  connection: 'mongo',
   attributes: {
     id:{
-      type:'integer',
-      autoIncrement: true,
+      type:'string',
       unique: true,
       primaryKey: true,
     },
     userId:{
-      type:'integer'
+      type:'string'
     },
-    // 体重(kg)
-    weight:{
-      type:'float',
-    },
-    // 目标体重(kg)
-    goalWeight:{
-      type:'float',
-    },
-    // 身高(cm)
-    height:{
+    value:{
       type:'float'
     },
-    // 目标身高(cm)
-    goalHeight:{
+    goalValue:{
       type:'float'
     },
-    // 胸围(cm)
-    bust:{
-      type:'float'
-    },
-    // 目标胸围(cm)
-    goalBust:{
-      type:'float'
-    },
-    // 腰围(cm)
-    waist: {
-      type: 'float',
-    },
-    // 目标腰围(cm)
-    goalWaist: {
-      type: 'float',
-    },
-    // 臀围(cm)
-    hips: {
-      type: 'float',
-    },
-    // 目标臀围(cm)
-    goalHips: {
-      type: 'float',
-    },
-    // BMI
-    bmi: {
-      type: 'float',
-    },
-    // 目标BMI
-    goalBmi: {
-      type: 'float',
-    },
-    // 心率(bmp)
-    heartRate: {
-      type: 'integer',
-    },
-    // 目标心率(bmp)
-    goalHeartRate: {
-      type: 'integer',
-    },
+    //weight height bust waist hips bmi heart
+    valueType:{
+      type:'string'
+    }
+    // // 体重(kg)
+    // weight:{
+    //   type:'float',
+    // },
+    // // 目标体重(kg)
+    // goalWeight:{
+    //   type:'float',
+    // },
+    // // 身高(cm)
+    // height:{
+    //   type:'float'
+    // },
+    // // 目标身高(cm)
+    // goalHeight:{
+    //   type:'float'
+    // },
+    // // 胸围(cm)
+    // bust:{
+    //   type:'float'
+    // },
+    // // 目标胸围(cm)
+    // goalBust:{
+    //   type:'float'
+    // },
+    // // 腰围(cm)
+    // waist: {
+    //   type: 'float',
+    // },
+    // // 目标腰围(cm)
+    // goalWaist: {
+    //   type: 'float',
+    // },
+    // // 臀围(cm)
+    // hips: {
+    //   type: 'float',
+    // },
+    // // 目标臀围(cm)
+    // goalHips: {
+    //   type: 'float',
+    // },
+    // // BMI
+    // bmi: {
+    //   type: 'float',
+    // },
+    // // 目标BMI
+    // goalBmi: {
+    //   type: 'float',
+    // },
+    // // 心率(bmp)
+    // heartRate: {
+    //   type: 'integer',
+    // },
+    // // 目标心率(bmp)
+    // goalHeartRate: {
+    //   type: 'integer',
+    // },
   },
 });
 

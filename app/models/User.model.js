@@ -6,8 +6,7 @@ var User = Waterline.Collection.extend({
 	connection: 'mongo',
   attributes: {
     id:{
-      type:'integer',
-      autoIncrement: true,
+      type:'string',
       unique: true,
       primaryKey: true,
     },

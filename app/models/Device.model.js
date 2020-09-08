@@ -13,11 +13,11 @@ var Device = Waterline.Collection.extend({
     },
     // 用户id
     userId:{
-      type:'integer',
+      type:'string',
     },
     // 设备类型id
     catalogId:{
-      type:'integer'
+      type:'string'
     },
     // 蓝牙地址
     mac: {

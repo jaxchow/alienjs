@@ -2,13 +2,12 @@ import Waterline from 'waterline'
 //设备类型表
 var Task = Waterline.Collection.extend({
   identity: 'task',
-  connection: 'default',
+  connection: 'mongo',
   autoCreatedAt: false,
   autoUpdatedAt: false,
   attributes: {
     id:{
-      type:'integer',
-      autoIncrement: true,
+      type:'string',
       unique: true,
       primaryKey: true,
     },

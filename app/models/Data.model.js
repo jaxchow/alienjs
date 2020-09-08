@@ -5,8 +5,7 @@ var Data = Waterline.Collection.extend({
 	connection: 'mongo',
   attributes: {
     id:{
-      type:'integer',
-      autoIncrement: true,
+      type:'string',
       unique: true,
       primaryKey: true,
     },
@@ -16,11 +15,11 @@ var Data = Waterline.Collection.extend({
     },
     // 用户id
     userId:{
-      type:'integer'
+      type:'string'
     },
     // 设备类型id
     catalogId: {
-      type: 'integer',
+      type: 'string',
     },
     // 单位数量
     value: {

@@ -7,8 +7,7 @@ var PlantInfo = Waterline.Collection.extend({
   autoUpdatedAt: false,
   attributes: {
     Id:{
-      type:'integer',
-      autoIncrement: true,
+      type:'string',
       unique: true,
       primaryKey: true,
     },
