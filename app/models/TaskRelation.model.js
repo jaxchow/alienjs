@@ -5,7 +5,7 @@ var TaskRelation = Waterline.Collection.extend({
   connection: 'mongo',
   attributes: {
     id:{
-      type:'string',
+      type:'objectid',
       unique: true,
       primaryKey: true,
     },

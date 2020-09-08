@@ -3,10 +3,10 @@ import moment from 'moment'
 // 用户表
 var User = Waterline.Collection.extend({
   identity: 'user',
-	connection: 'mongo',
+  connection: 'mongo',
   attributes: {
     id:{
-      type:'string',
+      type:'objectid',
       unique: true,
       primaryKey: true,
     },

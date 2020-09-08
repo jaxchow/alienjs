@@ -7,7 +7,7 @@ var Task = Waterline.Collection.extend({
   autoUpdatedAt: false,
   attributes: {
     id:{
-      type:'string',
+      type:'objectid',
       unique: true,
       primaryKey: true,
     },
@@ -15,6 +15,15 @@ var Task = Waterline.Collection.extend({
       type:'string',
     },
     description:{
+      type:'string'
+    },
+    time:{
+      type:'number'
+    },
+    number:{
+      type:'number'
+    },
+    trainingType:{
       type:'string'
     }
   },
