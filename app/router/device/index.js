@@ -174,7 +174,7 @@ router.post('/data/:userId',async (ctx,next)=>{
   let token = ctx.request.header['token']
   let tokenData = await User.find({unionId:token})
   if(tokenData.length>0){
-    let userId = Number(ctx.params.userId)
+    let userId = ctx.params.userId
     let resbody = ctx.request.body
     let Data = ctx.app.context.db.data;
     let data;

@@ -10,7 +10,7 @@ router.get('/:userId',async (ctx,next)=>{
   let Data = ctx.app.context.db.data;
   let Catalog = ctx.app.context.db.catalog;
   let User = ctx.app.context.db.user;
-  let userId = Number(ctx.params.userId)
+  let userId = ctx.params.userId
   let param = ctx.query // startDate endDate startNum endNum catalogId
   if(!param.catalogId){
     ctx.body=failedRes('缺少参数：catalogId')

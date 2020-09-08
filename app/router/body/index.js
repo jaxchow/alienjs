@@ -8,7 +8,7 @@ let router= Router({
 // 查询某个用户的身体信息
 router.get('/:userId',async (ctx,next)=>{
   let Body = ctx.app.context.db.body;
-  let userId = Number(ctx.params.userId)
+  let userId = ctx.params.userId
 
   let bodyInfos = await Body.find({userId:userId},{sort:'id desc'})
   console.log(bodyInfos)
@@ -22,7 +22,7 @@ router.get('/:userId',async (ctx,next)=>{
 // 上报身体信息
 router.post('/:userId',async (ctx,next)=>{
   let Body = ctx.app.context.db.body
-  let userId = Number(ctx.params.userId)
+  let userId = ctx.params.userId
   let resbody = ctx.request.body
   if(resbody && JSON.stringify(resbody) !== '{}'){
     let data = await Body.create({userId:userId,...resbody})
@@ -35,7 +35,7 @@ router.post('/:userId',async (ctx,next)=>{
 //删除身体信息
 router.delete('/:userId',async (ctx,next)=>{
   let Body = ctx.app.context.db.body
-  let userId = Number(ctx.params.userId)
+  let userId = ctx.params.userId
   let deleteDate = await Body.destroy({userId:userId})
 
   if(deleteDate[0]){
