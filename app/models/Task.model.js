@@ -1,5 +1,5 @@
 import Waterline from 'waterline'
-//设备类型表
+//任务表
 var Task = Waterline.Collection.extend({
   identity: 'task',
   connection: 'mongo',
@@ -18,10 +18,10 @@ var Task = Waterline.Collection.extend({
       type:'string'
     },
     time:{
-      type:'number'
+      type:'integer'
     },
     number:{
-      type:'number'
+      type:'integer'
     },
     trainingType:{
       type:'string'
