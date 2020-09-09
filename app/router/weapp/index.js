@@ -1,8 +1,8 @@
 import Router from 'koa-router'
-import  Redis from 'redis'
 import Request from 'request'
 import WXBizDataCrypt from './crypto'
 import {successResData,failedRes} from '../../Utils/RouterResultUtils'
+import {jwtSign} from '../../Utils/jwt'
 
 
 //const RedisClient = Redis.createClient()
@@ -134,15 +134,18 @@ router.post('/login', async(ctx) => {
 		ctx.body = failedRes('缺少参数：loginType')
 		return
 	}
-	
+	let us
 	const user = await User.find({phoneNumber:data.phoneNumber})
+  const unionId=jwtSign({phoneNumber:data.phoneNumber,loginType:data.loginType})
 	if(user.length>0){
-	 let us	=await User.update({id:user[0].id},{unionId:"jwtid"})
+	  us	=await User.update({id:user[0].id},{unionId:unionId})
 	}else{
-		u =await User.create(data)
+		us =await User.create(Object.assign({},data,{
+      unionId:unionId 
+    }))
 		// await Plant.create({id:u.id})
 	}
-	ctx.body=successResData(u)
+	ctx.body=successResData(us)
 })
 
 // 退出登录
