@@ -1,5 +1,5 @@
 import Waterline from 'waterline'
-//设备类型表
+//任务表
 var Task = Waterline.Collection.extend({
   identity: 'task',
   connection: 'default',
