@@ -17,6 +17,15 @@ var Task = Waterline.Collection.extend({
     },
     description:{
       type:'string'
+    },
+    time:{
+      type:'integer'
+    },
+    number:{
+      type:'integer'
+    },
+    trainingType:{
+      type:'string'
     }
   },
 });
