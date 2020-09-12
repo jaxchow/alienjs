@@ -1,10 +1,12 @@
 import Router from 'koa-router'
 import body from './body'
+import task from './task'
 import user from './user'
 import catalog from './catalog'
 import device from './device'
 import rank from './rank'
 import weapp from './weapp'
+
 //TODO: 未实现
 //import client from './client'
 
@@ -18,6 +20,7 @@ router.get('/',function(ctx,next){
 });
 
 // use sub router
+router.use(task.routes())
 router.use(body.routes())
 router.use(user.routes())
 router.use(catalog.routes())

@@ -25,6 +25,9 @@ var Task = Waterline.Collection.extend({
     },
     trainingType:{
       type:'string'
+    },
+    successTotal:{
+      type:'number'
     }
   },
 });

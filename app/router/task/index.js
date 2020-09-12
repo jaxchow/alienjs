@@ -7,9 +7,9 @@ let router= Router({
 
 // 训练列表
 router.get('/',async (ctx,next)=>{
-  let Task = ctx.app.context.db.Task
-  let type = ctx.params.type
-  let taskData = await Task.findOne({type:type}) 
+  
+  let Task = ctx.app.context.db.task
+  let taskData = await Task.find() 
   ctx.body = successResData(taskData)
 })
 

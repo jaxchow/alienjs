@@ -10,10 +10,10 @@ router.get('/:userId',async (ctx,next)=>{
   let Body = ctx.app.context.db.body;
   let userId = ctx.params.userId
 
-  let bodyInfos = await Body.find({userId:userId},{sort:'id desc'})
-  console.log(bodyInfos)
-  if(bodyInfos[0]){
-    ctx.body=successResData(bodyInfos[0])
+  let bodyInfos = await Body.find({userId:userId},{sort:'createAt'})
+  // console.log(bodyInfos)
+  if(bodyInfos){
+    ctx.body=successResData(bodyInfos)
   }else{
     ctx.body=failedRes()
   }
