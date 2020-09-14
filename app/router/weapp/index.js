@@ -99,13 +99,10 @@ const clearAuth = (token, callback) => {
 // 小程序登录
 router.post('/decrypt', async(ctx) => {
         const data = ctx.request.body
-        let User = ctx.app.context.db.user
-        let Plant = ctx.app.context.db.plant
-
         console.log('POST：/decrpt, 参数：', data)
 
         if (!data.code) {
-								ctx.body=failedRes('缺少参数：code')
+			ctx.body=failedRes('缺少参数：code')
                 return
         } else if (!data.encryptedData) {
                 ctx.body=failedRes('缺少参数：encryptedData')
