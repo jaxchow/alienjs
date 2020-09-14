@@ -1,15 +1,18 @@
 import crypto from 'crypto'
 
+
 function WXBizDataCrypt(appId, sessionKey) {
 	this.appId = appId
 	this.sessionKey = sessionKey
 }
 
+// iv undefined alipay
+
 WXBizDataCrypt.prototype.decryptData = function (encryptedData, iv) {
 	// base64 decode
 	var sessionKey = new Buffer(this.sessionKey, 'base64')
-	encryptedData = new Buffer(encryptedData, 'base64')
-	iv = new Buffer(iv, 'base64')
+	encryptedData = iv==undefined? new Buffer(encryptedData, 'base64').toString('binary'):new Buffer(encryptedData, 'base64')
+	iv = iv==undefined? new Buffer(16, 0):new Buffer(iv, 'base64')
 
 	try {
 		// 解密
@@ -25,9 +28,9 @@ WXBizDataCrypt.prototype.decryptData = function (encryptedData, iv) {
 		throw new Error('Illegal Buffer')
 	}
 
-	if (decoded.watermark.appid !== this.appId) {
-		throw new Error('Illegal Buffer')
-	}
+	// if (decoded.watermark.appid !== this.appId) {
+	// 	throw new Error('Illegal Buffer')
+	// }
 
 	return decoded
 }

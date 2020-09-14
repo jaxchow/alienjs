@@ -13,6 +13,8 @@ let router= Router({
 // 小程序参数
 const APP_ID = 'wx9b131ef491a04d81'
 const APP_SECRET = 'b960b3273c51bfdbf3b65555882aa1f7'
+const ALI_ID="2021001182683582"
+const ALI_SECRET="maI2WeuAjyF7uB2RF1k67A=="
 
 /********** 业务处理开始 **********/
 
@@ -113,9 +115,14 @@ router.post('/decrypt', async(ctx) => {
         }
 
         // 获取sessionkey
-        const rethh = await getSessionKey(data.code)
+		const  sessionKey
+		if(data.iv){
+			const rethh=await getSessionKey(data.code)
+			sessionKey = rethh.session_key
+		}else{
+			sessionKey = ALI_SECRET
+		}
         const ret= await decrypt(rethh.session_key, data.encryptedData, data.iv)
-	console.log("ret",ret)
 	ctx.body = successResData(ret) 
 })
 
@@ -135,7 +142,7 @@ router.post('/login', async(ctx) => {
 	const user = await User.find({phoneNumber:data.phoneNumber})
   const unionId=jwtSign({phoneNumber:data.phoneNumber,loginType:data.loginType})
 	if(user.length>0){
-	  us	=await User.update({id:user[0].id},{unionId:unionId})
+	  us=await User.update({id:user[0].id},{unionId:unionId})
 	}else{
 		us =await User.create(Object.assign({},data,{
       unionId:unionId 
