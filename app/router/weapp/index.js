@@ -1,20 +1,20 @@
 import Router from 'koa-router'
 import Request from 'request'
 import WXBizDataCrypt from './crypto'
-import {successResData,failedRes} from '../../Utils/RouterResultUtils'
-import {jwtSign} from '../../Utils/jwt'
+import { successResData, failedRes } from '../../Utils/RouterResultUtils'
+import { jwtSign } from '../../Utils/jwt'
 
 
 //const RedisClient = Redis.createClient()
-let router= Router({
-  prefix: 'weapp'
+let router = Router({
+	prefix: 'weapp'
 })
 
 // 小程序参数
 const APP_ID = 'wx9b131ef491a04d81'
 const APP_SECRET = 'b960b3273c51bfdbf3b65555882aa1f7'
-const ALI_ID="2021001182683582"
-const ALI_SECRET="maI2WeuAjyF7uB2RF1k67A=="
+const ALI_ID = "2021001182683582"
+const ALI_SECRET = "maI2WeuAjyF7uB2RF1k67A=="
 
 /********** 业务处理开始 **********/
 
@@ -23,22 +23,22 @@ const getSessionKey = (code) => {
 	const url = 'https://api.weixin.qq.com/sns/jscode2session?appid='
 		+ APP_ID + '&secret=' + APP_SECRET + '&js_code=' + code
 		+ '&grant_type=authorization_code'
-	return new Promise(function(reslove,reject){
+	return new Promise(function (reslove, reject) {
 
 		Request(url, (error, response, body) => {
 			if (!error && response.statusCode == 200) {
-				console.log("remote error",error)
+				console.log("remote error", error)
 				console.log('getSessionKey:', body, typeof (body))
 
-//				console.log("replace:",body.replace(/\//g,"\\\/"))
+				//				console.log("replace:",body.replace(/\//g,"\\\/"))
 				const data = JSON.parse(body)
-				console.log("remote data",data)
+				console.log("remote data", data)
 				if (!data.session_key) {
 					reject({
 						code: 1,
 						message: data.errmsg
 					})
-				}else{
+				} else {
 					reslove(data)
 				}
 			} else {
@@ -53,14 +53,14 @@ const getSessionKey = (code) => {
 
 // 解密
 const decrypt = (sessionKey, encryptedData, iv, callback) => {
-	return new Promise(function(reslove,reject){
+	return new Promise(function (reslove, reject) {
 		try {
 			const pc = new WXBizDataCrypt(APP_ID, sessionKey)
 			const data = pc.decryptData(encryptedData, iv)
 			console.log('decrypted:', data)
 			reslove(data)
 		} catch (e) {
-			console.log("decrypt",e)
+			console.log("decrypt", e)
 			reject({
 				code: 1,
 				message: e
@@ -72,62 +72,63 @@ const decrypt = (sessionKey, encryptedData, iv, callback) => {
 // 存储登录状态
 const saveAuth = (peopleId, callback) => {
 	const token = uuid.v1()
-/*
-	RedisClient.set('WEAPP_AUTH:' + token, peopleId, (err, ret) => {
-		console.log(err, ret)
-		callback(err, token)
-	})
-*/
+	/*
+		RedisClient.set('WEAPP_AUTH:' + token, peopleId, (err, ret) => {
+			console.log(err, ret)
+			callback(err, token)
+		})
+	*/
 }
 
 // 获取登录状态
 const checkAuth = (token, callback) => {
-/*
-	RedisClient.get('WEAPP_AUTH:' + token, (err, ret) => {
-		callback(err, ret)
-	})
-*/
+	/*
+		RedisClient.get('WEAPP_AUTH:' + token, (err, ret) => {
+			callback(err, ret)
+		})
+	*/
 }
 
 // 清除登录状态
 const clearAuth = (token, callback) => {
-/*
-	RedisClient.del('WEAPP_AUTH:' + token, (err, ret) => {
-		callback(err, ret)
-	})
-*/
+	/*
+		RedisClient.del('WEAPP_AUTH:' + token, (err, ret) => {
+			callback(err, ret)
+		})
+	*/
 }
 
 // 小程序登录
-router.post('/decrypt', async(ctx) => {
-        const data = ctx.request.body
-        console.log('POST：/decrpt, 参数：', data)
+router.post('/decrypt', async (ctx) => {
+	const data = ctx.request.body;
+	// 获取sessionkey
+	let sessionKey;
+	let rethh;
+	console.log('POST：/decrpt, 参数：', data)
 
-        if (!data.code) {
-			ctx.body=failedRes('缺少参数：code')
-                return
-        } else if (!data.encryptedData) {
-                ctx.body=failedRes('缺少参数：encryptedData')
-                return
-        } else if (!data.iv) {
-                ctx.body=failedRes('缺少参数：iv')
-                return
-        }
+	if (!data.code) {
+		ctx.body = failedRes('缺少参数：code')
+		return
+	} else if (!data.encryptedData) {
+		ctx.body = failedRes('缺少参数：encryptedData')
+		return
+	} else if (!data.iv) {
+		ctx.body = failedRes('缺少参数：iv')
+		return
+	}
 
-        // 获取sessionkey
-		const  sessionKey
-		if(data.iv){
-			const rethh=await getSessionKey(data.code)
-			sessionKey = rethh.session_key
-		}else{
-			sessionKey = ALI_SECRET
-		}
-        const ret= await decrypt(rethh.session_key, data.encryptedData, data.iv)
-	ctx.body = successResData(ret) 
+	if (data.iv) {
+		rethh = await getSessionKey(data.code)
+		sessionKey = rethh.session_key
+	} else {
+		sessionKey = ALI_SECRET
+	}
+	const ret = await decrypt(rethh.session_key, data.encryptedData, data.iv)
+	ctx.body = successResData(ret)
 })
 
 // 小程序登录
-router.post('/login', async(ctx) => {
+router.post('/login', async (ctx) => {
 	const data = ctx.request.body
 	let User = ctx.app.context.db.user
 
@@ -139,17 +140,17 @@ router.post('/login', async(ctx) => {
 		return
 	}
 	let us
-	const user = await User.find({phoneNumber:data.phoneNumber})
-  const unionId=jwtSign({phoneNumber:data.phoneNumber,loginType:data.loginType})
-	if(user.length>0){
-	  us=await User.update({id:user[0].id},{unionId:unionId})
-	}else{
-		us =await User.create(Object.assign({},data,{
-      unionId:unionId 
-    }))
+	const user = await User.find({ phoneNumber: data.phoneNumber })
+	const unionId = jwtSign({ phoneNumber: data.phoneNumber, loginType: data.loginType })
+	if (user.length > 0) {
+		us = await User.update({ id: user[0].id }, { unionId: unionId })
+	} else {
+		us = await User.create(Object.assign({}, data, {
+			unionId: unionId
+		}))
 		// await Plant.create({id:u.id})
 	}
-	ctx.body=successResData(us)
+	ctx.body = successResData(us)
 })
 
 // 退出登录
