@@ -106,15 +106,16 @@ router.post('/decrypt', async (ctx) => {
 	let rethh;
 	console.log('POST：/decrpt, 参数：', data)
 
-	if (!data.code) {
-		ctx.body = failedRes('缺少参数：code')
-		return
-	} else if (!data.encryptedData) {
+	// if (!data.code) {
+	// 	ctx.body = failedRes('缺少参数：code')
+	// 	return
+	if (!data.encryptedData) {
+	// } else if (!data.encryptedData) {
 		ctx.body = failedRes('缺少参数：encryptedData')
 		return
-	} else if (!data.iv) {
-		ctx.body = failedRes('缺少参数：iv')
-		return
+	// } else if (!data.iv) {
+	// 	ctx.body = failedRes('缺少参数：iv')
+	// 	return
 	}
 
 	if (data.iv) {
