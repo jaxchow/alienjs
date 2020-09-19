@@ -26,6 +26,9 @@ var Task = Waterline.Collection.extend({
     trainingType:{
       type:'string'
     },
+    catalogId:{
+      type:'string'
+    },
     successTotal:{
       type:'number'
     }

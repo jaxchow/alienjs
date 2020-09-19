@@ -152,12 +152,14 @@ router.post('/data/:userId',async (ctx,next)=>{
 // 解除绑定
 router.delete('/:deviceId',async (ctx,next)=>{
   let Device = ctx.app.context.db.device
+  let DeviceLog = ctx.app.context.db.deviceLog
   let User =ctx.app.context.db.user
   let token = ctx.request.header['token']
   let tokenData = await User.find({unionId:token})
   if(tokenData.length>0){
     let {deviceId} = ctx.params
     let DeviceDesData = await Device.destroy({deviceId:deviceId})
+    await DeviceLog.create({deviceId:device,userid:tokenData[0].id,type:"0"})
     if(DeviceDesData[0]){
       ctx.body = successResData({ Device:DeviceDesData[0]})
     }else{
@@ -202,6 +204,7 @@ router.put('/data/index',async (ctx,next)=>{
 router.post('/connect',async (ctx,next)=>{
   let resbody = ctx.request.body
   let Device = ctx.app.context.db.device
+  let DeviceLog = ctx.app.context.db.deviceLog
 	let data =null
   console.log("resbody",resbody)
   if(!resbody.deviceId){
@@ -214,6 +217,7 @@ router.post('/connect',async (ctx,next)=>{
 	if(!device){
 	 //resbody.index=10
 	 data = await Device.create(resbody)
+   await DeviceLog.create({deviceId:resbody.deviceId,userid:resbody.userId,type:"1"})
 	}else  if(device.userId!==resbody.userId){
     ctx.body = failedRes("该设备已被其他用户绑定")
     return
