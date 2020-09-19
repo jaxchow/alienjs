@@ -29,6 +29,9 @@ var Task = Waterline.Collection.extend({
     catalogId:{
       type:'string'
     },
+    sort:{
+      type:'number'
+    },
     successTotal:{
       type:'number'
     }
