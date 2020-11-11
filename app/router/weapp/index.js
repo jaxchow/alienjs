@@ -14,7 +14,7 @@ let router = Router({
 const APP_ID = 'wx9b131ef491a04d81'
 const APP_SECRET = 'b960b3273c51bfdbf3b65555882aa1f7'
 const ALI_ID = "2021001182683582"
-const ALI_SECRET = "maI2WeuAjyF7uB2RF1k67A=="
+const ALI_SECRET = "jp92j58/XttkuFEKEMXrpQ=="
 
 /********** 业务处理开始 **********/
 
@@ -124,7 +124,7 @@ router.post('/decrypt', async (ctx) => {
 	} else {
 		sessionKey = ALI_SECRET
 	}
-	const ret = await decrypt(rethh.session_key, data.encryptedData, data.iv)
+	const ret = await decrypt(sessionKey, data.encryptedData, data.iv)
 	ctx.body = successResData(ret)
 })
 

@@ -19,6 +19,20 @@ router.get('/:userId',async (ctx,next)=>{
   }
 });
 
+router.get('/:userId/:valueType',async (ctx,next)=>{
+  let Body = ctx.app.context.db.body;
+  let userId = ctx.params.userId
+  let valueType = ctx.params.valueType
+
+  let bodyInfos = await Body.find({userId:userId,valueType:valueType},{sort:'createAt',groupBy:['createdAt']})
+  if(bodyInfos){
+    ctx.body=successResData(bodyInfos)
+  }else{
+    ctx.body=failedRes()
+  }
+});
+
+
 // 上报身体信息
 router.post('/:userId',async (ctx,next)=>{
   let Body = ctx.app.context.db.body
