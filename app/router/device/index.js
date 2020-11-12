@@ -123,27 +123,49 @@ router.post('/data/:userId',async (ctx,next)=>{
       ctx.body = failedRes('缺少参数：catalogId')
       return
     }
-    const lastData = await Data.find(
-      {
-        where:{
-          userId:userId,
-          deviceId:resbody.deviceId,
-          catalogId:resbody.catalogId 
-        },  sort: 'updatedAt desc', limit:1
-      } 
-    )
-    if(lastData.length == 0 || moment(lastData[0].updatedAt).format('YYYY-MM-DD') !== moment().format('YYYY-MM-DD')){
-      data = await Data.create({userId:userId,...resbody})
-    }else{
-      const newDate = {
-        time:(lastData[0].time||0)+(resbody.time||0),
-        fatcut:(lastData[0].fatcut||0)+(resbody.fatcut||0),
-        calorie:(lastData[0].calorie||0)+(resbody.calorie||0),
-        value:(lastData[0].value||0)+(resbody.value||0)
-      }
-      console.log(newDate)
-      data = await Data.update({id:lastData[0].id},newDate)
+
+    if(!resbody.finish){
+      ctx.body = failedRes('缺少参数：finish,运动是否完成：0完成，1未完成')
+      return 
     }
+
+    if(!resbody.trainingType){
+      ctx.body = failedRes('缺少参数：训练类型trainingType：1：自由，2：按时间，3：按个数，4：指定任务')
+      return
+    }
+
+    if(resbody.trainingType && !resbody.trainingTask){
+      ctx.body = failedRes('缺少参数：trainingTask ，任务id')
+      return
+    }
+
+    // const lastData = await Data.find(
+    //   {
+    //     where:{
+    //       userId:userId,
+    //       deviceId:resbody.deviceId,
+    //       catalogId:resbody.catalogId 
+    //     },  sort: 'updatedAt desc', limit:1
+    //   } 
+    // )
+    // if(lastData.length == 0 || moment(lastData[0].updatedAt).format('YYYY-MM-DD') !== moment().format('YYYY-MM-DD')){
+    data = await Data.create({userId:userId,...resbody})
+    if(resbody.trainingType==4){
+      TaskRelation.create({
+        userId:userId,
+        taskId: resbody.trainingTask,
+        dataId: data.id
+      })
+    }
+    // }else{
+    //   const newDate = {
+    //     time:(lastData[0].time||0)+(resbody.time||0),
+    //     fatcut:(lastData[0].fatcut||0)+(resbody.fatcut||0),
+    //     calorie:(lastData[0].calorie||0)+(resbody.calorie||0),
+    //     value:(lastData[0].value||0)+(resbody.value||0)
+    //   }
+    //   data = await Data.update({id:lastData[0].id},newDate)
+    // }
     ctx.body = successResData(data)
   }else{
     ctx.body=failedLoginRes()

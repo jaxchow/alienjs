@@ -44,6 +44,13 @@ var Data = Waterline.Collection.extend({
     //训练类型
     trainingType:{
       type: 'string'
+    },
+    trainingTask:{
+      type: 'string'
+    },
+    // 是否运动完成 0 完成 1 未完成
+    finish:{
+      type:'integer'
     }
   },
 });

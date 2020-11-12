@@ -24,7 +24,7 @@ router.get('/:userId/:valueType',async (ctx,next)=>{
   let userId = ctx.params.userId
   let valueType = ctx.params.valueType
 
-  let bodyInfos = await Body.find({userId:userId,valueType:valueType},{sort:'createAt',groupBy:['createdAt']})
+  let bodyInfos = await Body.find({userId:userId,valueType:valueType},{sort:'createAt'})
   if(bodyInfos){
     ctx.body=successResData(bodyInfos)
   }else{
