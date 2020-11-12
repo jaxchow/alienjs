@@ -10,16 +10,17 @@ router.get('/:catalogId',async (ctx,next)=>{
   
   let Task = ctx.app.context.db.task
   let catalogId = ctx.params.catalogId
-  let taskData = await Task.find({catalogId:catalogId}).sort({sort:1})
+  let taskData = await Task.find({catalogId:catalogId}).sort({sort:'sort'})
   ctx.body = successResData(taskData)
 })
+
 
 // 个人挑战成功次数
 router.get('/success/:userId',async (ctx,next)=>{
   let userId = ctx.params.userId
   let TaskRelation = ctx.app.context.db.taskrelation
-  let successArr = await TaskRelation.find({userId:userId})
-  ctx.body = successResData({successNumber:successArr.length})
+  let successArr = await TaskRelation.find({userId:userId}).count()
+  ctx.body = successResData({successNumber:successArr})
 })
 
 router.allowedMethods();

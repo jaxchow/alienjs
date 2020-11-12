@@ -108,6 +108,8 @@ router.get('/data/:userId/:deviceId',async (ctx,next)=>{
 // 上报设备数据
 router.post('/data/:userId',async (ctx,next)=>{
   let User =ctx.app.context.db.user
+  let TaskRelation = ctx.app.context.db.taskrelation
+  let Task = ctx.app.context.db.task
   let token = ctx.request.header['token']
   let tokenData = await User.find({unionId:token})
   if(tokenData.length>0){
@@ -156,6 +158,16 @@ router.post('/data/:userId',async (ctx,next)=>{
         taskId: resbody.trainingTask,
         dataId: data.id
       })
+      
+      if(task){
+        Task.update({
+          id:task.id
+        },{
+          successTotal:task.successTotal+1
+        })
+      }else{
+
+      }
     }
     // }else{
     //   const newDate = {

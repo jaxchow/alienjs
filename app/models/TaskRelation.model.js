@@ -1,7 +1,7 @@
 import Waterline from 'waterline'
 //任务关系表
 var TaskRelation = Waterline.Collection.extend({
-  identity: 'task',
+  identity: 'taskRelation',
   connection: 'mongo',
   attributes: {
     id:{
