@@ -21,7 +21,10 @@ var Body = Waterline.Collection.extend({
     //weight height bust waist hips bmi heart
     valueType:{
       type:'string'
-    }
+    },
+    date:{
+      type:'date'
+    },
     // // 体重(kg)
     // weight:{
     //   type:'float',
