@@ -33,6 +33,34 @@ var User = Waterline.Collection.extend({
     birthday: {
       type: 'date',
     },
+     // 身高（cm）
+     height: {
+      type: 'integer',
+    },
+    // 体重（kg）
+    weight: {
+      type: 'integer',
+    },
+    // 腰围（cm）
+    waistline: {
+      type: 'integer',
+    },
+    //胸围
+    bust:{
+      type: 'integer'
+    },
+    // 臀围(cm)
+    hips: {
+      type: 'float',
+    },
+    // BMI
+    bmi: {
+      type: 'float',
+    },
+    // 心率(bmp)
+    heartRate: {
+      type: 'integer',
+    },
     getBirthday:function(){
 	return moment(this.birthday).format('YYYY-MM-DD')
     },
