@@ -146,7 +146,7 @@ router.post('/login', async (ctx) => {
 	const unionId = jwtSign({ phoneNumber: data.phoneNumber, loginType: data.loginType })
 	if (user.length > 0) {
 		uss = await User.update({ id: user[0].id }, { unionId: unionId })
-		us = us[0]
+		us = uss[0]
 	} else {
 		us = await User.create(Object.assign({}, data, {
 			unionId: unionId
