@@ -31,7 +31,7 @@ var User = Waterline.Collection.extend({
     },
     // 生日
     birthday: {
-      type: 'date',
+      type: 'string',
     },
 		     // 身高（cm）
      height: {
@@ -60,14 +60,6 @@ var User = Waterline.Collection.extend({
     // 心率(bmp)
     heartRate: {
       type: 'integer',
-    },
-    getBirthday:function(){
-	return moment(this.birthday).format('YYYY-MM-DD')
-    },
-    toJSON:function(){
-      var obj = this.toObject();
-      obj.birthday=this.getBirthday();
-      return obj;
     }
   }
 

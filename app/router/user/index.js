@@ -92,8 +92,8 @@ router.post('/:id/supply',async (ctx,next)=>{
   }else if(!body.height){
     ctx.body = failedRes('缺少参数：height')
     return
-  }else if(!body.bust){
-    ctx.body = failedRes('缺少参数：bust')
+  }else if(!body.waist){
+    ctx.body = failedRes('缺少参数：waist')
     return
   }
 
@@ -108,9 +108,9 @@ router.post('/:id/supply',async (ctx,next)=>{
       // console.log("height")
       Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"2",value:height})
     }
-    if(bust){
+    if(waist){
       // console.log("bust")
-      Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"3",value:bust})
+      Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"4",value:bust})
     }
     if(data[0]){
       ctx.body = successResData(data[0])
