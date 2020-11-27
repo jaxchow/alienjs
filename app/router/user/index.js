@@ -102,15 +102,15 @@ router.post('/:id/supply',async (ctx,next)=>{
     let data = await User.update(ctx.params,{birthday:birthday})
     if(weight){
       // console.log("weight")
-      Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"1",value:weight})
+      await Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"1",value:weight})
     }
     if(height){
       // console.log("height")
-      Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"2",value:height})
+      await Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"2",value:height})
     }
     if(waist){
       // console.log("bust")
-      Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"4",value:waist})
+      await Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"4",value:waist})
     }
     if(data[0]){
       ctx.body = successResData(data[0])
