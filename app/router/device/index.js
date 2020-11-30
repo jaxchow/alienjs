@@ -136,38 +136,26 @@ router.post('/data/:userId',async (ctx,next)=>{
       return
     }
 
-    if(resbody.trainingType && !resbody.trainingTask){
+    if(resbody.trainingType==4 && !resbody.trainingTask){
       ctx.body = failedRes('缺少参数：trainingTask ，任务id')
       return
     }
 
-    // const lastData = await Data.find(
-    //   {
-    //     where:{
-    //       userId:userId,
-    //       deviceId:resbody.deviceId,
-    //       catalogId:resbody.catalogId 
-    //     },  sort: 'updatedAt desc', limit:1
-    //   } 
-    // )
-    // if(lastData.length == 0 || moment(lastData[0].updatedAt).format('YYYY-MM-DD') !== moment().format('YYYY-MM-DD')){
     data = await Data.create({userId:userId,...resbody})
-    if(resbody.trainingType==4){
-      TaskRelation.create({
+    let task = await Task.findOne({_id:resbody.trainingTask})
+    console.log(task.successTotal)
+    if(resbody.trainingType==4 && task){
+      // await Task.update({
+      //   },{
+      //     successTotal:task.successTotal+1
+      //   })
+      // await Task.update({id:resbody.trainingTask},{successTotal:task.successTotal+1})
+      await TaskRelation.create({
         userId:userId,
         taskId: resbody.trainingTask,
         dataId: data.id
       })
       
-      if(task){
-        Task.update({
-          id:task.id
-        },{
-          successTotal:task.successTotal+1
-        })
-      }else{
-
-      }
     }
     // }else{
     //   const newDate = {

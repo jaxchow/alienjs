@@ -33,6 +33,7 @@ var User = Waterline.Collection.extend({
     birthday: {
       type: 'string',
     }
+  }
 
 });
 
