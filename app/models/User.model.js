@@ -31,45 +31,8 @@ var User = Waterline.Collection.extend({
     },
     // 生日
     birthday: {
-      type: 'date',
-    },
-     // 身高（cm）
-     height: {
-      type: 'integer',
-    },
-    // 体重（kg）
-    weight: {
-      type: 'integer',
-    },
-    // 腰围（cm）
-    waistline: {
-      type: 'integer',
-    },
-    //胸围
-    bust:{
-      type: 'integer'
-    },
-    // 臀围(cm)
-    hips: {
-      type: 'float',
-    },
-    // BMI
-    bmi: {
-      type: 'float',
-    },
-    // 心率(bmp)
-    heartRate: {
-      type: 'integer',
-    },
-    getBirthday:function(){
-	return moment(this.birthday).format('YYYY-MM-DD')
-    },
-    toJSON:function(){
-      var obj = this.toObject();
-      obj.birthday=this.getBirthday();
-      return obj;
+      type: 'string',
     }
-  }
 
 });
 

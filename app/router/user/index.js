@@ -1,4 +1,5 @@
 import Router from 'koa-router'
+import moment from 'moment'
 import {successResData,failedRes,failedLoginRes} from '../../Utils/RouterResultUtils'
 
 let router= Router({
@@ -52,6 +53,74 @@ router.get('/:userId/device',async (ctx,next)=>{
   }
   
 });
+
+// 获取完善信息
+router.get('/:id/supply',async (ctx,next)=>{
+  let User =ctx.app.context.db.user
+  let Body =ctx.app.context.db.body
+
+  let token = ctx.request.header['token']
+  let tokenData = await User.find({unionId:token})
+  if(tokenData.length>0){
+    let data =await User.findOne(ctx.params.id)
+    let body =await Body.find({where:{userId:ctx.params.id}})
+    data.body=body
+    if(data){
+      ctx.body=successResData(data)
+    }else{
+      ctx.body=failedRes()
+    }
+  }else{
+    ctx.body=failedLoginRes()
+  }
+})
+
+//修改完善信息
+router.post('/:id/supply',async (ctx,next)=>{
+  let User =ctx.app.context.db.user
+  let Body =ctx.app.context.db.body
+  let token = ctx.request.header['token']
+  let tokenData = await User.find({unionId:token})
+  const body = ctx.request.body
+  let now = moment().format("YYYY-MM-DD")
+  if(!body.weight){
+    ctx.body = failedRes('缺少参数：weight')
+    return
+  }else if(!body.birthday){
+    ctx.body = failedRes('缺少参数：birthday')
+    return
+  }else if(!body.height){
+    ctx.body = failedRes('缺少参数：height')
+    return
+  }else if(!body.waist){
+    ctx.body = failedRes('缺少参数：waist')
+    return
+  }
+
+  if(tokenData.length>0){
+    let {height,weight,waist,birthday} = body
+    let data = await User.update(ctx.params,{birthday:birthday})
+    if(weight){
+      // console.log("weight")
+      await Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"1",value:weight})
+    }
+    if(height){
+      // console.log("height")
+      await Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"2",value:height})
+    }
+    if(waist){
+      // console.log("bust")
+      await Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"4",value:waist})
+    }
+    if(data[0]){
+      ctx.body = successResData(data[0])
+    }else{
+      ctx.body = failedRes('修改失败，未查询到该用户')
+    }
+  }else{
+    ctx.body=failedLoginRes()
+  }
+})
 
 // 用户信息修改
 router.put('/:id',async (ctx,next)=>{

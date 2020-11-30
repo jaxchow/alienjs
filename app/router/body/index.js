@@ -25,7 +25,7 @@ router.get('/:userId/lastest',async (ctx,next)=>{
   let userId = ctx.params.userId
   // const aggregateArray = [{$match:{userId:{$eq:userId}}},{$group:{_id:'$valueType',"maxValue": {$max:"$date"}}}]
   const aggregateArray = [{$match:{userId:{$eq:userId}}},
-    {$group:{_id:'$valueType',date: { $max: "$date" },value:{$first:"$value"},goalValue:{$first:"$goalValue"},valueType:{$first:"$valueType"},userId:{$first:"$userId"},id:{$first:"$_id"}}},
+    {$group:{_id:'$valueType',date: { $last: "$date" },value:{$last:"$value"},goalValue:{$last:"$goalValue"},valueType:{$last:"$valueType"},userId:{$first:"$userId"},id:{$first:"$_id"}}},
   ]
   function PromiseNative(){
     return new Promise((resolve,reject)=>{
