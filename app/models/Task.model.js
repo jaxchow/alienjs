@@ -30,10 +30,10 @@ var Task = Waterline.Collection.extend({
       type:'string'
     },
     sort:{
-      type:'number'
+      type:'integer'
     },
     successTotal:{
-      type:'number'
+      type:'integer'
     }
   },
 });

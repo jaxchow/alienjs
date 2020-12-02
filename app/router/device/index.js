@@ -145,10 +145,11 @@ router.post('/data/:userId',async (ctx,next)=>{
     let task = await Task.findOne({_id:resbody.trainingTask})
     console.log(task.successTotal)
     if(resbody.trainingType==4 && task){
-      // await Task.update({
-      //   },{
-      //     successTotal:task.successTotal+1
-      //   })
+      await Task.update({
+        _id:resbody.trainingTask
+        },{
+          successTotal:task.successTotal+1
+        })
       // await Task.update({id:resbody.trainingTask},{successTotal:task.successTotal+1})
       await TaskRelation.create({
         userId:userId,
