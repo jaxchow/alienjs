@@ -98,8 +98,8 @@ router.post('/:id/supply',async (ctx,next)=>{
   }
 
   if(tokenData.length>0){
-    let {height,weight,waist,birthday} = body
-    let data = await User.update(ctx.params,{birthday:birthday})
+    let {height,weight,waist,...birthday} = body
+    let data = await User.update(ctx.params,{...birthday})
     if(weight){
       // console.log("weight")
       await Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"1",value:weight})

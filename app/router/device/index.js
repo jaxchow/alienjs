@@ -127,7 +127,7 @@ router.post('/data/:userId',async (ctx,next)=>{
       return
     }
 
-    if(!resbody.finish){
+    if(resbody.finish==undefined){
       ctx.body = failedRes('缺少参数：finish,运动是否完成：0完成，1未完成')
       return 
     }
