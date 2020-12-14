@@ -39,23 +39,24 @@ router.get('/data/:userId',async (ctx,next)=>{
           userId:userId,
           catalogId:param.catalogId
         },
-        groupBy:['userId','catalogId'],
-        sum:['time','fatcut','calorie','value']
+        // groupBy:['userId','catalogId'],
+        // sum:['time','fatcut','calorie','value']
       }
     )
-    if(data[0]){
-      let catalogData = await Catalog.findOne(param.catalogId)
-      let deviceData = await Device.findOne({catalogId:param.catalogId,userId:userId})
-      data[0].unit = catalogData.unit
-      data[0].name = catalogData.name
-      data[0].type = catalogData.type
-      if(deviceData){
-        data[0].index = deviceData.index
-    }
-      ctx.body = successResData(data[0])
-    }else{
-      ctx.body = successResData({})
-    }
+    ctx.body = successResData(data)
+    // if(data[0]){
+    //   let catalogData = await Catalog.findOne(param.catalogId)
+    //   let deviceData = await Device.findOne({catalogId:param.catalogId,userId:userId})
+    //   data[0].unit = catalogData.unit
+    //   data[0].name = catalogData.name
+    //   data[0].type = catalogData.type
+    //   if(deviceData){
+    //     data[0].index = deviceData.index
+    // }
+    //   ctx.body = successResData(data[0])
+    // }else{
+    //   ctx.body = successResData({})
+    // }
   }else{
     ctx.body=failedLoginRes()
   } 
@@ -88,16 +89,16 @@ router.get('/data/:userId/:deviceId',async (ctx,next)=>{
         },
       }
     )
-    if(data[0]){
-      let catalogData = await Catalog.findOne(param.catalogId)
-      let deviceData = await Device.findOne({catalogId:param.catalogId,userId:userId})
-      data[0].unit = catalogData.unit
-      data[0].name = catalogData.name
-      data[0].type = catalogData.type
-      if(deviceData){
-        data[0].index = deviceData.index
-    }
-      ctx.body = successResData(data[0])
+    if(data.length>0){
+    //   let catalogData = await Catalog.findOne(param.catalogId)
+    //   let deviceData = await Device.findOne({catalogId:param.catalogId,userId:userId})
+    //   data[0].unit = catalogData.unit
+    //   data[0].name = catalogData.name
+    //   data[0].type = catalogData.type
+    //   if(deviceData){
+    //     data[0].index = deviceData.index
+    // }
+      ctx.body = successResData(data)
     }else{
       ctx.body = successResData({})
     }
@@ -132,7 +133,7 @@ router.post('/data/:userId',async (ctx,next)=>{
     }
 
     if(!resbody.trainingType){
-      ctx.body = failedRes('缺少参数：训练类型trainingType：1：自由，2：按时间，3：按个数，4：指定任务')
+      ctx.body = failedRes('缺少参数：训练类型trainingType： 1：按个数   2：按时间  3：自由 ，4：指定任务')
       return
     }
 
@@ -143,7 +144,7 @@ router.post('/data/:userId',async (ctx,next)=>{
 
     data = await Data.create({userId:userId,...resbody})
     let task = await Task.findOne({_id:resbody.trainingTask})
-    console.log(task.successTotal)
+    // console.log(task.successTotal)
     if(resbody.trainingType==4 && task){
       await Task.update({
         _id:resbody.trainingTask
