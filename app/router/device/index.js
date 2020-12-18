@@ -176,14 +176,15 @@ router.post('/data/:userId',async (ctx,next)=>{
 // 解除绑定
 router.delete('/:deviceId',async (ctx,next)=>{
   let Device = ctx.app.context.db.device
-  let DeviceLog = ctx.app.context.db.deviceLog
+  let DeviceLog = ctx.app.context.db.devicelog
   let User =ctx.app.context.db.user
   let token = ctx.request.header['token']
+  // console.log(ctx.app.context.db)
   let tokenData = await User.find({unionId:token})
   if(tokenData.length>0){
     let {deviceId} = ctx.params
-    let DeviceDesData = await Device.destroy({deviceId:deviceId})
-    await DeviceLog.create({deviceId:device,userid:tokenData[0].id,type:"0"})
+    let DeviceDesData = await Device.destroy({where:{deviceId:deviceId}})
+    await DeviceLog.create({deviceId:deviceId,userid:tokenData[0].id,type:"0"})
     if(DeviceDesData[0]){
       ctx.body = successResData({ Device:DeviceDesData[0]})
     }else{
