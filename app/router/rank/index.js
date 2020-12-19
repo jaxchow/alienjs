@@ -1,5 +1,7 @@
 import Router from 'koa-router'
 import {successResData,failedRes} from '../../Utils/RouterResultUtils'
+import {PromiseAggregate} from '../../Utils/mongodbUtils'
+
 
 let router= Router({
   prefix: 'rank'
@@ -12,64 +14,76 @@ router.get('/:userId',async (ctx,next)=>{
   let User = ctx.app.context.db.user;
   let userId = ctx.params.userId
   let param = ctx.query // startDate endDate startNum endNum catalogId
-  if(!param.catalogId){
+  // console.log(param,param.catalogId==undefined)
+  if(param.catalogId==undefined){
+    // console.log("catalogID")
     ctx.body=failedRes('缺少参数：catalogId')
     return
-  }else if(!param.startDate){
+  }else if(param.startDate==undefined){
     ctx.body=failedRes('缺少参数：startDate')
     return
-  }else if(!param.endDate){
+  }else if(param.endDate==undefined){
     ctx.body=failedRes('缺少参数：endDate')
     return
-  }else if(!param.endNum){
+  }else if(param.endNum==undefined){
     ctx.body=failedRes('缺少参数：endNum')
     return
-  }else if(!param.startNum){
+  }else if(param.startNum==undefined){
     ctx.body=failedRes('缺少参数：startNum')
     return
   }
+  let startDate = param.startDate+'T00:00:00Z'
   let endDate = param.endDate+'T23:59:59Z'
   let myData = {}
-  let catalogData = await Catalog.findOne(param.catalogId)
+  let catalogData = await Catalog.findOne({where:{_id:param.catalogId}})
   if(!catalogData){
     ctx.body = failedRes('请输入正确catalogId')
     return
   }else{
     // 排行的用户数据
-    let originlist = await Data.find(
+    // console.log(catalogData)
+    const aggregateArray = [
       {
-        where:{
-          updatedAt:{
-            '>':param.startDate,
-            '<':endDate
-          },
-          catalogId:param.catalogId
-        },
-        groupBy:['userId'],
-        sum:['calorie','value']
+        $match:{
+          catalogId:param.catalogId,
+          updatedAt:{$gt:new Date(startDate),$lt:new Date(endDate)}
+        }
+      },
+      {
+        $group:{
+          _id: "$userId",
+          userId:{$first:"$userId"},
+          calorie:{$sum:"$calorie"},
+          value:{$sum:"$value"},
+          time:{$sum:"$time"},
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $sort:{
+          value:-1,
+        }
+      },{
+        $lookup:{
+          from:'user',
+          localField:"_id",
+          foreignField:"userId",
+          as:"user"
+        }
+      },{
+        $unwind: "$user"
       }
-    )
-    // .sort('value desc')
-    const list= originlist.sort((a,b)=>{
-      return b.value-a.value
-    })
+    ]
 
-    for(let i = 0;i<list.length;i++){
-      let userData = await User.findOne(list[i].userId)
-      list[i].user = userData?userData:{}
-      list[i].rank = i+1
-    }
-
-    for(let i = 0;i<list.length;i++){
-      if(list[i].userId == userId){
-        myData = list[i]
-        break
-      }
-    }
-    let cutList = list.slice(param.startNum,Number(param.endNum)+1)
+    const result = await PromiseAggregate(Data,aggregateArray)
+    myData = result.map((b,idx)=>{
+      b.rank=idx+1
+      return b
+    }).filter(f=>f.user._id==userId).filter((r,idx)=>idx===0).pop()
+    let cutList = result.slice(param.startNum,Number(param.endNum)+1) 
     ctx.body = successResData({
       myData:myData,
-      total:list.length,
+      total:result.length,
       list:cutList,
       catalogId:catalogData.id,
       type:catalogData.type,
@@ -78,7 +92,7 @@ router.get('/:userId',async (ctx,next)=>{
   }
 });
 
-// 用户排行(未登录)
+// // 用户排行(未登录)
 router.get('/',async (ctx,next)=>{
   let Data = ctx.app.context.db.data;
   let Catalog = ctx.app.context.db.catalog;
@@ -100,40 +114,60 @@ router.get('/',async (ctx,next)=>{
     ctx.body=failedRes('缺少参数：startNum')
     return
   }
+  let startDate = param.startDate+'T00:00:00Z'
   let endDate = param.endDate+'T23:59:59Z'
  
+  // console.log(startDate,endDate)
   // 排行的用户数据
   
-  let catalogData = await Catalog.findOne(param.catalogId)
+  let catalogData = await Catalog.findOne({where:{_id:param.catalogId}})
   if(!catalogData){
     ctx.body=failedRes('请输入正确catalogId')
   }else{
-    let originlist = await Data.find(
+    const aggregateArray = [
       {
-        where:{
-          updatedAt:{
-            '>=':param.startDate,
-            '<=':endDate
-          },
-          catalogId:param.catalogId
-        },
-        groupBy:['userId'],
-        sum:['calorie','value']
+        $match:{
+          catalogId:param.catalogId,
+          updatedAt:{$gt:new Date(startDate),$lt:new Date(endDate)}
+        }
+      },
+      {
+        $group:{
+          _id: "$userId",
+          userId:{$first:"$userId"},
+          calorie:{$sum:"$calorie"},
+          value:{$sum:"$value"},
+          time:{$sum:"$time"},
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $sort:{
+          value:-1,
+        }
+      },
+      {
+        $lookup:{
+          from:'user',
+          localField:"_id",
+          foreignField:"userId",
+          as:"user"
+        }
+      },{
+        $unwind: "$user"
       }
-    )
-    
-    let list = originlist.sort((a,b)=>{
-      return b.value-a.value
+    ]
+
+    const result = await PromiseAggregate(Data,aggregateArray)
+    let resultRank=result.map((b,idx)=>{
+      b.rank=idx+1
+      return b
     })
-    for(let i = 1;i<=list.length;i++){
-      let userData = await User.findOne(list[i-1].userId)
-      list[i-1].user = userData?userData:{}
-      list[i-1].rank = i
-    }
-    let cutList = list.slice(param.startNum,Number(param.endNum)+1)
+
+    let cutList = resultRank.slice(param.startNum,Number(param.endNum)+1)
 
     ctx.body = successResData({
-      total:list.length,
+      total:resultRank.length,
       list:cutList,
       catalogId:catalogData.id,
       type:catalogData.type,
