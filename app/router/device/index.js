@@ -1,12 +1,13 @@
 import Router from 'koa-router'
 import moment from 'moment'
 import {successResData,failedRes,failedLoginRes} from '../../Utils/RouterResultUtils'
+import {PromiseAggregate} from '../../Utils/mongodbUtils'
 
 let router= Router({
   prefix: 'device'
 })
 
-// 设备数据
+// 设备数据汇总
 router.get('/data/:userId',async (ctx,next)=>{
   let User =ctx.app.context.db.user
   let token = ctx.request.header['token']
@@ -25,39 +26,34 @@ router.get('/data/:userId',async (ctx,next)=>{
       ctx.body = failedRes('缺少参数：catalogId')
       return
     }
-    let startDate   = param.startDate+'T00:00:00Z'
+    let startDate = param.startDate+'T00:00:00Z'
     let endDate = param.endDate+'T23:59:59Z'
     let Data = ctx.app.context.db.data;
-    let Catalog = ctx.app.context.db.catalog;
-    let Device = ctx.app.context.db.device;
-    let data = await Data.find(
+    const aggregateArray = [
       {
-        where:{
-          updatedAt:{
-            '>=':startDate,
-            '<=':endDate
-          },
+        $match:{
           userId:userId,
-          catalogId:param.catalogId
-        },
-        // groupBy:['userId','catalogId'],
-        // sum:['time','fatcut','calorie','value']
+          catalogId:param.catalogId,
+          createdAt:{$gt:new Date(startDate),$lt:new Date(endDate)}
+        }
+      },
+      {
+        $addFields:{
+          date:{$dateToString: { format: "%Y-%m-%d", date: "$createdAt" }}
+        }
+      },
+      {
+        $group:{
+          _id: "$date",
+          calorie:{$sum:"$calorie"},
+          value:{$sum:"$value"},
+          time:{$sum:"$time"},
+          count: { $sum: 1 }
+        }
       }
-    )
-    ctx.body = successResData(data)
-    // if(data[0]){
-    //   let catalogData = await Catalog.findOne(param.catalogId)
-    //   let deviceData = await Device.findOne({catalogId:param.catalogId,userId:userId})
-    //   data[0].unit = catalogData.unit
-    //   data[0].name = catalogData.name
-    //   data[0].type = catalogData.type
-    //   if(deviceData){
-    //     data[0].index = deviceData.index
-    // }
-    //   ctx.body = successResData(data[0])
-    // }else{
-    //   ctx.body = successResData({})
-    // }
+    ]
+    const result = await PromiseAggregate(Data,aggregateArray)
+    ctx.body = successResData(result)
   }else{
     ctx.body=failedLoginRes()
   } 

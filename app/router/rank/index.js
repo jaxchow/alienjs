@@ -37,7 +37,7 @@ router.get('/:userId',async (ctx,next)=>{
     let endDate = param.endDate+'T23:59:59Z'
     match={
       catalogId:param.catalogId,
-      updatedAt:{$gt:new Date(startDate),$lt:new Date(endDate)}
+      createdAt:{$gt:new Date(startDate),$lt:new Date(endDate)}
     }
   }
  
@@ -127,7 +127,7 @@ router.get('/',async (ctx,next)=>{
       {
         $match:{
           catalogId:param.catalogId,
-          updatedAt:{$gt:new Date(startDate),$lt:new Date(endDate)}
+          createdAt:{$gt:new Date(startDate),$lt:new Date(endDate)}
         }
       },
       {
