@@ -1,6 +1,7 @@
 import Router from 'koa-router'
 import moment from 'moment'
 import {successResData,failedLoginRes,failedRes} from '../../Utils/RouterResultUtils'
+import {PromiseAggregate} from '../../Utils/mongodbUtils'
 
 let router= Router({
   prefix: 'body'
@@ -27,24 +28,9 @@ router.get('/:userId/lastest',async (ctx,next)=>{
   const aggregateArray = [{$match:{userId:{$eq:userId}}},
     {$group:{_id:'$valueType',date: { $last: "$date" },value:{$last:"$value"},goalValue:{$last:"$goalValue"},valueType:{$last:"$valueType"},userId:{$first:"$userId"},id:{$first:"$_id"}}},
   ]
-  function PromiseNative(){
-    return new Promise((resolve,reject)=>{
-      Body.native(function(err, bodyCollection) {
-            bodyCollection
-              .aggregate(aggregateArray)
-              .toArray((err, results) => {
-                if(err){
-                  console.log("err",err)
-                  reject(failedRes(err))
-                }else{
-                  resolve(successResData(results))
-                }
-              });
-      }) 
-    })
-  }
-  const result = await PromiseNative()
-  ctx.body=result 
+  const result = await PromiseAggregate(Body,aggregateArray)
+  
+  ctx.body=successResData(result)
 });
 
 router.get('/:userId/:valueType',async (ctx,next)=>{
