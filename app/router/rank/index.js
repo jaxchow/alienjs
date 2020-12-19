@@ -19,12 +19,6 @@ router.get('/:userId',async (ctx,next)=>{
     // console.log("catalogID")
     ctx.body=failedRes('缺少参数：catalogId')
     return
-  }else if(param.startDate==undefined){
-    ctx.body=failedRes('缺少参数：startDate')
-    return
-  }else if(param.endDate==undefined){
-    ctx.body=failedRes('缺少参数：endDate')
-    return
   }else if(param.endNum==undefined){
     ctx.body=failedRes('缺少参数：endNum')
     return
@@ -32,22 +26,30 @@ router.get('/:userId',async (ctx,next)=>{
     ctx.body=failedRes('缺少参数：startNum')
     return
   }
-  let startDate = param.startDate+'T00:00:00Z'
-  let endDate = param.endDate+'T23:59:59Z'
   let myData = {}
+  let match = {}
+  if(!param.startDate && !param.endDate){
+    match={
+      catalogId:param.catalogId,
+    }
+  }else{
+    let startDate = param.startDate+'T00:00:00Z'
+    let endDate = param.endDate+'T23:59:59Z'
+    match={
+      catalogId:param.catalogId,
+      updatedAt:{$gt:new Date(startDate),$lt:new Date(endDate)}
+    }
+  }
+ 
   let catalogData = await Catalog.findOne({where:{_id:param.catalogId}})
   if(!catalogData){
     ctx.body = failedRes('请输入正确catalogId')
     return
   }else{
     // 排行的用户数据
-    // console.log(catalogData)
     const aggregateArray = [
       {
-        $match:{
-          catalogId:param.catalogId,
-          updatedAt:{$gt:new Date(startDate),$lt:new Date(endDate)}
-        }
+        $match:match
       },
       {
         $group:{
@@ -63,7 +65,7 @@ router.get('/:userId',async (ctx,next)=>{
         $sort:{
           value:-1,
         }
-      },{
+      }, {
         $lookup:{
           from:'user',
           localField:"_id",
@@ -76,13 +78,10 @@ router.get('/:userId',async (ctx,next)=>{
     ]
 
     const result = await PromiseAggregate(Data,aggregateArray)
-    myData = result.map((b,idx)=>{
-      b.rank=idx+1
-      return b
-    }).filter(f=>f.user._id==userId).filter((r,idx)=>idx===0).pop()
+    // myData   = result.filter(f=>f.)
     let cutList = result.slice(param.startNum,Number(param.endNum)+1) 
     ctx.body = successResData({
-      myData:myData,
+      // myData:myData,
       total:result.length,
       list:cutList,
       catalogId:catalogData.id,
@@ -159,15 +158,10 @@ router.get('/',async (ctx,next)=>{
     ]
 
     const result = await PromiseAggregate(Data,aggregateArray)
-    let resultRank=result.map((b,idx)=>{
-      b.rank=idx+1
-      return b
-    })
-
-    let cutList = resultRank.slice(param.startNum,Number(param.endNum)+1)
+    let cutList = result.slice(param.startNum,Number(param.endNum)+1)
 
     ctx.body = successResData({
-      total:resultRank.length,
+      total:result.length,
       list:cutList,
       catalogId:catalogData.id,
       type:catalogData.type,
