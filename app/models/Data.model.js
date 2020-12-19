@@ -31,7 +31,7 @@ var Data = Waterline.Collection.extend({
     },
     // 卡路里（千卡）
     calorie: {
-      type: 'integer',
+      type: 'float',
     },
     // 运动时间（s）
     time: {
