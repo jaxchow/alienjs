@@ -29,6 +29,10 @@ router.get('/data/:userId',async (ctx,next)=>{
     let startDate = param.startDate+'T00:00:00Z'
     let endDate = param.endDate+'T23:59:59Z'
     let Data = ctx.app.context.db.data;
+    if(!param.catalogId){
+      ctx.body = failedRes('缺少参数：catalogId')
+      return
+    }
     const aggregateArray = [
       {
         $match:{
@@ -73,24 +77,35 @@ router.get('/data/:userId/:deviceId',async (ctx,next)=>{
     let Data = ctx.app.context.db.data;
     let Catalog = ctx.app.context.db.catalog;
     let Device = ctx.app.context.db.device;
-    let data = await Data.find(
+    // let data = await Data.find(
+    //   {
+    //     where:{
+    //       updatedAt:{
+    //         '>=':startDate,
+    //         '<=':endDate
+    //       },
+    //       userId:userId,
+    //       catalogId:param.catalogId,
+    //       deviceId:deviceId
+    //     },
+    //   }
+    // )
+    const aggregateArray = [
       {
-        where:{
-          updatedAt:{
-            '>=':startDate,
-            '<=':endDate
-          },
+        $match:{
           userId:userId,
+          deviceId:deviceId,
           catalogId:param.catalogId,
-          deviceId:deviceId
-        },
-      }
-    )
-    if(data.length>0){
-      ctx.body = successResData(data)
-    }else{
-      ctx.body = successResData({})
-    }
+          createdAt:{$gt:new Date(startDate),$lt:new Date(endDate)}
+        }
+      },
+    ]
+    const result = await PromiseAggregate(Data,aggregateArray)
+    // if(data.length>0){
+      ctx.body = successResData(result)
+    // }else{
+      // ctx.body = successResData({})
+    // }
   }else{
     ctx.body=failedLoginRes()
   } 
