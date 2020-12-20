@@ -67,29 +67,29 @@ router.get('/data/:userId/:deviceId',async (ctx,next)=>{
   let User =ctx.app.context.db.user
   let token = ctx.request.header['token']
   let tokenData = await User.find({unionId:token})
+  let param = ctx.query
+
+  if(!param.endDate){
+    ctx.body = failedRes('缺少参数：endDate')
+    return
+  }else if(!param.startDate){
+    ctx.body = failedRes('缺少参数：startDate')
+    return
+  }else if(!param.catalogId){
+    ctx.body = failedRes('缺少参数：catalogId')
+    return
+  }
+
   if(tokenData.length>0){
   // if(true){
-    const startDate = moment().format("YYYY-MM-DD");
     let userId = ctx.params.userId
     let deviceId = ctx.params.deviceId
-    let param = ctx.query
-    let endDate = startDate+'T23:59:59Z'
+    let startDate =param.startDate+"T00:00:00Z"
+    let endDate = param.endDate+'T23:59:59Z'
     let Data = ctx.app.context.db.data;
     let Catalog = ctx.app.context.db.catalog;
     let Device = ctx.app.context.db.device;
-    // let data = await Data.find(
-    //   {
-    //     where:{
-    //       updatedAt:{
-    //         '>=':startDate,
-    //         '<=':endDate
-    //       },
-    //       userId:userId,
-    //       catalogId:param.catalogId,
-    //       deviceId:deviceId
-    //     },
-    //   }
-    // )
+
     const aggregateArray = [
       {
         $match:{
