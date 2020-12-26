@@ -21,6 +21,19 @@ router.get('/:userId',async (ctx,next)=>{
   }
 });
 
+router.get('/:userId/newest',async (ctx,next)=>{
+  let Body = ctx.app.context.db.body;
+  let userId = ctx.params.userId
+  const aggregateArray = [
+    {$match:{userId:{$eq:userId}}},
+    {$sort:{date:1}},
+    {$limit:1}
+  ]
+  const result = await PromiseAggregate(Body,aggregateArray)
+  ctx.body = successResData(result)
+
+})
+
 router.get('/:userId/lastest',async (ctx,next)=>{
   let Body = ctx.app.context.db.body;
   let userId = ctx.params.userId
