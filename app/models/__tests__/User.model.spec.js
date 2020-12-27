@@ -1,17 +1,25 @@
 import {expect} from 'chai'
 import Waterline from 'waterline'
 import sailsMemoryAdapter from 'sails-memory'
+import MongoAdapter from "sails-mongo"
 
 import User from '../User.model'
 
 const waterline = new Waterline();
 const config = {
   adapters: {
-    'sails-memory': sailsMemoryAdapter
+    mongo: MongoAdapter,
   },
   connections: {
     default: {
-      adapter: 'sails-memory'
+      adapter: "mongo",
+    },
+    mongo: {
+      adapter: "mongo",
+      // url:"mongodb://127.0.0.1:27017/db",
+      host: "127.0.0.1",
+      port: 27017,
+      database: "db"
     }
   }
 }
@@ -54,5 +62,11 @@ describe("User model", function() {
     }
     let user=await User.destroy("1")
     expect(user[0]).to.include(expected)
+  })
+
+  it('findOne',async()=>{
+    let User = waterline.collections.user;
+    let data = await User.findOne("5fddf7e0d8f14c43e36e5f72")
+    console.log(data)
   })
 });

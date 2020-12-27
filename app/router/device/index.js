@@ -7,6 +7,56 @@ let router= Router({
   prefix: 'device'
 })
 
+
+router.get('/data/detail/:dataId',async(ctx,next)=>{
+  let Data = ctx.app.context.db.data;
+  let User = ctx.app.context.db.user;
+  let dataId = ctx.params.dataId;
+  if(!dataId){
+    ctx.body = failedRes('缺少参数：dataId')
+    return
+  }
+  let detailData = await Data.findOne(dataId)
+  // if(detailData.userId){
+  //   // let user = User.findOne(detailData.userId)
+  //   // console.dir(user)
+  //   // detailData.user  = user 
+  // }
+  ctx.body = successResData(detailData)
+
+})
+
+router.get('/data/daily/:userId',async(ctx,next)=>{
+  let userId = ctx.params.userId
+  let param = ctx.query
+  if(!param.startDate){
+    ctx.body = failedRes('缺少参数：startDate')
+    return
+  }else if(!userId){
+    ctx.body = failedRes('缺少参数：userId')
+    return
+  }
+  let startDate = param.startDate+'T00:00:00Z'
+  let endDate = param.startDate+'T23:59:59Z'
+  let Data = ctx.app.context.db.data;
+  const aggregateArray = [
+    {
+      $match:{
+        userId:userId,
+        // catalogId:param.catalogId,
+        createdAt:{$gt:new Date(startDate),$lt:new Date(endDate)}
+      }
+    },
+    {
+      $addFields:{
+        date:{$dateToString: { format: "%Y-%m-%d", date: "$createdAt" }}
+      }
+    }
+  ]
+  const result = await PromiseAggregate(Data,aggregateArray)
+  ctx.body = successResData(result)
+})
+
 // 设备数据汇总
 router.get('/data/:userId',async (ctx,next)=>{
   let User =ctx.app.context.db.user
@@ -150,11 +200,13 @@ router.post('/data/:userId',async (ctx,next)=>{
     let task = await Task.findOne({_id:resbody.trainingTask})
     // console.log(task.successTotal)
     if(resbody.trainingType==4 && task){
-      await Task.update({
+      if(resbody.finish==0){
+        await Task.update({
         _id:resbody.trainingTask
         },{
           successTotal:task.successTotal+1
         })
+      }
       // await Task.update({id:resbody.trainingTask},{successTotal:task.successTotal+1})
       await TaskRelation.create({
         userId:userId,
