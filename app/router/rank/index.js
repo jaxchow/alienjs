@@ -78,10 +78,11 @@ router.get('/:userId',async (ctx,next)=>{
     ]
 
     const result = await PromiseAggregate(Data,aggregateArray)
-    // myData   = result.filter(f=>f.)
+    let rankResult =result.map((rr,idx)=>{ rr.rank = idx+1; return rr})
+    myData  = result.filter(f=>f.userId == userId).pop()
     let cutList = result.slice(param.startNum,Number(param.endNum)+1) 
     ctx.body = successResData({
-      // myData:myData,
+      myData:myData,
       total:result.length,
       list:cutList,
       catalogId:catalogData.id,
@@ -157,8 +158,9 @@ router.get('/',async (ctx,next)=>{
       }
     ]
 
-    const result = await PromiseAggregate(Data,aggregateArray)
-    let cutList = result.slice(param.startNum,Number(param.endNum)+1)
+    let result = await PromiseAggregate(Data,aggregateArray)
+    let rankResult =result.map((rr,idx)=>{ rr.rank = idx+1; return rr})
+    let cutList = rankResult.slice(param.startNum,Number(param.endNum)+1)
 
     ctx.body = successResData({
       total:result.length,
