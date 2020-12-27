@@ -16,6 +16,30 @@ const APP_SECRET = 'b960b3273c51bfdbf3b65555882aa1f7'
 const ALI_ID = "2021001182683582"
 const ALI_SECRET = "jp92j58/XttkuFEKEMXrpQ=="
 
+const BAIDU_ID = '23194814'
+const BAIDU_KEY = 'XxAxZ6hyjN93xjfemPPlvrhK'
+const BAIDU_SECRET = 'MNZ1dKjxtCvPRoBsl3ooZCB43lMCbdis'
+
+const getBaiduSessionKey = () => {
+	const url = `https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id=${BAIDU_KEY}&client_secret=${BAIDU_SECRET}`
+
+	return new Promise(function (reslove, reject) {
+		Request(url, {
+			method:"get",
+			header: {
+				"content-type": "application/x-www-form-urlencoded"
+			},
+		}, (error, response, body) => {
+			if (!error && response.statusCode == 200) {
+				reslove(JSON.parse(response.body))
+			} else {
+				// console.log("error",error,response.body)
+				reject(JSON.parse(error))
+			}
+		})
+	})
+}
+
 /********** 业务处理开始 **********/
 
 // 获取解密SessionKey
@@ -110,12 +134,12 @@ router.post('/decrypt', async (ctx) => {
 	// 	ctx.body = failedRes('缺少参数：code')
 	// 	return
 	if (!data.encryptedData) {
-	// } else if (!data.encryptedData) {
+		// } else if (!data.encryptedData) {
 		ctx.body = failedRes('缺少参数：encryptedData')
 		return
-	// } else if (!data.iv) {
-	// 	ctx.body = failedRes('缺少参数：iv')
-	// 	return
+		// } else if (!data.iv) {
+		// 	ctx.body = failedRes('缺少参数：iv')
+		// 	return
 	}
 
 	if (data.iv) {
@@ -154,6 +178,11 @@ router.post('/login', async (ctx) => {
 		// await Plant.create({id:u.id})
 	}
 	ctx.body = successResData(us)
+})
+
+
+router.get('/baidu', async (ctx) => {
+	ctx.body = await getBaiduSessionKey()
 })
 
 // 退出登录
