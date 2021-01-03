@@ -26,7 +26,7 @@ router.get('/:userId/newest',async (ctx,next)=>{
   let userId = ctx.params.userId
   const aggregateArray = [
     {$match:{userId:{$eq:userId}}},
-    {$sort:{date:1}},
+    {$sort:{date:-1}},
     {$limit:1}
   ]
   const result = await PromiseAggregate(Body,aggregateArray)
