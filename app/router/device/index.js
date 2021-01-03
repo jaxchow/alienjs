@@ -284,16 +284,23 @@ router.put('/data/index',async (ctx,next)=>{
 router.post('/connect',async (ctx,next)=>{
   let resbody = ctx.request.body
   let Device = ctx.app.context.db.device
-  let DeviceLog = ctx.app.context.db.deviceLog
+  let DeviceLog = ctx.app.context.db.devicelog
 	let data =null
-  console.log("resbody",resbody)
   if(!resbody.deviceId){
     ctx.body = 
     failedRes('缺少参数：deviceId')
     return
+  }else if(!resbody.userId){
+    ctx.body = 
+    failedRes('缺少参数：userId')
+    return
+  }else if(!resbody.catalogId){
+    ctx.body = 
+    failedRes('缺少参数：catalogId')
+    return
   }
 	let device=await Device.findOne({deviceId:resbody.deviceId})
-	console.log("length",device)
+  // console.log(device)
 	if(!device){
 	 //resbody.index=10
 	 data = await Device.create(resbody)
