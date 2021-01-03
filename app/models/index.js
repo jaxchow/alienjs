@@ -14,6 +14,7 @@ export function initialize(callback) {
 	var Data = require("./Data.model")
 	var Device = require("./Device.model")
 	var DeviceLog = require("./DeviceLog.model")
+	var DeviceConfig = require("./DeviceConfig.model")
 	orm.loadCollection(Task);
 	orm.loadCollection(TaskRelation);
 	orm.loadCollection(Body);
@@ -22,6 +23,7 @@ export function initialize(callback) {
 	orm.loadCollection(Data);
 	orm.loadCollection(Device);
 	orm.loadCollection(DeviceLog);
+	orm.loadCollection(DeviceConfig);
 	orm.initialize(
 		{
 			adapters: {
