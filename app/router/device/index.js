@@ -206,13 +206,12 @@ router.post('/data/:userId',async (ctx,next)=>{
         },{
           successTotal:task.successTotal+1
         })
+        await TaskRelation.create({
+          userId:userId,
+          taskId: resbody.trainingTask,
+          dataId: data.id
+        })
       }
-      // await Task.update({id:resbody.trainingTask},{successTotal:task.successTotal+1})
-      await TaskRelation.create({
-        userId:userId,
-        taskId: resbody.trainingTask,
-        dataId: data.id
-      })
       
     }
     // }else{
