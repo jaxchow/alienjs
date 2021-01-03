@@ -34,7 +34,7 @@ router.get('/config',async(ctx,next)=>{
 router.post('/config',async(ctx,next)=>{
   let DeviceConfig = ctx.app.context.db.deviceconfig
   let resbody = ctx.request.body
-  console.log(resbody)
+  // console.log(resbody)
     //参数确认
     if(!resbody.userId){
       ctx.body = failedRes('缺少参数：userId')
@@ -44,7 +44,7 @@ router.post('/config',async(ctx,next)=>{
       return
     }
     let decon = await DeviceConfig.find({where:{userId:resbody.userId,cataglogId:resbody.cataglogId}})
-    console.log(decon.length)
+    // console.log(decon.length)
     if(decon.length==0){
       await DeviceConfig.create(resbody)
     }else{
