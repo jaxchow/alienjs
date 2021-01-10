@@ -61,8 +61,8 @@ router.get('/data/daily/:userId',async(ctx,next)=>{
 router.get('/data/:userId',async (ctx,next)=>{
   let User =ctx.app.context.db.user
   let token = ctx.request.header['token']
-  let tokenData = await User.find({unionId:token})
- if(tokenData.length>0){
+//   let tokenData = await User.find({unionId:token})
+//  if(tokenData.length>0){
   // if(true){
     let userId = ctx.params.userId
     let param = ctx.query
@@ -108,9 +108,9 @@ router.get('/data/:userId',async (ctx,next)=>{
     ]
     const result = await PromiseAggregate(Data,aggregateArray)
     ctx.body = successResData(result)
-  }else{
-    ctx.body=failedLoginRes()
-  } 
+  // }else{
+  //   ctx.body=failedLoginRes()
+  // } 
 });
 // 单设备数据
 router.get('/data/:userId/:deviceId',async (ctx,next)=>{

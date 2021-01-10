@@ -16,17 +16,19 @@ router.get('/plantinfo',async (ctx,next)=>{
 router.get('/:id',async (ctx,next)=>{
   let User =ctx.app.context.db.user
   let token = ctx.request.header['token']
-  let tokenData = await User.find({unionId:token})
-  if(tokenData.length>0){
+  // let tokenData = await User.find({unionId:token})
+  // if(tokenData.length>0){
     let data =await User.findOne(ctx.params.id)
+
     if(data){
+      delete data.unionId
       ctx.body=successResData(data)
     }else{
       ctx.body=failedRes()
     }
-  }else{
-    ctx.body=failedLoginRes()
-  }
+  // }else{
+  //   ctx.body=failedLoginRes()
+  // }
 })
 
 // 用户设备
