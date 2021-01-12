@@ -1,5 +1,5 @@
 import Router from 'koa-router'
-import {successResData} from '../../Utils/RouterResultUtils'
+import {successResData,failedRes} from '../../Utils/RouterResultUtils'
 
 let router= Router({
   prefix: 'task'
@@ -19,12 +19,32 @@ router.get('/:catalogId',async (ctx,next)=>{
 router.get('/success/:userId',async (ctx,next)=>{
   let userId = ctx.params.userId
   let TaskRelation = ctx.app.context.db.taskrelation
-  let catalogId = ctx.params.catalogId
+  let catalogId = ctx.query.catalogId
   if(!catalogId){
     ctx.body = failedRes('缺少参数：catalogId')
     return
-  const aggregateArray = [{$match:{userId:{$eq:userId},catalogId:catalogId}},
-    {$group:{_id:'$taskId',taskId:{$first:'$taskId'},count:{$sum:1}}},
+  }
+  // console.log(userId,catalogId)
+  const aggregateArray = [
+    {
+      $lookup:{
+          from:'task',
+          localField:"taskId",
+          foreignField:"_id",
+          as:"task"
+        }
+      },
+    {
+      $match:{
+        userId:userId,
+        task:{
+          $elemMatch:{
+            catalogId:catalogId
+          }
+        }
+      }
+    },
+   {$group:{_id:'$taskId',taskId:{$first:'$taskId'},count:{$sum:1}}},
   ]
   function PromiseNative(model,aggregate){
     return new Promise((resolve,reject)=>{
