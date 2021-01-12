@@ -19,7 +19,11 @@ router.get('/:catalogId',async (ctx,next)=>{
 router.get('/success/:userId',async (ctx,next)=>{
   let userId = ctx.params.userId
   let TaskRelation = ctx.app.context.db.taskrelation
-  const aggregateArray = [{$match:{userId:{$eq:userId}}},
+  let catalogId = ctx.params.catalogId
+  if(!catalogId){
+    ctx.body = failedRes('缺少参数：catalogId')
+    return
+  const aggregateArray = [{$match:{userId:{$eq:userId},catalogId:catalogId}},
     {$group:{_id:'$taskId',taskId:{$first:'$taskId'},count:{$sum:1}}},
   ]
   function PromiseNative(model,aggregate){
