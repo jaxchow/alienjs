@@ -3,6 +3,8 @@ import Waterline from 'waterline'
 var TaskRelation = Waterline.Collection.extend({
   identity: 'taskRelation',
   connection: 'mongo',
+  autoCreatedAt: false,
+  autoUpdatedAt: false,
   attributes: {
     id:{
       type:'objectid',

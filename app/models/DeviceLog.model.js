@@ -3,6 +3,8 @@ import Waterline from 'waterline'
 var DeviceLog = Waterline.Collection.extend({
     identity: 'deviceLog',
     connection: 'mongo',
+    autoCreatedAt: false,
+    autoUpdatedAt: false,
     attributes: {
         id: {
             type: 'objectid',

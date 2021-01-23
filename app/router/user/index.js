@@ -84,7 +84,6 @@ router.post('/:id/supply',async (ctx,next)=>{
   let token = ctx.request.header['token']
   let tokenData = await User.find({unionId:token})
   const body = ctx.request.body
-  let now = moment().format("YYYY-MM-DD")
   if(!body.weight){
     ctx.body = failedRes('缺少参数：weight')
     return
@@ -98,21 +97,21 @@ router.post('/:id/supply',async (ctx,next)=>{
     ctx.body = failedRes('缺少参数：waist')
     return
   }
-
+  let now = moment().add('hours',8)
   if(tokenData.length>0){
     let {height,weight,waist,...birthday} = body
     let data = await User.update(ctx.params,{...birthday})
     if(weight){
       // console.log("weight")
-      await Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"1",value:weight})
+      await Body.create({userId:ctx.params.id,date:moment(now).format('YYYY-MM-DDT00:00:00.000Z'),valueType:"1",value:weight,createdAt:moment(now).toDate()})
     }
     if(height){
       // console.log("height")
-      await Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"2",value:height})
+      await Body.create({userId:ctx.params.id,date:moment(now).format('YYYY-MM-DDT00:00:00.000Z'),valueType:"2",value:height,createdAt:moment(now).toDate()})
     }
     if(waist){
       // console.log("bust")
-      await Body.create({userId:ctx.params.id,date:moment(now).toDate(),valueType:"4",value:waist})
+      await Body.create({userId:ctx.params.id,date:moment(now).format('YYYY-MM-DDT00:00:00.000Z'),valueType:"4",value:waist,createdAt:moment(now).toDate()})
     }
     if(data[0]){
       ctx.body = successResData(data[0])

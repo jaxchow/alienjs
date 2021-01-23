@@ -17,11 +17,6 @@ router.get('/data/detail/:dataId',async(ctx,next)=>{
     return
   }
   let detailData = await Data.findOne(dataId)
-  // if(detailData.userId){
-  //   // let user = User.findOne(detailData.userId)
-  //   // console.dir(user)
-  //   // detailData.user  = user 
-  // }
   ctx.body = successResData(detailData)
 
 })
@@ -195,10 +190,11 @@ router.post('/data/:userId',async (ctx,next)=>{
       ctx.body = failedRes('缺少参数：trainingTask ，任务id')
       return
     }
-
-    data = await Data.create({userId:userId,...resbody})
+    let now = moment().add('hours',8)
+    data = await Data.create({userId:userId,...resbody,createdAt:moment(now).toDate()})
     let task = await Task.findOne({_id:resbody.trainingTask})
     // console.log(task.successTotal)
+    console.log(task)
     if(resbody.trainingType==4 && task){
       if(resbody.finish==0){
         await Task.update({
@@ -236,10 +232,11 @@ router.delete('/:deviceId',async (ctx,next)=>{
   let token = ctx.request.header['token']
   // console.log(ctx.app.context.db)
   let tokenData = await User.find({unionId:token})
+    let now = moment().add('hours',8)
   if(tokenData.length>0){
     let {deviceId} = ctx.params
     let DeviceDesData = await Device.destroy({where:{deviceId:deviceId}})
-    await DeviceLog.create({deviceId:deviceId,userid:tokenData[0].id,type:"0"})
+    await DeviceLog.create({deviceId:deviceId,userid:tokenData[0].id,type:"0",createdAt:moment(now).toDate()})
     if(DeviceDesData[0]){
       ctx.body = successResData({ Device:DeviceDesData[0]})
     }else{

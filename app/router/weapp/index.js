@@ -168,12 +168,14 @@ router.post('/login', async (ctx) => {
 	let uss
 	const user = await User.find({ phoneNumber: data.phoneNumber })
 	const unionId = jwtSign({ phoneNumber: data.phoneNumber, loginType: data.loginType })
+	let now = moment().add('hours',8)
 	if (user.length > 0) {
 		uss = await User.update({ id: user[0].id }, { unionId: unionId })
 		us = uss[0]
 	} else {
 		us = await User.create(Object.assign({}, data, {
-			unionId: unionId
+			unionId: unionId,
+			createdAt:moment(now).toDate()
 		}))
 		// await Plant.create({id:u.id})
 	}

@@ -3,6 +3,8 @@ import Waterline from 'waterline'
 var Body = Waterline.Collection.extend({
   identity: 'body',
   connection: 'mongo',
+  autoCreatedAt: false,
+  autoUpdatedAt: false, 
   attributes: {
     id:{
       type:'objectid',

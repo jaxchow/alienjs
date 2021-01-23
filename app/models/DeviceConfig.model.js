@@ -4,6 +4,8 @@ import moment from 'moment'
 var DeviceConfig = Waterline.Collection.extend({
   identity: 'deviceconfig',
   connection: 'mongo',
+  autoCreatedAt: false,
+  autoUpdatedAt: false,
   attributes: {
     id:{
       type:'objectid',

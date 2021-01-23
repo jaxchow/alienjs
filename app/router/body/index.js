@@ -1,5 +1,5 @@
 import Router from 'koa-router'
-import moment from 'moment'
+import moment from 'moment-timezone'
 import {successResData,failedLoginRes,failedRes} from '../../Utils/RouterResultUtils'
 import {PromiseAggregate} from '../../Utils/mongodbUtils'
 
@@ -67,17 +67,17 @@ router.post('/:userId',async (ctx,next)=>{
   let resbody = ctx.request.body
   let body,data
   if(resbody && JSON.stringify(resbody) !== '{}'){
-    let now = moment().format("YYYY-MM-DD")
+    let now = moment().add('hours',8)
     body = await Body.findOne({
       userId:userId,
-      date:moment(now).toDate(),
+      date:moment(now).format('YYYY-MM-DD'),
       valueType:resbody.valueType
     })
 
     if(body){
-      data = await Body.update({userId:userId,date:moment(now).toDate(),valueType:resbody.valueType},{value:resbody.value})
+      data = await Body.update({userId:userId,date:moment(now).format('YYYY-MM-DD'),valueType:resbody.valueType,createdAt:moment(now).toDate()},{value:resbody.value})
     }else{
-      data = await Body.create({userId:userId,date:moment(now).toDate(),...resbody})
+      data = await Body.create({userId:userId,date:moment(now).format('YYYY-MM-DD'),createdAt:moment(now).toDate(),...resbody})
     }
     ctx.body = successResData(data)
   }else{

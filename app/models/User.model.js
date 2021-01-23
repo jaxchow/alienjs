@@ -4,6 +4,8 @@ import moment from 'moment'
 var User = Waterline.Collection.extend({
   identity: 'user',
   connection: 'mongo',
+  autoCreatedAt: false,
+  autoUpdatedAt: false,
   attributes: {
     id:{
       type:'objectid',
