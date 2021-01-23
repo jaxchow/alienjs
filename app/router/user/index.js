@@ -103,16 +103,17 @@ router.post('/:id/supply',async (ctx,next)=>{
     let data = await User.update(ctx.params,{...birthday})
     if(weight){
       // console.log("weight")
-      await Body.create({userId:ctx.params.id,date:moment(now).format('YYYY-MM-DDT00:00:00.000Z'),valueType:"1",value:weight,createdAt:moment(now).toDate()})
+      await Body.create({userId:ctx.params.id,date:moment().format("YYYY-MM-DD"),valueType:"1",value:weight,createdAt:moment(now).toDate()})
     }
     if(height){
       // console.log("height")
-      await Body.create({userId:ctx.params.id,date:moment(now).format('YYYY-MM-DDT00:00:00.000Z'),valueType:"2",value:height,createdAt:moment(now).toDate()})
+      await Body.create({userId:ctx.params.id,date:moment().format("YYYY-MM-DD"),valueType:"2",value:height,createdAt:moment(now).toDate()})
     }
     if(waist){
       // console.log("bust")
-      await Body.create({userId:ctx.params.id,date:moment(now).format('YYYY-MM-DDT00:00:00.000Z'),valueType:"4",value:waist,createdAt:moment(now).toDate()})
+      await Body.create({userId:ctx.params.id,date:moment().format("YYYY-MM-DD"),valueType:"4",value:waist,createdAt:moment(now).toDate()})
     }
+    console.log(data)
     if(data[0]){
       ctx.body = successResData(data[0])
     }else{

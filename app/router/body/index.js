@@ -26,7 +26,7 @@ router.get('/:userId/newest',async (ctx,next)=>{
   let userId = ctx.params.userId
   const aggregateArray = [
     {$match:{userId:{$eq:userId}}},
-    {$sort:{date:-1}},
+    {$sort:{createdAt:-1}},
     {$limit:1}
   ]
   const result = await PromiseAggregate(Body,aggregateArray)
@@ -69,14 +69,14 @@ router.post('/:userId',async (ctx,next)=>{
     let now = moment().add('hours',8)
     body = await Body.findOne({
       userId:userId,
-      date:moment(now).format('YYYY-MM-DD'),
+      date:moment().format("YYYY-MM-DD"),
       valueType:resbody.valueType
     })
 
     if(body){
-      data = await Body.update({userId:userId,date:moment(now).format('YYYY-MM-DD'),valueType:resbody.valueType,createdAt:moment(now).toDate()},{value:resbody.value})
+      data = await Body.update({userId:userId,date:moment().format("YYYY-MM-DD"),valueType:resbody.valueType,createdAt:moment(now).toDate()},{value:resbody.value})
     }else{
-      data = await Body.create({userId:userId,date:moment(now).format('YYYY-MM-DD'),createdAt:moment(now).toDate(),...resbody})
+      data = await Body.create({userId:userId,date:moment().format("YYYY-MM-DD"),createdAt:moment(now).toDate(),...resbody})
     }
     ctx.body = successResData(data)
   }else{
