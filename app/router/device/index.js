@@ -198,7 +198,7 @@ router.post('/data/:userId',async (ctx,next)=>{
     if(resbody.trainingType==4 && task){
       if(resbody.finish==0){
         await Task.update({
-        _id:resbody.trainingTask
+        id:resbody.trainingTask
         },{
           successTotal:task.successTotal+1
         })

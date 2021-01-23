@@ -28,20 +28,27 @@ router.get('/success/:userId',async (ctx,next)=>{
   const aggregateArray = [
     {
       $lookup:{
-          from:'task',
-          localField:"taskId",
-          foreignField:"_id",
-          as:"task"
+        from: 'task',
+        let: { "task_id": "$taskId" },
+        pipeline: [
+          { "$addFields": { "uId": { "$toString": "$_id" } } },
+          { "$match": { "$expr": { "$eq": ["$uId", "$$task_id"] } } }
+        ],
+        as: 'task'
         }
-      },
+    },
+    {
+      $unwind:"$task"
+    },
+    {
+      $addFields:{
+        "catalogId":"$task.catalogId"
+      }
+    },
     {
       $match:{
         userId:userId,
-        task:{
-          $elemMatch:{
-            catalogId:catalogId
-          }
-        }
+        catalogId:catalogId
       }
     },
    {$group:{_id:'$taskId',taskId:{$first:'$taskId'},count:{$sum:1}}},
