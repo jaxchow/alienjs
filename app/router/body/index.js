@@ -1,5 +1,5 @@
 import Router from 'koa-router'
-import moment from 'moment-timezone'
+import moment from 'moment'
 import {successResData,failedLoginRes,failedRes} from '../../Utils/RouterResultUtils'
 import {PromiseAggregate} from '../../Utils/mongodbUtils'
 
@@ -37,7 +37,6 @@ router.get('/:userId/newest',async (ctx,next)=>{
 router.get('/:userId/lastest',async (ctx,next)=>{
   let Body = ctx.app.context.db.body;
   let userId = ctx.params.userId
-  // const aggregateArray = [{$match:{userId:{$eq:userId}}},{$group:{_id:'$valueType',"maxValue": {$max:"$date"}}}]
   const aggregateArray = [{$match:{userId:{$eq:userId}}},
     {$group:{_id:'$valueType',date: { $last: "$date" },value:{$last:"$value"},goalValue:{$last:"$goalValue"},valueType:{$last:"$valueType"},userId:{$first:"$userId"},id:{$first:"$_id"}}},
   ]
