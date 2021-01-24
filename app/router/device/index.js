@@ -192,11 +192,10 @@ router.post('/data/:userId',async (ctx,next)=>{
     }
     let now = moment().add('hours',8)
     data = await Data.create({userId:userId,...resbody,createdAt:moment(now).toDate()})
-    let task = await Task.findOne(resbody.trainingTask)
     // console.log(task.successTotal)
-    console.log(task)
-    if(resbody.trainingType==4 && task){
-      if(resbody.finish==0){
+    if(resbody.trainingType==4){
+      let task = await Task.findOne(resbody.trainingTask)
+      if(resbody.finish==0 && task){
         await Task.update({
         id:resbody.trainingTask
         },{
