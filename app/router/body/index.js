@@ -67,18 +67,19 @@ router.post('/:userId',async (ctx,next)=>{
   let body,data
   if(resbody && JSON.stringify(resbody) !== '{}'){
     let now = moment().add('hours',8)
-    body = await Body.findOne({
+    body = await Body.find({
       userId:userId,
-      date:moment().format("YYYY-MM-DD"),
+      date:moment(moment().format("YYYY-MM-DD")+"T00:00:00.000+00:00").toDate(),
       valueType:resbody.valueType
     })
-
-    if(body){
-      data = await Body.update({userId:userId,date:moment().format("YYYY-MM-DD"),valueType:resbody.valueType,createdAt:moment(now).toDate()},{value:resbody.value})
+    // console.log(body,moment(moment().format("YYYY-MM-DD")+"T00:00:00.000+00:00").toDate())
+    if(body.length>0){
+      data = await Body.update({userId:userId,date:moment(moment().format("YYYY-MM-DD")+"T00:00:00.000+00:00").toDate(),valueType:resbody.valueType},{value:resbody.value})
+      ctx.body = successResData(data[0])
     }else{
       data = await Body.create({userId:userId,date:moment().format("YYYY-MM-DD"),createdAt:moment(now).toDate(),...resbody})
+      ctx.body = successResData(data)
     }
-    ctx.body = successResData(data)
   }else{
     ctx.body = failedRes('未上传任何参数')
   }
