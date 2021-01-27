@@ -21,11 +21,12 @@ router.get('/:userId',async (ctx,next)=>{
   }
 });
 
-router.get('/:userId/newest',async (ctx,next)=>{
+router.get('/:userId/:valueType/newest',async (ctx,next)=>{
   let Body = ctx.app.context.db.body;
   let userId = ctx.params.userId
+  let valueType = ctx.params.valueType
   const aggregateArray = [
-    {$match:{userId:{$eq:userId}}},
+    {$match:{userId:{$eq:userId},valueType:valueType}},
     {$sort:{createdAt:-1}},
     {$limit:1}
   ]
